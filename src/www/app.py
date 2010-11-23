@@ -12,10 +12,12 @@ def configure():
     staticDirectoryRoot = os.path.join(sourceDirectory, 'static')
     
     serverConfig = {
+        'appSettings': {
+            'html5ResetFilename': 'html5reset-1.6.1.css'
+        },
         'global': {
             'server.socket_host': settings.config['socket_host'],
             'server.socket_port': settings.config['socket_port'],
-            'log.screen': False,
             'log.access_file': settings.config['access_log_path'],
             'log.error_file': settings.config['error_log_path']
         },
@@ -26,8 +28,11 @@ def configure():
             'tools.sessions.name': 'KESTAVA_SESSION_COOKIE',
             'tools.sessions.storage_type': 'file',
             'tools.sessions.storage_path': settings.config['session_storage_path'],
-            'tools.staticdir.root': staticDirectoryRoot,
-            'tools.trailing_slash.missing': False
+            'tools.staticdir.root': staticDirectoryRoot
+        },
+        '/favicon.ico': {
+            'tools.staticfile.on': True,
+            'tools.staticfile.filename': os.path.join(staticDirectoryRoot, 'img/favicon.ico')
         },
         '/css': {
             'tools.staticdir.on': True,
@@ -43,19 +48,8 @@ def configure():
         }
     }
     
-    # Add a "development" environment
-    cherrypy._cpconfig.environments['development'] = {
-        'engine.autoreload_on': True,
-        'checker.on': True,
-        'tools.log_headers.on': True,
-        'request.show_tracebacks': True,
-        'log.screen': False
-    }
-    
-    # available default environments: "staging", "production", "embedded",
-    # "test_suite" (see _cpconfig.environments dict for their predefined
-    # settings).  To these, we've added "development".
-    cherrypy.config.update({ 'environment': settings.config['environment'] })
+    if 'environment' in settings.config:
+        cherrypy.config.update({ 'environment': settings.config['environment'] })
     
     return serverConfig
 
