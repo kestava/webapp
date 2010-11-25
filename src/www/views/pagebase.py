@@ -147,7 +147,7 @@ class PageBase(ViewBase):
         current = None
         for i in navData:
             current = xml.create_subelement(parent=ul, tagname='li')
-            xml.add_class(current, 'accountCell')
+            xml.add_class(current, 'navCell')
             
             if first:
                 xml.add_class(current, 'first')

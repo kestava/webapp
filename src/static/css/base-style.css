@@ -1,0 +1,109 @@
+body
+{
+    font-family: Arial, Helvetica, FreeSans, sans-serif;
+}
+
+#mainContainer
+{
+    margin: 12px;
+    border: 1px solid #F0F0F0;
+}
+
+#mainNavLinksContainer
+{
+    position: relative;
+}
+
+.titleContainer
+{
+    margin-top: 45px;
+}
+
+.titleContainer h1
+{
+    display: inline;
+}
+
+.titleContainer h1 a
+{
+    font-size: 2em;
+}
+
+.titleContainer h1 a:link,
+.titleContainer h1 a:visited
+{
+    color: #173B5C;
+}
+
+.titleContainer h2
+{
+    display: inline;
+    font-size: 1.2em;
+    margin-left: 0.6em;
+}
+
+.titleContainer h2.lastCrumb
+{
+    color: #C0C4C8;
+}
+
+.titleContainer a
+{
+    text-decoration: none;
+}
+
+.mainNavList
+{
+    right: 0px;
+}
+
+#mainNavLinksContainer > nav
+{
+    position: absolute;
+}
+
+#mainNavLinksContainer > nav > ul > li
+{
+    display: inline;
+}
+
+#mainNavLinksContainer > nav > ul > li > span,
+#mainNavLinksContainer > nav > ul > li > a
+{
+    font-size: 80%;
+}
+
+.navCell
+{
+    padding-left: 18px;
+    padding-right: 18px;
+    border-left: 1px solid #D7D7D7;
+}
+
+.navCell.first
+{
+    border-left-style: hidden;
+}
+
+.mainMessageContainer
+{
+    margin: 36px auto 0px auto;
+    padding: 24px 12px;
+    width: 600px;
+    border-width: 1px;
+    border-style: solid;
+    border-top-color: #CCC;
+    border-left-color: #CCC;
+    border-right-color: #999;
+    border-bottom-color: #999;
+    
+    background-color: #DADADC;
+    
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    
+    box-shadow: 3px 3px 4px #555;
+    -moz-box-shadow: 3px 3px 4px #999;
+    -webkit-box-shadow: 3px 3px 4px #555;
+}
