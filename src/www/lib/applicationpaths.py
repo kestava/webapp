@@ -5,9 +5,9 @@ class ApplicationPaths(object):
     class PathsDescr(object):
         def __get__(self, instance, owner):
             def get_jquery_filename():
-                return 'jquery-1.4.2.js' \
+                return 'jquery-1.4.4.js' \
                     if 'development' == Config.get_environment() \
-                    else 'jquery-1.4.2.min.js'
+                    else 'jquery-1.4.4.min.js'
                 
             return {
                 'jquery': '/js/' + get_jquery_filename()
