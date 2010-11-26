@@ -29,8 +29,6 @@ class HomepagePage(PageBase):
         
         self.add_page_component(CentralContent())
         
-        return self
-        
     def _create_main_nav_group(self, parent):
         accountId = cherrypy.session.get('ACCOUNT-ID')
         

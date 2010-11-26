@@ -26,7 +26,7 @@ class PageBase(ViewBase):
     def _add_common_header_files(self):
         #config = lib.config.Config()
         config = cherrypy.request.app.config
-        pprint.pprint(config)
+        #pprint.pprint(config)
         
         self.add_stylesheet(config['appSettings']['html5ResetFilename'])
         self.add_stylesheet('base-style.css')
@@ -86,8 +86,9 @@ class PageBase(ViewBase):
         
     def get_title(self):
         #return lib.config.Config().siteName
-        pprint.pprint(cherrypy.config)
-        pprint.pprint(cherrypy.request.app.config)
+        #pprint.pprint(cherrypy.config)
+        #pprint.pprint(cherrypy.request.app.config)
+        return cherrypy.request.app.config['appSettings']['siteName']
     
     def build_head(self):
         head = views.components.compositecomponent.CompositeComponent(tagname='head')

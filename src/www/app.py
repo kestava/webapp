@@ -3,6 +3,9 @@ import pprint
 
 import cherrypy
 
+# tools
+import tools.connectdb
+
 import settings
 import mapping.rootpages
 
@@ -28,7 +31,8 @@ def configure():
             'tools.sessions.name': 'KESTAVA_SESSION_COOKIE',
             'tools.sessions.storage_type': 'file',
             'tools.sessions.storage_path': settings.config['session_storage_path'],
-            'tools.staticdir.root': staticDirectoryRoot
+            'tools.staticdir.root': staticDirectoryRoot,
+            'tools.disconnect_db.on': True
         },
         '/favicon.ico': {
             'tools.staticfile.on': True,
@@ -47,6 +51,8 @@ def configure():
             'tools.staticdir.dir': 'img'
         }
     }
+    
+    serverConfig['appSettings'].update(settings.config['appSettings'])
     
     if 'environment' in settings.config:
         cherrypy.config.update({ 'environment': settings.config['environment'] })

@@ -1,0 +1,4 @@
+
+var kestava = (function() {
+    return {};
+})();

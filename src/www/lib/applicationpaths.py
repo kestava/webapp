@@ -1,3 +1,7 @@
+import urlparse
+
+import cherrypy
+
 from lib.config import Config
 
 class ApplicationPaths(object):
@@ -19,7 +23,15 @@ class ApplicationPaths(object):
     def get_script_path(cls, filename):
         return '/js/' + filename
     
-    @classmethod    
-    def get_secure_site_root(cls):
-        config = lib.config.Config()
-        return 'https://{0}/'.format(config.hostName)
+    @classmethod
+    def get_site_root(cls):
+        config = cherrypy.request.app.config
+        portString = ''
+        if 'sitePort' in config['appSettings'] and not 80 == config['appSettings']['sitePort']:
+            portString = ':{0}'.format(config['appSettings']['sitePort'])
+            
+        return 'http://{0}{1}/'.format(config['appSettings']['siteHostname'], portString)
+    
+    @classmethod
+    def get_handle_openid_auth_response_path(cls):
+        return urlparse.urljoin(cls.get_site_root(), 'login/openid/process')

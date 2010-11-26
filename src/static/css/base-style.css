@@ -1,55 +1,24 @@
 body
 {
     font-family: Arial, Helvetica, FreeSans, sans-serif;
+    background-color: #202020;
 }
 
 #mainContainer
 {
-    margin: 12px;
-    border: 1px solid #F0F0F0;
+    width: 96%;
+    margin: 12px auto;
+    border: 1px solid transparent;
+    background-color: #FFFFFF;
+    
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
 }
 
 #mainNavLinksContainer
 {
     position: relative;
-}
-
-.titleContainer
-{
-    margin-top: 45px;
-}
-
-.titleContainer h1
-{
-    display: inline;
-}
-
-.titleContainer h1 a
-{
-    font-size: 2em;
-}
-
-.titleContainer h1 a:link,
-.titleContainer h1 a:visited
-{
-    color: #173B5C;
-}
-
-.titleContainer h2
-{
-    display: inline;
-    font-size: 1.2em;
-    margin-left: 0.6em;
-}
-
-.titleContainer h2.lastCrumb
-{
-    color: #C0C4C8;
-}
-
-.titleContainer a
-{
-    text-decoration: none;
 }
 
 .mainNavList
