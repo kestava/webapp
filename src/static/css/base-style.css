@@ -76,3 +76,42 @@ body
     -moz-box-shadow: 3px 3px 4px #999;
     -webkit-box-shadow: 3px 3px 4px #555;
 }
+
+#userGreetingArea
+{
+    cursor: pointer;
+    position: relative;
+}
+
+#userGreetingArea small
+{
+    margin-left: 4px;
+    vertical-align: middle;
+}
+
+#userMenu
+{
+    position: absolute;
+    left: 0px;
+    top: 1.5em;
+}
+
+.popupMenu
+{
+    border: 1px solid #2A2A2A;
+}
+.popupMenu a
+{
+    display: block;
+    text-decoration: none;
+}
+
+.popupMenu a:visited
+{
+    color: blue;
+}
+
+.popupMenu a:hover
+{
+    text-decoration: underline;
+}

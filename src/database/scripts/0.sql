@@ -62,10 +62,6 @@ CREATE TABLE openid_accounts
 (
   openid_identifier character varying NOT NULL,
   account_id integer NOT NULL,
-  email character varying,
-  first_name character varying,
-  last_name character varying,
-  full_name character varying,
   CONSTRAINT openid_accounts_pk PRIMARY KEY (openid_identifier),
   CONSTRAINT openid_accounts_fk1 FOREIGN KEY (account_id)
       REFERENCES accounts (account_id) MATCH SIMPLE

@@ -44,5 +44,22 @@ class Account(object):
             
         print('accounts record with account_id={0} created'.format(id))    
         return id
+        
+    @classmethod
+    def get_greeting_name(cls, id, cursor=None):
+        
+        if not cursor is None:
+            raise NotImplementedError('Account.get_greeting_name with cursor')
+        
+        def _get(cursor):
+            cursor.execute('select email from accounts where account_id = %(i)s',
+                {'i': id})
+            
+            row = cursor.fetchone()
+            _get.result = row['email']
+            
+        with_cursor(_get)
+        
+        return _get.result
                 
                 

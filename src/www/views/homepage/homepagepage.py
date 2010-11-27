@@ -6,6 +6,7 @@ from views.pagebase import PageBase
 
 from centralcontent import CentralContent
 import views.components.compositecomponent
+from model.account import Account
 
 class HomepagePage(PageBase):
         
@@ -30,14 +31,16 @@ class HomepagePage(PageBase):
         self.add_page_component(CentralContent())
         
     def _create_main_nav_group(self, parent):
-        accountId = cherrypy.session.get('ACCOUNT-ID')
+        accountId = cherrypy.session.get('account-id')
         
         navData = [('a', '/login', 'Log In'),
             ('a', '/help', 'Help')]
         
         if accountId:
-            navData = []
-            raise NotImplementedError('Creating main nav group for user logged in')
+            sal = Account.get_greeting_name(accountId)
+            navData = [
+                ('rawstring', self.__userGreetingAreaMarkup.format(sal)),
+                ('a', '/help', 'Help')]
             
         navList = self.create_nav_list(navData)
         navList.add_class('mainNavList')
@@ -53,3 +56,17 @@ class HomepagePage(PageBase):
         navList = self.create_nav_list(navData)
         navList.add_class('otherNavList')
         parent.add_component(navList)
+        
+#    __userGreetingAreaMarkup = '''
+#<span id="userGreetingArea">{0}<small>&#9660;</small></span>
+#'''
+        
+    __userGreetingAreaMarkup = '''
+<span id="userGreetingArea">{0}<small>&#9660;</small>
+    <div id="userMenu" class="popupMenu" style="display: none">
+        <a href="/account-settings">Settings</a>
+        <a href="/logout">Logout</a>
+    </div>
+</span>
+'''
+        

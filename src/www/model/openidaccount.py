@@ -21,7 +21,7 @@ class OpenIdAccount(object):
         return _exists.result
         
     @classmethod
-    def create(cls, identifier, email, firstName, lastName, fullName):
+    def create(cls, identifier, email):
         
         def _create(cursor):
             accountId = Account.get_account_id_by_email(email, cursor=cursor)
@@ -29,41 +29,12 @@ class OpenIdAccount(object):
                 accountId = Account.create(email=email, cursor=cursor)
             
             cursor.execute(
-                '''insert into openid_accounts (openid_identifier, account_id, \
-email, first_name, last_name, full_name) \
-values (%(oid)s, %(aid)s, %(email)s, %(firstName)s, %(lastName)s, %(fullName)s)''',
+                '''insert into openid_accounts (openid_identifier, account_id) \
+values (%(oid)s, %(aid)s)''',
                 {
                     'oid': identifier,
-                    'aid': accountId,
-                    'email': email,
-                    'firstName': firstName,
-                    'lastName': lastName,
-                    'fullName': fullName
+                    'aid': accountId
                 })
             
         with_cursor(_create)
-        
-    @classmethod
-    def update(cls, identifier, email, firstName, lastName, fullName):
-        
-        def _update(cursor):
-            cursor.execute(
-                '''update openid_accounts set email = %(email)s, \
-first_name = %(firstName)s, last_name = %(lastName)s, full_name = %(fullName)s \
-where openid_identifier like %(oid)s''',
-                {
-                    'oid': identifier,
-                    'email': email,
-                    'firstName': firstName,
-                    'lastName': lastName,
-                    'fullName': fullName
-                })
-            
-            
-        with_cursor(_update)
-        
-        
-        
-        
-        
         

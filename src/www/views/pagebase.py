@@ -154,6 +154,8 @@ class PageBase(ViewBase):
                 xml.add_class(current, 'first')
                 first = False
             
+            print(i)
+            
             if i[0] == 'a':    
                 xml.create_subelement(
                     parent=current,
@@ -165,5 +167,7 @@ class PageBase(ViewBase):
                     parent=current,
                     tagname='span',
                     text=i[1])
+            elif i[0] == 'rawstring':
+                current.append(xml.from_string(i[1]))
         
         return nav
