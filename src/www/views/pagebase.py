@@ -1,5 +1,6 @@
 import cStringIO
 import pprint
+import urlparse
 
 import cherrypy
 
@@ -13,15 +14,16 @@ from views.components.rawstringcomponent import RawStringComponent
 import views.components.xmlcomponent
 
 class PageBase(ViewBase):
-    
-    __defaultHeaders = { 'Content-Type': 'text/html; charset=UTF-8' }
-    
+
     def __init__(self):
         super(PageBase, self).__init__()
         self._stylesheets = []
         self._headScripts = []
         self._pageComponents = []
-        self.__output = None
+        
+        # Set default headers
+        self.headers['Content-Type'] = 'text/html; charset=UTF-8'
+        self.headers['X-XRDS-Location'] = urlparse.urljoin(ApplicationPaths.get_site_root(), '/xrds.xml')
             
     def _add_common_header_files(self):
         #config = lib.config.Config()
@@ -35,10 +37,6 @@ class PageBase(ViewBase):
             self.add_head_script('kestava.js')
         else:
             self.add_head_script('kestava.min.js')
-        
-    @property
-    def output(self):
-        return self.__output
         
     def add_stylesheet(self, filename):
         self._stylesheets.append(filename)
@@ -69,17 +67,12 @@ class PageBase(ViewBase):
         o = self.create_string_io()
         try:
             doc.output_to_stream(o)
-            self.__output = o.getvalue()
+            self.output = o.getvalue()
         finally:
             o.close()
     
     def create_string_io(self):
         return cStringIO.StringIO()
-    
-    def _get_header(self, header):
-        # Use reasonable defaults
-        # Child view classes may override this to provide different header values
-        return PageBase.__defaultHeaders[header]
         
     def get_doctype(self):
         return '<!DOCTYPE html>'

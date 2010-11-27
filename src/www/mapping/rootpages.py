@@ -2,7 +2,8 @@ import pprint
 
 import cherrypy
 
-import controllers.homepagecontroller
+from controllers.homepagecontroller import HomePageController
+from controllers.xrdscontroller import XrdsController
 from views import create_view
 from loginpages import LoginPages
 
@@ -13,7 +14,7 @@ class RootPages(object):
     @cherrypy.tools.connect_db()
     @cherrypy.expose
     def index(self):
-        c = controllers.homepagecontroller.HomePageController()
+        c = HomePageController()
         return create_view(c)
         
     @cherrypy.expose
@@ -21,5 +22,9 @@ class RootPages(object):
         if cherrypy.session.has_key('account-id'):
             cherrypy.session.pop('account-id')
             
-        c = controllers.homepagecontroller.HomePageController()
+        raise cherrypy.HTTPRedirect('/')
+        
+    @cherrypy.expose(alias='xrds.xml')
+    def handle_xrds(self):
+        c = XrdsController()
         return create_view(c)

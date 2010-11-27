@@ -9,13 +9,27 @@ class ViewBase(object):
     def __init__(self):
         self.__headers = {}
         self.__args = {}
-    
-    def set_headers(self):
-        # Set the Content-Type header
-        cherrypy.tools.response_headers.callable([('Content-Type', self._get_header('Content-Type'))])
+        self.__output = None
         
-    def _get_header(self, header):
-        raise ApplicationError('Child classes must provide an implementation of _get_header')
+    @property
+    def headers(self):
+        return self.__headers
+    
+    @property
+    def output(self):
+        return self.__output
+        
+    @output.setter
+    def output(self, value):
+        self.__output = value
+        
+    def set_headers(self):
+        # Content-Type
+        cherrypy.response.headers['Content-Type'] = self.headers['Content-Type']
+        
+        # X-XRDS-Location
+        if 'X-XRDS-Location' in self.headers:
+            cherrypy.response.headers['X-XRDS-Location'] = self.headers['X-XRDS-Location']
             
     def build_output(self):
         raise ApplicationError('Child classes must provide an implementation of build_output')
