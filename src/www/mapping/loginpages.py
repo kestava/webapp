@@ -8,6 +8,15 @@ from openidpages import OpenIdPages
 class LoginPages(object):
 
     openid = OpenIdPages()
+    
+    __openIdProviders = {
+        'google': {
+            'url': 'https://www.google.com/accounts/o8/id'
+        },
+        'yahoo': {
+            'url': 'yahoo.com'
+        }
+    }
 
     @cherrypy.expose
     def index(self, **kwargs):
@@ -18,10 +27,6 @@ class LoginPages(object):
             return ViewCreator.create_view(c)
         
     def __handle_index_post(self, chosen):
-        providerUrl = None
-        
-        if 'google' == chosen:
-            providerUrl = 'https://www.google.com/accounts/o8/id'
-            
+        providerUrl = self.__openIdProviders[chosen]['url']
         redirectUrl = OpenIdHelper.get_auth_redirect_url(providerUrl)
         raise cherrypy.HTTPRedirect(redirectUrl)

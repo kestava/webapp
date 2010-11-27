@@ -29,11 +29,16 @@ class OpenIdAccount(object):
                 accountId = Account.create(email=email, cursor=cursor)
             
             cursor.execute(
-                '''insert into openid_accounts (openid_identifier, account_id) \
-values (%(oid)s, %(aid)s)''',
+                '''insert into openid_accounts (openid_identifier, account_id, \
+email, first_name, last_name, full_name) \
+values (%(oid)s, %(aid)s, %(email)s, %(firstName)s, %(lastName)s, %(fullName)s)''',
                 {
                     'oid': identifier,
-                    'aid': accountId
+                    'aid': accountId,
+                    'email': email,
+                    'firstName': firstName,
+                    'lastName': lastName,
+                    'fullName': fullName
                 })
             
         with_cursor(_create)

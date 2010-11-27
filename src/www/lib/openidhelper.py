@@ -53,6 +53,9 @@ class OpenIdHelper(object):
             lastName = None
             fullName = None
             
+            print('sregResponse: {0}'.format(pprint.pformat(sregResponse)))
+            print('axResponse: {0}'.format(pprint.pformat(axResponse)))
+            
             if sregResponse:
                 email = sregResponse.get('email')
                 fullName = sregResponse.get('fullname')
