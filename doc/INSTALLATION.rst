@@ -16,3 +16,9 @@ These requirements should be installed in a Python virtual environment::
     #. geopy (check this!)
     
     #. mox
+    
+User Account
+============
+
+Create a system user for the web application to run as.  'pyuser' is a
+reasonable account name.

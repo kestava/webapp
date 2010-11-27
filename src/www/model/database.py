@@ -11,10 +11,14 @@ from psycopg2.extras import DictCursor
 
 def make_connection():
     settings = cherrypy.request.app.config['appSettings']
+    
+    # Using IDENT authentication.  Only the database name and database username
+    # need to be specified, but the database engine must be configured such that
+    # the current OS user can access the named database and is mapped properly
+    # to the database user.
     cherrypy.request.db = connect(
         database=settings['mainDatabaseName'],
-        user=settings['mainDatabaseUser'],
-        password=settings['mainDatabasePassword'])
+        user=settings['mainDatabaseUser'])
     
 def close_connection():
     cherrypy.request.db.commit()
