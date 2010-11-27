@@ -1,7 +1,7 @@
 import cherrypy
 
 from controllers.logincontroller import LoginController
-from views.viewcreator import ViewCreator
+from views import create_view
 from lib.openidhelper import OpenIdHelper
 from openidpages import OpenIdPages
 
@@ -24,7 +24,7 @@ class LoginPages(object):
             self.__handle_index_post(kwargs['chosenProviderName'])
         else:
             c = LoginController()
-            return ViewCreator.create_view(c)
+            return create_view(c)
         
     def __handle_index_post(self, chosen):
         providerUrl = self.__openIdProviders[chosen]['url']

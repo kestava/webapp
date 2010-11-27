@@ -3,7 +3,7 @@ import pprint
 import cherrypy
 
 import controllers.homepagecontroller
-import views.viewcreator
+from views import create_view
 from loginpages import LoginPages
 
 class RootPages(object):
@@ -14,4 +14,12 @@ class RootPages(object):
     @cherrypy.expose
     def index(self):
         c = controllers.homepagecontroller.HomePageController()
-        return views.viewcreator.ViewCreator.create_view(c)
+        return create_view(c)
+        
+    @cherrypy.expose
+    def logout(self):
+        if cherrypy.session.has_key('account-id'):
+            cherrypy.session.pop('account-id')
+            
+        c = controllers.homepagecontroller.HomePageController()
+        return create_view(c)

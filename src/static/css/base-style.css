@@ -99,11 +99,16 @@ body
 .popupMenu
 {
     border: 1px solid #2A2A2A;
+    padding: 4px 8px;
 }
 .popupMenu a
 {
     display: block;
     text-decoration: none;
+    width: 100px;
+    margin: 2px 0px;
+    padding: 4px 2px;
+    border: 1px solid transparent;
 }
 
 .popupMenu a:visited
@@ -114,4 +119,6 @@ body
 .popupMenu a:hover
 {
     text-decoration: underline;
+    background-color: #D4C8C8;
+    border: 1px solid #B5A4A4;
 }
