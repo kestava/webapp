@@ -78,9 +78,6 @@ class PageBase(ViewBase):
         return '<!DOCTYPE html>'
         
     def get_title(self):
-        #return lib.config.Config().siteName
-        #pprint.pprint(cherrypy.config)
-        #pprint.pprint(cherrypy.request.app.config)
         return cherrypy.request.app.config['appSettings']['siteName']
     
     def build_head(self):

@@ -32,7 +32,8 @@ def configure():
             'tools.sessions.storage_type': 'file',
             'tools.sessions.storage_path': settings.config['session_storage_path'],
             'tools.staticdir.root': staticDirectoryRoot,
-            'tools.disconnect_db.on': True
+            'tools.disconnect_db.on': True,
+            'tools.trailing_slash.on': False
         },
         '/favicon.ico': {
             'tools.staticfile.on': True,

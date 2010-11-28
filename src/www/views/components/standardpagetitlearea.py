@@ -20,11 +20,20 @@ class StandardPageTitleArea(XmlComponent):
         xml.create_subelement(
             parent=self.root,
             tagname='hr')
-        
-        xml.create_subelement(
+
+        h2Container = xml.create_subelement(
             parent=self.root,
+            tagname='div',
+            attributes={'id': 'pageTitleContainer'})
+            
+        xml.create_subelement(
+            parent=h2Container,
             tagname='h2',
             text=pageTitle)
+        
+        xml.create_subelement(
+            parent=h2Container,
+            tagname='hr')
         
         
 

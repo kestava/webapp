@@ -12,7 +12,7 @@ class LoginPage(PageBase):
         <h2>Please select a provider to log in:</h2>
     </header>
     
-    <form id="providersForm" method="post" action=".">
+    <form id="providersForm" method="post" action="/login">
         <div id="providerSelectionsContainer">
             <!--<input id="chosenProvider" name="chosenProvider" type="hidden"/>-->
             <a id="providerGoogle" title="Google" class="largeButton provider Google"></a>
@@ -45,3 +45,6 @@ class LoginPage(PageBase):
             self.add_head_script('login.min.js')
         
         self.add_page_component(RawStringComponent(self.__markup))
+        
+    def get_title(self):
+        return '{0} | Login'.format(super(LoginPage, self).get_title())

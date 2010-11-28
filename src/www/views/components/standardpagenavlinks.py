@@ -7,18 +7,22 @@ from model.account import Account
 
 class StandardPageNavLinks(CompositeComponent):
 
-    def __init__(self):
+    def __init__(self, returnToAfterLogin=None):
         super(StandardPageNavLinks, self).__init__(
             tagname='div',
             attributes={'id': 'mainNavLinksContainer'})
         
-        self.__create_main_nav_group()
+        self.__create_main_nav_group(returnToAfterLogin)
         self.__create_secondary_nav_group()
         
-    def __create_main_nav_group(self):
+    def __create_main_nav_group(self, returnToAfterLogin):
         accountId = cherrypy.session.get('account-id')
         
-        navData = [('a', '/login', 'Log In'),
+        loginQueryString = ''
+        if returnToAfterLogin:
+            loginQueryString = '?returnTo={0}'.format(returnToAfterLogin)
+        
+        navData = [('a', '/login{0}'.format(loginQueryString), 'Log In'),
             ('a', '/help', 'Help')]
         
         if accountId:
@@ -34,7 +38,6 @@ class StandardPageNavLinks(CompositeComponent):
     def __create_secondary_nav_group(self):
         navData = [
             ('a', '/post', 'Post Item'),
-            ('a', '/open-account', 'Open An Account'),
             ('a', '/explore', 'Explore Your Market')
         ]
         

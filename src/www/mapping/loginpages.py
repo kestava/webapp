@@ -22,7 +22,7 @@ class LoginPages(object):
     def index(self, **kwargs):
         if 'post' == cherrypy.request.method.lower():
             self.__handle_index_post(kwargs['chosenProviderName'])
-        else:
+        else:   
             c = LoginController()
             return create_view(c)
         

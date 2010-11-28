@@ -62,10 +62,19 @@ class OpenIdHelper(object):
                 
             cherrypy.session['account-id'] = Account.get_account_id_by_email(email)
             
-            raise cherrypy.HTTPRedirect('/')
+            raise cherrypy.HTTPRedirect(cls.__get_return_to_path())
         elif 'cancel' == response.status:
             raise cherrypy.HTTPRedirect('/error/openid?reason=cancelled')
         else:
             print('{0} {1}'.format(response.status, response.message))
             raise cherrypy.HTTPRedirect('/error/openid')
+            
+    @classmethod
+    def __get_return_to_path(cls):
+        o = '/'
+        
+        if cherrypy.session.has_key('return-to-after-login'):
+            o = cherrypy.session.get('return-to-after-login')
+        
+        return o
             

@@ -154,10 +154,20 @@ h1, h2, a, a:visited, span, small
 #standardTitleContainer h2
 {
     font-size: 140%;
-    text-align: right;
+    /*text-align: right;*/
 }
 
 #standardTitleContainer hr
 {
     margin: 0 0 1em 0;
+}
+
+#pageTitleContainer
+{
+    float: right;
+}
+
+#pageTitleContainer h2
+{
+    padding-left: 0.6em;
 }
