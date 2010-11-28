@@ -6,10 +6,12 @@ from controllers.homepagecontroller import HomePageController
 from controllers.xrdscontroller import XrdsController
 from views import create_view
 from loginpages import LoginPages
+from accountpages import AccountPages
 
 class RootPages(object):
 
     login = LoginPages()
+    account = AccountPages()
 
     @cherrypy.tools.connect_db()
     @cherrypy.expose

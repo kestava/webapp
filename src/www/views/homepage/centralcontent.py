@@ -1,4 +1,5 @@
 from views.components.xmlcomponent import XmlComponent
+from lib.xmlhelper import XmlHelper as xml
 
 class CentralContent(XmlComponent):
     
@@ -6,7 +7,7 @@ class CentralContent(XmlComponent):
         super(CentralContent, self).__init__(
             tagname='header')
         
-        self.xml.create_subelement(
+        xml.create_subelement(
             parent=self.root,
             tagname='h1',
             text='kestava')

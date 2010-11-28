@@ -7,6 +7,7 @@ body
 #mainContainer
 {
     width: 96%;
+    min-width: 810px;
     margin: 12px auto;
     border: 1px solid transparent;
     background-color: #FFFFFF;
@@ -40,6 +41,12 @@ body
 #mainNavLinksContainer > nav > ul > li > a
 {
     font-size: 80%;
+    text-decoration: none;
+}
+
+h1, h2, a, a:visited, span, small
+{
+    color: #3A0000;
 }
 
 .navCell
@@ -85,7 +92,7 @@ body
 
 #userGreetingArea small
 {
-    margin-left: 4px;
+    margin-left: 6px;
     vertical-align: middle;
 }
 
@@ -93,19 +100,24 @@ body
 {
     position: absolute;
     left: 0px;
-    top: 1.5em;
+    top: 24px;
+    background-color: #FFF;
+}
+
+#userMenu a
+{
+    width: 100px;
 }
 
 .popupMenu
 {
-    border: 1px solid #2A2A2A;
+    border: 1px solid #A2A2A2;
     padding: 4px 8px;
 }
 .popupMenu a
 {
     display: block;
     text-decoration: none;
-    width: 100px;
     margin: 2px 0px;
     padding: 4px 2px;
     border: 1px solid transparent;
@@ -121,4 +133,31 @@ body
     text-decoration: underline;
     background-color: #D4C8C8;
     border: 1px solid #B5A4A4;
+}
+
+#standardTitleContainer
+{
+    margin-top: 42px;
+    padding: 0px 18px;
+}
+
+#standardTitleContainer a
+{
+    text-decoration: none;
+}
+
+#standardTitleContainer h1
+{
+    font-size: 120%;
+}
+
+#standardTitleContainer h2
+{
+    font-size: 140%;
+    text-align: right;
+}
+
+#standardTitleContainer hr
+{
+    margin: 0 0 1em 0;
 }

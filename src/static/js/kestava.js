@@ -1,6 +1,6 @@
 
 $(function() {
-    $('#userGreetingArea').click(kestava.userGreetingAreaClick)
+    $('#userGreetingArea').click(kestava.userGreetingAreaClick);
 });
 
 var kestava = (function() {

@@ -2,17 +2,20 @@ import lxml.etree
 
 class XmlHelper(object):
     
-    def create_element(self, tagname, attributes=None, text=None):
+    @classmethod
+    def create_element(cls, tagname, attributes=None, text=None):
         o = lxml.etree.Element(tagname)
-        self.__set_attributes(o, attributes, text)
+        cls.__set_attributes(o, attributes, text)
         return o
     
-    def create_subelement(self, parent, tagname, attributes=None, text=None, tail=None):
+    @classmethod
+    def create_subelement(cls, parent, tagname, attributes=None, text=None, tail=None):
         o = lxml.etree.SubElement(parent, tagname)
-        self.__set_attributes(o, attributes, text, tail)
+        cls.__set_attributes(o, attributes, text, tail)
         return o
         
-    def __set_attributes(self, element, attributes=None, text=None, tail=None):
+    @classmethod
+    def __set_attributes(cls, element, attributes=None, text=None, tail=None):
         if not attributes is None:
             for i in attributes:
                 element.set(i, attributes[i])
@@ -23,7 +26,8 @@ class XmlHelper(object):
         if not tail is None:
             element.tail = tail
 
-    def add_class(self, element, classname):
+    @classmethod
+    def add_class(cls, element, classname):
         c = element.get('class')
         
         if c is None:
@@ -35,7 +39,8 @@ class XmlHelper(object):
                 parts.append(classname)
                 element.set('class', ' '.join(parts))
                 
-    def remove_class(self, element, classname):
+    @classmethod
+    def remove_class(cls, element, classname):
         c = element.get('class')
         
         if not c is None:
@@ -45,8 +50,10 @@ class XmlHelper(object):
                 parts.remove(classname)
                 element.set('class', ' '.join(parts))
         
-    def from_string(self, source):
+    @classmethod
+    def from_string(cls, source):
         return lxml.etree.fromstringlist(source.splitlines())
-    
-    def set_attribute(self, element, attribute, value):
-        element.set(attribute, value)
+        
+    @classmethod
+    def to_string(cls, element, pretty_print=False):
+        return lxml.etree.tostring(element, pretty_print=pretty_print)
