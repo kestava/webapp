@@ -1,6 +1,8 @@
 var sprintsCol = 8,
     daysCol = 9,
-    sprintBacklogFilenameRe = /^sprint (\d+(.\d+)?) backlog$/i,
+    sprintBacklogFilenameRe,
+    sprintBacklogFilenameTemplate,
+    scrumFolder,
     cancelledRe = /^cancelled$/i,
     inProgressRe = /^in progress$/i,
     doneRe = /^done$/i,
@@ -17,6 +19,18 @@ function print(message, context) {
   }
 }
 
+// Get runtime properties:
+// Sprint backlog filename regex
+// A typical value would be like: ^test sprint (\d+(.\d+)?) backlog$
+sprintBacklogFilenameRe = RegExp(ScriptProperties.getProperty('sprintBacklogRegex'), 'i');
+print(sprintBacklogFilenameRe, 'sprintBacklogFilenameRe');
+
+sprintBacklogFilenameTemplate = ScriptProperties.getProperty('sprintBacklogFilenameTemplate');
+print(sprintBacklogFilenameTemplate, 'sprintBacklogFilenameTemplate');
+
+scrumFolder = ScriptProperties.getProperty('scrumFolder');
+print(scrumFolder, 'scrumFolder');
+
 function compareAsNumeric(l, r) {
   var ln = Number(l), rn = Number(r);
   if (ln < rn) { return -1; }
@@ -25,12 +39,12 @@ function compareAsNumeric(l, r) {
 }
 
 function getSprintNumber(file) {
-  var match = sprintBacklogFilenameRe.exec(file),
+  var m = sprintBacklogFilenameRe.exec(file),
     o = null;
       
-  //print(match);
-  if (match) {
-    o = match[1];
+  print(m, 'Sprint backlog match');
+  if (m) {
+    o = m[1];
   }
   return o;
 }
@@ -38,11 +52,11 @@ function getSprintNumber(file) {
 function getAllSprints() {
   var i, j,
       o = [],
-      scrumFolder = ScriptProperties.getProperty('scrumFolder');
       files = DocsList.getFolder(scrumFolder).getFiles();
       
   for (i in files) {
     if (files.hasOwnProperty(i)) {
+      print(files[i], 'getAllSprints file');
       j = getSprintNumber(files[i].getName());
       if (j) {
         o.push(j);
@@ -105,15 +119,21 @@ function SprintTask(range, values) {
 }
 
 function SprintBacklog(sprintNum) {
-  var files, file, i, _tasks = [], row = sprintBacklogStartRow, sheet, range,
-      task, values,
-      scrumFolder = ScriptProperties.getProperty('scrumFolder'),
+  var files,
+      file,
+      i,
+      _tasks = [],
+      row = sprintBacklogStartRow,
+      sheet,
+      range,
+      task,
+      values,
       lastColumnIdx;
 
   this.getSprintNumber = function() { return sprintNum; };
 
   this.getFilename = function() {
-    return 'Sprint ' + sprintNum + ' Backlog';
+    return sprintBacklogFilenameTemplate.replace('#', sprintNum);
   };
   
   this.getItemDays = function(itemId) {
@@ -174,9 +194,11 @@ function SprintBacklog(sprintNum) {
     return { 'inProgress': inProgress, 'done': done, 'notStarted': notStarted };
   };
       
+  print(this.getFilename(), 'Looking for sprint backlog file');
   files = DocsList.getFolder(scrumFolder).getFiles();  
   for (i in files) {
     if (files.hasOwnProperty(i)) {
+      print(files[i], 'SprintBacklog ctor file test');
       if (this.getFilename() == files[i].getName()) {
         file = files[i];
         break;
@@ -185,6 +207,7 @@ function SprintBacklog(sprintNum) {
   }
           
   // Read the tasks from the file
+  print(file, 'SprintBacklog ctor file');
   print(file.getName(), 'File name'); 
   print(file.getId(), 'File id');
   while (true) {
@@ -198,9 +221,9 @@ function SprintBacklog(sprintNum) {
     if (!task.getTaskId()) {
       break;
     }
-    print(task.getTaskId(), 'Task id');
-    print(task.getOriginalDays(),  'Original days');
-    print(task.getRemainingDays(), 'Remaining days');      
+    //print(task.getTaskId(), 'Task id');
+    //print(task.getOriginalDays(),  'Original days');
+    //print(task.getRemainingDays(), 'Remaining days');      
     _tasks.push(task);
   }
       
@@ -298,6 +321,4 @@ function updateBacklog() {
     currentItem.updateSprints(sprintBacklogs);
     currentItem.updateDays(sprintBacklogs);
   }
-    
-  Browser.msgBox('Finished', Browser.Buttons.OK);
 }
