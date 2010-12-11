@@ -19,17 +19,30 @@ function print(message, context) {
   }
 }
 
+function AssertionException(message) {
+  this.toString = function() { return message; };
+}
+
+function assert(condition, message) {
+  if (!condition) {
+    throw new AssertionException(message);
+  }
+}
+
 // Get runtime properties:
 // Sprint backlog filename regex
 // A typical value would be like: ^test sprint (\d+(.\d+)?) backlog$
 sprintBacklogFilenameRe = RegExp(ScriptProperties.getProperty('sprintBacklogRegex'), 'i');
 print(sprintBacklogFilenameRe, 'sprintBacklogFilenameRe');
+//assert(0 < sprintBacklogFilenameRe.length, 'Missing sprintBacklogRegex property');
 
 sprintBacklogFilenameTemplate = ScriptProperties.getProperty('sprintBacklogFilenameTemplate');
 print(sprintBacklogFilenameTemplate, 'sprintBacklogFilenameTemplate');
+assert(sprintBacklogFilenameTemplate && (0 < sprintBacklogFilenameTemplate.length), 'Missing sprintBacklogFilenameTemplate property');
 
 scrumFolder = ScriptProperties.getProperty('scrumFolder');
 print(scrumFolder, 'scrumFolder');
+assert(0 < scrumFolder.length, 'Missing scrumFolder property');
 
 function compareAsNumeric(l, r) {
   var ln = Number(l), rn = Number(r);
