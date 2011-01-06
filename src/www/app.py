@@ -15,9 +15,7 @@ def configure():
     staticDirectoryRoot = os.path.join(sourceDirectory, 'static')
     
     serverConfig = {
-        'appSettings': {
-            'html5ResetFilename': 'html5reset-1.6.1.css'
-        },
+        'appSettings': {},
         'global': {
             'server.socket_host': settings.config['socket_host'],
             'server.socket_port': settings.config['socket_port'],

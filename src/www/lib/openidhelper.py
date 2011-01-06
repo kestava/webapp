@@ -14,7 +14,7 @@ class OpenIdHelper(object):
     
     @classmethod
     def get_auth_redirect_url(cls, identifier):
-        s = FileOpenIDStore(cherrypy.request.app.config['appSettings']['openIdDataStoreDirectory'])
+        s = FileOpenIDStore(cherrypy.request.app.config['appSettings']['openidDataDir'])
         consumer = Consumer(session=cherrypy.session, store=s)
         #consumer.setAssociationPreference([('HMAC-SHA256', 'DH-SHA256')])
         authRequest = consumer.begin(identifier)
@@ -38,7 +38,7 @@ class OpenIdHelper(object):
     def handle_auth_response(cls, query):
         #pprint.pprint(query)
         
-        s = FileOpenIDStore(cherrypy.request.app.config['appSettings']['openIdDataStoreDirectory'])
+        s = FileOpenIDStore(cherrypy.request.app.config['appSettings']['openidDataDir'])
         consumer = Consumer(session=cherrypy.session, store=s)
         response = consumer.complete(
             query=query,

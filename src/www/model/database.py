@@ -17,8 +17,8 @@ def make_connection():
     # the current OS user can access the named database and is mapped properly
     # to the database user.
     cherrypy.request.db = connect(
-        database=settings['mainDatabaseName'],
-        user=settings['mainDatabaseUser'])
+        database=settings['mainDb'],
+        user=settings['mainDbUser'])
     
 def close_connection():
     cherrypy.request.db.commit()
