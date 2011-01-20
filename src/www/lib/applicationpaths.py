@@ -1,3 +1,7 @@
+"""
+This is the **applicationpaths** module.
+"""
+
 import urlparse
 
 import cherrypy
@@ -5,6 +9,7 @@ import cherrypy
 from lib.config import Config
 
 class ApplicationPaths(object):
+    """This is the **ApplicationPaths** class."""
     
     class PathsDescr(object):
         def __get__(self, instance, owner):
@@ -21,6 +26,9 @@ class ApplicationPaths(object):
     
     @classmethod
     def get_script_path(cls, filename):
+        """
+        This is the **get_script_path** method.
+        """
         return '/js/' + filename
     
     @classmethod
