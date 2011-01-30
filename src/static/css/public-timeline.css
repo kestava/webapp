@@ -6,7 +6,8 @@
 
 .innerContainer
 {
-    border: 1px solid black;
+    border: 1px solid #CCCCCC;
+    background-color: #E0E0E0;
     
     width: 600px;
     margin: 12px auto;

@@ -3,6 +3,7 @@ from views.pagebase import PageBase
 from views.components.standardpagenavlinks import StandardPageNavLinks
 from views.components.standardpagetitlearea import StandardPageTitleArea
 from publictimelineviewer import PublicTimelineViewer
+from lib.config import Config
 
 class PublicTimelinePage(PageBase):
 
@@ -10,8 +11,12 @@ class PublicTimelinePage(PageBase):
         self._add_common_header_files()
         self.add_stylesheet('public-timeline.css')
         
-        self.add_page_component(StandardPageNavLinks())
+        if Config.get_environment() == 'development':
+            self.add_head_script('public-timeline.js')
+        else:
+            self.add_head_script('public-timeline.min.js')
         
+        self.add_page_component(StandardPageNavLinks())
         self.add_page_component(StandardPageTitleArea(pageTitle="Public Timeline"))
         self.add_page_component(PublicTimelineViewer())
         
