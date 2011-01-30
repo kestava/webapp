@@ -8,12 +8,14 @@ from views import create_view
 from loginpages import LoginPages
 from accountpages import AccountPages
 from postpages import PostPages
+from timelinepages import TimelinePages
 
 class RootPages(object):
 
     login = LoginPages()
     account = AccountPages()
     post = PostPages()
+    timeline = TimelinePages()
 
     @cherrypy.tools.connect_db()
     @cherrypy.expose
