@@ -1,0 +1,14 @@
+
+#timelineContainer
+{
+    clear: both;
+}
+
+.innerContainer
+{
+    border: 1px solid black;
+    
+    width: 600px;
+    margin: 12px auto;
+    min-height: 120px;
+}
