@@ -1,0 +1,4 @@
+The web application is started with a command like:
+
+sudo -u kestava /usr/local/pythonenv/KESTAVA-WEBAPP/bin/python <path to app.py>
+
