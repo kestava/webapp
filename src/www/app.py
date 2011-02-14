@@ -18,10 +18,7 @@ def configure():
     
     serverConfig = {
         'appSettings': {},
-        'global': {
-            'server.socket_host': settings.config['socket_host'],
-            'server.socket_port': settings.config['socket_port']
-        },
+        'global': {},
         '/': {
             'tools.gzip.on': True,
             'tools.gzip.mime_types': ['text/html', 'text/css', 'text/plain', 'application/javascript'],
@@ -33,24 +30,15 @@ def configure():
             'tools.staticdir.root': staticDirectoryRoot,
             'tools.disconnect_db.on': True,
             'tools.trailing_slash.on': False
-        },
-        '/favicon.ico': {
-            'tools.staticfile.on': True,
-            'tools.staticfile.filename': os.path.join(staticDirectoryRoot, 'img/favicon.ico')
-        },
-        '/css': {
-            'tools.staticdir.on': True,
-            'tools.staticdir.dir': 'css'
-        },
-        '/js': {
-            'tools.staticdir.on': True,
-            'tools.staticdir.dir': 'js'
-        },
-        '/img': {
-            'tools.staticdir.on': True,
-            'tools.staticdir.dir': 'img'
         }
     }
+    
+    # Apply certain settings optionally or accept the default
+    if 'socket_host' in settings.config:
+        serverConfig['global']['server.socket_host'] = settings.config['socket_host']
+        
+    if 'socket_port' in settings.config:
+        serverConfig['global']['server.socket_port'] = settings.config['socket_port']
     
     serverConfig['appSettings'].update(settings.config['appSettings'])
     

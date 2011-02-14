@@ -73,8 +73,6 @@ class StandardPageNavLinks(CompositeComponent):
                 XmlHelper.add_class(current, 'first')
                 first = False
             
-            print(i)
-            
             if i[0] == 'a':    
                 XmlHelper.create_subelement(
                     parent=current,
