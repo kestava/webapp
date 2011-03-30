@@ -25,11 +25,14 @@ class ApplicationPaths(object):
     paths = PathsDescr()
     
     @classmethod
-    def get_script_path(cls, filename):
+    def get_script_path(cls, filespec):
         """
-        This is the **get_script_path** method.
+        Returns an absolute path relative to the script file.
         """
-        return '/js/' + filename
+        if filespec['dynamic']:
+            return '/dynamic/js/' + filespec['filename']
+        
+        return '/js/' + filespec['filename']
     
     @classmethod
     def get_site_root(cls):

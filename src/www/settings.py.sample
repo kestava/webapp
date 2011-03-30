@@ -29,6 +29,7 @@ config = {
         'siteHostname': 'kestava.jakewan.com',
         'openidDataDir': '/var/kestava-openid-filestore',
         'html5ResetFilename': 'html5reset-1.6.1.css',
+        'timelineServerHostname': 'kestava-timeline.jakewan.com',
         
         # Database settings:
         'mainDb': 'kestava',

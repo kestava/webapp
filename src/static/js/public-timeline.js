@@ -9,7 +9,10 @@ $(function() {
 });
 
 kestava.beginLoadTimeline = function(maxEntries) {
-    var url = 'http://kestava-timeline.jakewan.com/public?maxEntries=' + maxEntries + '&callback=?';
+    //var url = 'http://kestava-timeline.jakewan.com/public?maxEntries='
+    var url = 'http://' + kestava.timelineServerHostname + '/public?maxEntries='
+        + maxEntries + '&callback=?';
+        
     $.getJSON(
         url,
         function(result) {

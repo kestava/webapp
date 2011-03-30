@@ -9,6 +9,7 @@ from loginpages import LoginPages
 from accountpages import AccountPages
 from postpages import PostPages
 from timelinepages import TimelinePages
+from dynamicresources import DynamicResources
 
 class RootPages(object):
 
@@ -16,6 +17,7 @@ class RootPages(object):
     account = AccountPages()
     post = PostPages()
     timeline = TimelinePages()
+    dynamic = DynamicResources()
 
     @cherrypy.tools.connect_db()
     @cherrypy.expose

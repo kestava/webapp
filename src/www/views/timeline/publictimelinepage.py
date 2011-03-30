@@ -11,6 +11,7 @@ class PublicTimelinePage(PageBase):
         self._add_common_header_files()
         self.add_stylesheet('public-timeline.css')
         
+        # This needs to be a dynamic
         if Config.get_environment() == 'development':
             self.add_head_script('public-timeline.js')
         else:

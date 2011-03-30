@@ -33,10 +33,9 @@ class PageBase(ViewBase):
         self.add_stylesheet(config['appSettings']['html5ResetFilename'])
         self.add_stylesheet('base-style.css')
         
-        if Config.get_environment() == 'development':
-            self.add_head_script('kestava.js')
-        else:
-            self.add_head_script('kestava.min.js')
+        self.add_head_script(
+            filename='kestava.js',
+            dynamic=True)
         
     def add_stylesheet(self, filename):
         self._stylesheets.append(filename)
@@ -44,18 +43,15 @@ class PageBase(ViewBase):
     def get_stylesheets(self):
         return self._stylesheets
         
-    def add_head_script(self, filename):
-        self._headScripts.append(filename)
-        
-    def get_head_scripts(self):
-        return self._headScripts
+    def add_head_script(self, filename, dynamic=False):
+        self._headScripts.append({
+            'filename': filename,
+            'dynamic': dynamic
+        })
         
     def add_page_component(self, component):
         self._pageComponents.append(component)
         return component
-        
-    def get_page_components(self):
-        return self._pageComponents
     
     def build_output(self):
         doc = views.components.compositecomponent.CompositeComponent()
