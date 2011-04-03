@@ -5,12 +5,12 @@ config = {
     # Port (use an integer here, not a string)
     #'socket_port': 'Replace me!',
     
-    'access_log_path': '/var/log/kestava-webapp/access.log',
+    'access_log_path': '/var/log/kestava/webapp/access.log',
     'access_log_when': 'M',
     'access_log_interval': 1,
     'access_log_backups': 5,
     
-    'error_log_path': '/var/log/kestava-webapp/error.log',
+    'error_log_path': '/var/log/kestava/webapp/error.log',
     'error_log_when': 'M',
     'error_log_interval': 1,
     'error_log_backups': 5,

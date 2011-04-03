@@ -33,9 +33,8 @@ class PageBase(ViewBase):
         self.add_stylesheet(config['appSettings']['html5ResetFilename'])
         self.add_stylesheet('base-style.css')
         
-        self.add_head_script(
-            filename='kestava.js',
-            dynamic=True)
+        self.add_head_script(filename='kestava.js', dynamic=True)
+        self.add_head_script(filename='utilities.js')
         
     def add_stylesheet(self, filename):
         self._stylesheets.append(filename)

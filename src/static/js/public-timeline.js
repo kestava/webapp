@@ -13,9 +13,18 @@ kestava.beginLoadTimeline = function(maxEntries) {
     var url = 'http://' + kestava.timelineServerHostname + '/public?maxEntries='
         + maxEntries + '&callback=?';
         
-    $.getJSON(
-        url,
-        function(result) {
-            alert(result);
-        });
+    $.getJSON(url, kestava.endLoadTimeline);
+};
+
+kestava.endLoadTimeline = function(result) {
+    var i, o, dt, jake;
+    for (i in result)
+    {
+        if (result.hasOwnProperty(i))
+        {
+            o = result[i];
+            dt = kestava.iso_8601_to_date(o.created_when_formatted);
+            jake = 0;
+        }
+    }
 };
