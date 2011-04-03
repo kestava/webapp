@@ -7,6 +7,7 @@ import cherrypy
 
 # tools
 import tools.connectdb
+import tools.requestdebugging
 
 import settings
 import mapping.rootpages
