@@ -14,6 +14,6 @@ class PublicTimelineViewer(XmlComponent):
             parent=self.root,
             tagname='div')
         
-        xml.add_class(temp, 'innerContainer')
+        temp.set('id', 'innerContainer')
         
         

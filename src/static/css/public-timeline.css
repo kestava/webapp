@@ -4,7 +4,7 @@
     clear: both;
 }
 
-.innerContainer
+div#innerContainer
 {
     border: 1px solid #CCCCCC;
     background-color: #E0E0E0;
