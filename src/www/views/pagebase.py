@@ -108,6 +108,8 @@ class PageBase(ViewBase):
         self.add_head_scripts(head)
         
     def add_head_scripts(self, head):
+        config = cherrypy.request.app.config
+        
         htmlShiv = '''
 <!--[if lt IE 9]>
 <script type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -115,6 +117,15 @@ class PageBase(ViewBase):
 '''
         
         head.add_component(RawStringComponent(htmlShiv))
-        head.add_component(RawStringComponent('<script type="text/javascript" src="{0}"></script>'.format(ApplicationPaths.paths['jquery'])))
-        [head.add_component(RawStringComponent('<script type="text/javascript" src="{0}"></script>'.format(ApplicationPaths.get_script_path(i)))) \
-            for i in self._headScripts]
+        
+        head.add_component(
+            RawStringComponent(
+                '<script type="text/javascript" src="{0}"></script>'.format(
+                    config['appSettings']['jQueryUrl'])))
+        
+        for i in self._headScripts:
+            head.add_component(
+                RawStringComponent(
+                    '<script type="text/javascript" src="{0}"></script>'.format(
+                        ApplicationPaths.get_script_path(i))))
+            
