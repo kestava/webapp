@@ -1,0 +1,8 @@
+
+var app = (function() {
+    return {
+        settings: {
+            siteHostname: '{{ siteData|attr("siteHostname") }}'
+        }
+    };
+}());

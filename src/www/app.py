@@ -1,18 +1,26 @@
-import os.path
-import pprint
-import logging
-from logging.handlers import TimedRotatingFileHandler
+#import os.path
+#import pprint
+#import logging
+#from logging.handlers import TimedRotatingFileHandler
 
 import cherrypy
 
 # tools
 import tools.connectdb
-import tools.requestdebugging
+#import tools.requestdebugging
 
-import settings
-import mapping.rootpages
+#import settings
+#import mapping.rootpages
+from config import config
+from controllers.rootcontroller import RootController
+from plugins.setupjinjaenvironment import SetupJinjaEnvironment
 
 def configure():
+    o = {}
+    o.update(config)
+    return o
+
+def configure_old():
 
     sourceDirectory = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
     staticDirectoryRoot = os.path.join(sourceDirectory, 'static')
@@ -77,10 +85,12 @@ def setup_logging():
     log.access_log.addHandler(h)
     
 def main():
-    setup_logging()
+    #setup_logging()
+    
+    SetupJinjaEnvironment().subscribe()
     
     cherrypy.quickstart(
-        root=mapping.rootpages.RootPages(),
+        root=RootController(),
         config=configure()
     )
     

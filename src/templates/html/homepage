@@ -1,0 +1,8 @@
+
+{% extends "html/standard" %}
+
+{% set pageName="Home" %}
+
+{% block additionalHeadScriptsBlock %}
+<script type="text/javascript" src="/static/js/app/homepage.js"></script>
+{% endblock %}

@@ -1,0 +1,27 @@
+
+{% extends "html/base" %}
+
+{# The standard title format: #}
+{% block titleBlock %}
+<title>{{ pageName|lower }} - {{ siteData|attr("siteName")|lower }}</title>
+{% endblock %}
+
+{# Standard head scripts #}
+{% block headScriptsBlock %}
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript" src="/dynamic/js/app.js"></script>
+<script type="text/javascript" src="/static/js/app/classes.js"></script>
+<script type="text/javascript" src="/static/js/app/utilities.js"></script>
+{% block additionalHeadScriptsBlock %}{% endblock %}
+{% endblock %}
+
+{# Main content area #}
+{% block contentsBlock %}
+
+<div id="topBar">
+    <header>
+        <h1>{{ siteData|attr("siteName")|lower }}</h1>
+    <header>
+</div>
+
+{% endblock %}
