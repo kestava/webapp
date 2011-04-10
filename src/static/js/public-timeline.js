@@ -81,16 +81,18 @@ kestava.publicTimeline = (function() {
             }
             
             // Begin comet request
-            k.publicTimeline.beginGetNextMessage(lastId);
+            k.publicTimeline.beginRequestNextMessage(lastId);
         },
-
-        beginGetNextMessage: function(id) {
-            //var url = nextMessagesUrl
-            //    + sprintf('?afterId=%d&maxCount=%d&callback=?',
-            //        id,
-            //        10);
+        
+        beginRequestNextMessage: function(id) {
+            var url = nextMessagesUrl
+                + sprintf('?lastId=%d&maxCount=%d&callback=?', id, 10);
                 
-            //$.getJSON(url, kestava.publicTimeline.endGetNextMessage);
+            $.getJSON(url, kestava.publicTimeline.endRequestNextMessage);
+        },
+        
+        endRequestNextMessage: function(result) {
+            var jake = 0;
         }
     };
 }());

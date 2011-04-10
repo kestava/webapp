@@ -15,7 +15,7 @@ config = {
     'error_log_interval': 1,
     'error_log_backups': 5,
     
-    'session_storage_path': '/var/kestava-session-data',
+    'session_storage_path': '/var/kestava-session-data/webapp',
     'session_cookie_name': 'KESTAVA-SESSION-ID',
     'session_timeout': 480,
     
