@@ -6,7 +6,12 @@
 <title>{{ pageName|lower }} - {{ siteData|attr("siteName")|lower }}</title>
 {% endblock %}
 
-{# Standard head scripts #}
+{% block headStylesheetsBlock %}
+<link rel="stylesheet" type="text/css" href="/static/css/{{ siteData|attr("html5ResetFilename") }}" />
+<link rel="stylesheet" type="text/css" href="/static/css/base.css" />
+{% block additionalStylesheetsBlock %}{% endblock %}
+{% endblock %}
+
 {% block headScriptsBlock %}
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript" src="/dynamic/js/app.js"></script>

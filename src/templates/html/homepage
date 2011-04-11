@@ -3,6 +3,10 @@
 
 {% set pageName="Home" %}
 
+{% block additionalStylesheetsBlock %}
+<link rel="stylesheet" type="text/css" href="/static/css/homepage.css" />
+{% endblock %}
+
 {% block additionalHeadScriptsBlock %}
 <script type="text/javascript" src="/static/js/app/homepage.js"></script>
 {% endblock %}

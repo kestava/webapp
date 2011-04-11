@@ -5,6 +5,10 @@
 
 {% block titleBlock %}{% endblock %}
 
+{# Standard stylesheets #}
+{% block headStylesheetsBlock %}{% endblock %}
+
+{# Standard head scripts #}
 {% block headScriptsBlock %}{% endblock %}
 
 </head>
