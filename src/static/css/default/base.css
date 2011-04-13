@@ -1,0 +1,9 @@
+/**
+ * base.css
+ */
+ 
+div#topBar header,
+div#topBar nav
+{
+    float: left;
+}

@@ -3,12 +3,12 @@
 
 {# The standard title format: #}
 {% block titleBlock %}
-<title>{{ pageName|lower }} - {{ siteData|attr("siteName")|lower }}</title>
+<title>{{ pageName|lower }} - {{ siteData.siteName|lower }}</title>
 {% endblock %}
 
 {% block headStylesheetsBlock %}
-<link rel="stylesheet" type="text/css" href="/static/css/{{ siteData|attr("html5ResetFilename") }}" />
-<link rel="stylesheet" type="text/css" href="/static/css/base.css" />
+<link rel="stylesheet" type="text/css" href="/static/css/{{ siteData.html5ResetFilename }}" />
+<link rel="stylesheet" type="text/css" href="/static/css/{{ userData.themeName }}/base.css" />
 {% block additionalStylesheetsBlock %}{% endblock %}
 {% endblock %}
 
@@ -25,8 +25,13 @@
 
 <div id="topBar">
     <header>
-        <h1>{{ siteData|attr("siteName")|lower }}</h1>
-    <header>
+        <h1>{{ siteData.siteName|lower }}</h1>
+    </header>
+    <nav>
+        <a href="#">post</a>
+        <a href="#">manage</a>
+        <a href="#">follow</a>
+    </nav>
 </div>
 
 {% endblock %}
