@@ -1,0 +1,7 @@
+<div id="sessionContainer">
+{% if sessionData.userId is none %}
+{% include "html/default/components/top-bar/no-user-stuff" %}
+{% else %}
+{% include "html/default/components/top-bar/user-stuff" %}
+{% endif %}
+</div>

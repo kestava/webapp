@@ -13,5 +13,6 @@
             <a href="#">manage</a>
             <a href="#">follow</a>
         </nav>
+        {% include "html/default/components/top-bar/user-area" %}
     </div>
 </div>

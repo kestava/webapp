@@ -8,8 +8,8 @@
 {% block headStylesheetsBlock %}
 {% include "html/misc/html5-shiv" %}
 <link rel="stylesheet" type="text/css" href="/static/css/{{ siteData.html5ResetFilename }}" />
-<link rel="stylesheet" type="text/css" href="/static/css/{{ userData.themeName }}/shared.css" />
-<link rel="stylesheet" type="text/css" href="/static/css/{{ userData.themeName }}/base.css" />
+<link rel="stylesheet" type="text/css" href="/static/css/{{ sessionData.themeName }}/shared.css" />
+<link rel="stylesheet" type="text/css" href="/static/css/{{ sessionData.themeName }}/base.css" />
 {% block additionalStylesheetsBlock %}{% endblock %}
 {% endblock %}
 
@@ -23,5 +23,5 @@
 
 {# Main content area #}
 {% block contentsBlock %}
-{% include "html/default/components/top-bar" %}
+{% include "html/default/components/top-bar/main" %}
 {% endblock %}

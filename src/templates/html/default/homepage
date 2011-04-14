@@ -3,7 +3,7 @@
 {% set pageName="Home" %}
 
 {% block additionalStylesheetsBlock %}
-<link rel="stylesheet" type="text/css" href="/static/css/{{ userData.themeName }}/homepage.css" />
+<link rel="stylesheet" type="text/css" href="/static/css/{{ sessionData.themeName }}/homepage.css" />
 {% endblock %}
 
 {% block additionalHeadScriptsBlock %}

@@ -15,6 +15,11 @@ body
     float: left;
 }
 
+#sessionContainer h1 > a
+{
+    float: right;
+}
+
 #topBar .content
 {
     border: 1px solid black;
@@ -27,7 +32,8 @@ body
 }
 
 #topBar .content header > h1 > a,
-#topBar .content nav > a
+#topBar .content nav > a,
+#sessionContainer > h1 > a
 {
     padding: 9px;
     color: #F5E8E6;
@@ -52,3 +58,4 @@ body
     -moz-border-radius: 4px;
     border-radius: 4px;
 }
+

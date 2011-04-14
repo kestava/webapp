@@ -3,7 +3,7 @@
 import cherrypy
 
 from lib.sitedata import SiteData
-from lib.userdata import UserData
+from lib.sessiondata import SessionData
 from dynamicfilescontroller import DynamicFilesController
 
 class RootController(object):
@@ -13,9 +13,9 @@ class RootController(object):
     @cherrypy.expose
     def index(self):
         env = cherrypy.request.app.jinjaEnv
-        u = UserData()
+        u = SessionData()
         templateName = 'html/{0}/homepage'.format(u.get_theme_name())
         template = env.get_template(templateName)
         return template.render(
             siteData=SiteData(),
-            userData=u)
+            sessionData=u)
