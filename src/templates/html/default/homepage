@@ -1,5 +1,4 @@
-
-{% extends "html/standard" %}
+{% extends "html/default/standard" %}
 
 {% set pageName="Home" %}
 

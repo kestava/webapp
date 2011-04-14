@@ -1,0 +1,17 @@
+<div id="topBar">
+    <div class="content">
+        <header>
+            <h1><a href="/" title="Home">{{ siteData.siteName|lower }}</a></h1>
+        </header>
+        <form id="searchForm">
+            <div>
+                <input type="text"/>
+            </div>
+        </form>
+        <nav>
+            <a href="#">post</a>
+            <a href="#">manage</a>
+            <a href="#">follow</a>
+        </nav>
+    </div>
+</div>

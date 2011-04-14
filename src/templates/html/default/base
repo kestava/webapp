@@ -2,23 +2,15 @@
 <html>
 <head>
 <meta charset="UTF-8"/>
-
 {% block titleBlock %}{% endblock %}
-
 {# Standard stylesheets #}
 {% block headStylesheetsBlock %}{% endblock %}
-
 {# Standard head scripts #}
 {% block headScriptsBlock %}{% endblock %}
-
 </head>
-
 <body>
 <div id="container">
-
 {% block contentsBlock %}{% endblock %}
-
 </div>
 </body>
-
 </html>

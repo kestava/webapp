@@ -1,0 +1,13 @@
+/**
+ * shared.css
+ */
+
+.clearing
+{
+    clear: both;
+}
+
+.hidden
+{
+    visibility: hidden;
+}

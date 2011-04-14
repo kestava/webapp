@@ -1,13 +1,14 @@
-
-{% extends "html/base" %}
+{% extends "html/default/base" %}
 
 {# The standard title format: #}
 {% block titleBlock %}
 <title>{{ pageName|lower }} - {{ siteData.siteName|lower }}</title>
-{% endblock %}
+{% endblock titleBlock %}
 
 {% block headStylesheetsBlock %}
+{% include "html/misc/html5-shiv" %}
 <link rel="stylesheet" type="text/css" href="/static/css/{{ siteData.html5ResetFilename }}" />
+<link rel="stylesheet" type="text/css" href="/static/css/{{ userData.themeName }}/shared.css" />
 <link rel="stylesheet" type="text/css" href="/static/css/{{ userData.themeName }}/base.css" />
 {% block additionalStylesheetsBlock %}{% endblock %}
 {% endblock %}
@@ -22,16 +23,5 @@
 
 {# Main content area #}
 {% block contentsBlock %}
-
-<div id="topBar">
-    <header>
-        <h1>{{ siteData.siteName|lower }}</h1>
-    </header>
-    <nav>
-        <a href="#">post</a>
-        <a href="#">manage</a>
-        <a href="#">follow</a>
-    </nav>
-</div>
-
+{% include "html/default/components/top-bar" %}
 {% endblock %}
