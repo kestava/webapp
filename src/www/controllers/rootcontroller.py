@@ -5,10 +5,12 @@ import cherrypy
 from lib.sitedata import SiteData
 from lib.sessiondata import SessionData
 from dynamicfilescontroller import DynamicFilesController
+from logincontroller import LoginController
 
 class RootController(object):
 
     dynamic = DynamicFilesController()
+    login = LoginController()
 
     @cherrypy.expose
     def index(self):

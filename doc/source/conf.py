@@ -238,3 +238,5 @@ autodoc_default_flags = [
     'undoc-members',
     'inherited-members',
     'show-inheritance']
+
+import tools.requiressl

@@ -234,6 +234,11 @@ These requirements should be installed in a Python virtual environment:
 Setup nginx
 ===========
 
+.. warning::
+
+    The following is deprecated.  Nginx must be install from source to permit
+    the use of certain 3rd party modules.  See further below.
+
 ::
 
     sudo add-apt-repository ppa:nginx/stable
@@ -281,7 +286,115 @@ or
 
 If you try to access the website in your browser now, you should see a
 **502 Bad Gateway** message from nginx.
+
+Install nginx (from source)
+===========================
+
+Download and extract the latest stable release of nginx into a working
+directory.
+
+Download and extract the latest release of the HttpHeadersMore module into a
+working directory. Rename that directory to *headers-more* for convenience.
+
+Configure::
+
+    ./configure \
+    --pid-path=/var/run/nginx.pid \
+    --error-log-path=/var/log/nginx/error.log \
+    --http-log-path=/var/log/nginx/access.log \
+    --with-http_ssl_module \
+    --add-module=/home/jacob/Software/nginx/headers-more
+
+Install using checkinstall::
+
+    sudo checkinstall
     
+Create a user for nginx::
+
+    sudo adduser --system --group --no-create-home nginx
+    
+Create log file directory::
+
+    sudo mkdir -p /var/log/nginx
+    sudo chown nginx:nginx /var/log/nginx
+    
+Edit nginx configuration file. Set user to nginx::
+
+    user nginx;
+    worker_processes  1;
+    
+    events {
+        worker_connections  1024;
+    }
+    
+    http {
+        include       mime.types;
+        default_type  application/octet-stream;
+    
+        sendfile        on;
+    
+        keepalive_timeout  65;
+    
+        gzip  on;
+    
+        include /usr/local/nginx/sites-enabled/*;
+    }
+
+Create Debian-style config directories
+
+    sudo mkdir /usr/local/nginx/sites-available
+    sudo mkdir /usr/local/nginx/sites-enabled
+   
+Create default site config at /usr/local/nginx/sites-available/default::
+
+    server {
+        listen       80;
+        server_name  localhost;
+    
+        location / {
+            root   html;
+            index  index.html index.htm;
+        }
+    
+    
+        # redirect server error pages to the static page /50x.html
+        #
+        error_page   500 502 503 504  /50x.html;
+        location = /50x.html {
+            root   html;
+        }
+    }
+    
+Enable it::
+
+    sudo ln -s /usr/local/nginx/sites-available/default /usr/local/nginx/sites-enabled/default
+    
+Create upstart script::
+
+    # An upstart script to manage ngix
+    description "nginx http daemon"
+     
+    start on (filesystem and net-device-up IFACE=lo)
+    stop on runlevel [!2345]
+    
+    env DAEMON=/usr/local/nginx/sbin/nginx
+    
+    expect fork
+    respawn
+     
+    pre-start script
+        mkdir -p /var/log/nginx
+        chown nginx:nginx /var/log/nginx
+        
+        $DAEMON -t
+        if [ $? -ne 0 ]
+            then exit $?
+        fi
+    end script
+     
+    exec $DAEMON
+
+
 Setup the Web Application
 =========================
 
