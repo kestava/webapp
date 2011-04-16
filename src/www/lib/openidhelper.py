@@ -5,6 +5,7 @@ from openid.consumer.consumer import Consumer
 from openid.store.filestore import FileOpenIDStore
 
 from lib.applicationpaths import ApplicationPaths
+from model.database import grab_connection
 
 class OpenIdHelper(object):
     
@@ -25,13 +26,9 @@ class OpenIdHelper(object):
             query=query,
             current_url=ApplicationPaths.get_handle_openid_auth_response_path())
         
-        print('OpenID response:\n{0}\n{1}'.format(pformat(response), pformat(dir(response))))
-        
         if 'success' == response.status:
-            postLoginUrl = cherrypy.session.get('post-login-url')
-            if not postLoginUrl is None:
-                raise cherrypy.HTTPRedirect(postLoginUrl)
-            raise cherrypy.HTTPRedirect(ApplicationPaths.get_site_root())
+            print('Identity URL: {0}'.format(response.identity_url))
+            cls.__on_successful_login()
             
         elif 'cancel' == response.status:
             raise cherrypy.HTTPRedirect('/error/openid?reason=cancelled')
@@ -40,3 +37,18 @@ class OpenIdHelper(object):
             print('{0} {1}'.format(response.status, response.message))
             raise cherrypy.HTTPRedirect('/error/openid')
             
+    @classmethod
+    def __on_successful_login(cls):
+        cls.__check_account()
+        postLoginUrl = cherrypy.session.get('post-login-url')
+        if not postLoginUrl is None:
+            raise cherrypy.HTTPRedirect(postLoginUrl)
+        raise cherrypy.HTTPRedirect('/')
+        
+    @classmethod
+    def __check_account(cls):
+        #pool = cherrypy.thread_data.db_connection_pool
+        #conn = pool.getconn()
+        
+        with grab_connection() as conn:
+            pass

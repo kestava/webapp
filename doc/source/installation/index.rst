@@ -188,15 +188,27 @@ Run Database Setup Script
 Setup Python Virtual Environment
 ================================
 
-Install virtualenv using easy_install::
+Execute...
+   
+    ::
+
+        which virtualenv
+        
+...to see if Python virtualenv is already installed.  If not, then install
+virtualenv using easy_install::
 
     sudo easy_install virtualenv
-
+        
 Create the virtual environment::
 
     sudo mkdir /usr/local/pythonenv
     cd /usr/local/pythonenv
-    sudo virtualenv --no-site-packages KESTAVA-WEBAPP
+    sudo virtualenv --no-site-packages --python=python2.7 KESTAVA-WEBAPP
+    
+.. note:: We're using Python 2.7 here.  Make sure both Python 2.7 and the Python
+   2.7 with development headers are installed on your system::
+
+        sudo apt-get install python2.7 python2.7-dev
 
 These requirements should be installed in a Python virtual environment:
 
@@ -206,38 +218,38 @@ These requirements should be installed in a Python virtual environment:
    
         sudo KESTAVA-WEBAPP/bin/pip install cherrypy
 
-#. lxml
-
-   Install the latest stable version.  At the time of this writing, version
-   2.2.8 is the most current.
-
-   ::
-
-        sudo KESTAVA-WEBAPP/bin/pip install lxml==2.2.8
-
 #. psycopg2
 
    ::
 
-        sudo KESTAVA-WEBAPP/bin/pip install psycopg2==2.3.2
+        sudo KESTAVA-WEBAPP/bin/pip install psycopg2
+        
+   .. note::    psycopg2's latest published version is often a beta version.  In
+                that case, it's probably better to explicitly install the latest
+                production version.  For example::
+                
+                    sudo KESTAVA-WEBAPP/bin/pip install psycopg2==2.4
 
 #. python-openid
 
    ::
    
         sudo KESTAVA-WEBAPP/bin/pip install python-openid
+        
+#. setproctitle
+
+   ::
+   
+        sudo KESTAVA-WEBAPP/bin/pip install setproctitle
 
 #. geopy (check this!)
 
 #. mox (only on development box)
 
+#. sphinx (only on development box)
+
 Setup nginx
 ===========
-
-.. warning::
-
-    The following is deprecated.  Nginx must be install from source to permit
-    the use of certain 3rd party modules.  See further below.
 
 ::
 
@@ -252,18 +264,9 @@ Configure nginx
     cd /etc/nginx/sites-available
     sudo nano kestava
 
-Enter these contents into the file.  The example below is for test.kestava.org.
-You should supply the hostname that is appropriate for the current environment.
-
-::
-
-    server {
-        server_name test.kestava.org;
-        
-        location / {
-            proxy_pass http://127.0.0.1:21850/;
-        }
-    }
+There is a sample nginx configuration file in the root of the webapp project
+called nginx.conf.  You can use its contents to populate the new configuration
+file.
 
 Create a symbolic link to the file in the nginx/sites-enabled directory.
 
@@ -286,114 +289,6 @@ or
 
 If you try to access the website in your browser now, you should see a
 **502 Bad Gateway** message from nginx.
-
-Install nginx (from source)
-===========================
-
-Download and extract the latest stable release of nginx into a working
-directory.
-
-Download and extract the latest release of the HttpHeadersMore module into a
-working directory. Rename that directory to *headers-more* for convenience.
-
-Configure::
-
-    ./configure \
-    --pid-path=/var/run/nginx.pid \
-    --error-log-path=/var/log/nginx/error.log \
-    --http-log-path=/var/log/nginx/access.log \
-    --with-http_ssl_module \
-    --add-module=/home/jacob/Software/nginx/headers-more
-
-Install using checkinstall::
-
-    sudo checkinstall
-    
-Create a user for nginx::
-
-    sudo adduser --system --group --no-create-home nginx
-    
-Create log file directory::
-
-    sudo mkdir -p /var/log/nginx
-    sudo chown nginx:nginx /var/log/nginx
-    
-Edit nginx configuration file. Set user to nginx::
-
-    user nginx;
-    worker_processes  1;
-    
-    events {
-        worker_connections  1024;
-    }
-    
-    http {
-        include       mime.types;
-        default_type  application/octet-stream;
-    
-        sendfile        on;
-    
-        keepalive_timeout  65;
-    
-        gzip  on;
-    
-        include /usr/local/nginx/sites-enabled/*;
-    }
-
-Create Debian-style config directories
-
-    sudo mkdir /usr/local/nginx/sites-available
-    sudo mkdir /usr/local/nginx/sites-enabled
-   
-Create default site config at /usr/local/nginx/sites-available/default::
-
-    server {
-        listen       80;
-        server_name  localhost;
-    
-        location / {
-            root   html;
-            index  index.html index.htm;
-        }
-    
-    
-        # redirect server error pages to the static page /50x.html
-        #
-        error_page   500 502 503 504  /50x.html;
-        location = /50x.html {
-            root   html;
-        }
-    }
-    
-Enable it::
-
-    sudo ln -s /usr/local/nginx/sites-available/default /usr/local/nginx/sites-enabled/default
-    
-Create upstart script::
-
-    # An upstart script to manage ngix
-    description "nginx http daemon"
-     
-    start on (filesystem and net-device-up IFACE=lo)
-    stop on runlevel [!2345]
-    
-    env DAEMON=/usr/local/nginx/sbin/nginx
-    
-    expect fork
-    respawn
-     
-    pre-start script
-        mkdir -p /var/log/nginx
-        chown nginx:nginx /var/log/nginx
-        
-        $DAEMON -t
-        if [ $? -ne 0 ]
-            then exit $?
-        fi
-    end script
-     
-    exec $DAEMON
-
 
 Setup the Web Application
 =========================

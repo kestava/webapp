@@ -1,5 +1,7 @@
 # _*_ coding: utf-8 _*_
 
+from pprint import pprint, pformat
+
 import cherrypy
 
 from lib.sitedata import SiteData
@@ -7,6 +9,7 @@ from lib.sessiondata import SessionData
 from dynamicfilescontroller import DynamicFilesController
 from logincontroller import LoginController
 from errorcontroller import ErrorController
+from model.testing import quick_test
 
 class RootController(object):
 
@@ -16,6 +19,7 @@ class RootController(object):
 
     @cherrypy.expose
     def index(self):
+        quick_test()
         env = cherrypy.request.app.jinjaEnv
         u = SessionData()
         templateName = 'html/{0}/homepage'.format(u.get_theme_name())

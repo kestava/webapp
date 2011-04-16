@@ -1,6 +1,8 @@
 """
 .. automodule:: lib.sessiondata
 .. automodule:: lib.sitedata
+.. automodule:: lib.openidhelper
+.. automodule:: lib.applicationpaths
 """
 
 from pprint import pformat
@@ -18,3 +20,4 @@ def make_netloc(ssl=False):
         portString = '' if port == 80 else ':{0}'.format(port)
         
     return '{0}{1}'.format(hostname, portString)
+    

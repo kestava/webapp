@@ -1,0 +1,26 @@
+[appSettings]
+siteName = 'un_silo'
+siteHostname = 'kestava.jakewan.com'
+jinja.search_path = '/home/jacob/Documents/git-repos/kestava/webapp/src/templates'
+html5ResetFilename = 'html5reset-1.6.1.css'
+external_socket_port = 80
+external_socket_port_ssl = 443
+openid.datastore_directory = '/var/kestava-openid-filestore'
+        
+;Database settings
+main_db.name = 'kestava'
+mainDbUser = 'kestava'
+
+[global]
+
+;LAN IP address.  Default is 127.0.0.1
+;server.socket_host = '',
+server.socket_port = 48080
+;server.thread_pool = 10
+
+[/]
+tools.sessions.on = True
+tools.sessions.storage_type = 'file'
+tools.sessions.storage_path = '/var/kestava-session-data/webapp'
+tools.sessions.timeout = 60
+tools.trailing_slash.on = False

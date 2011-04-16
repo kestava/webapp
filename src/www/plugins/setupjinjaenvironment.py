@@ -2,8 +2,6 @@
 import cherrypy
 from jinja2 import Environment, FileSystemLoader
 
-from config import config
-
 class SetupJinjaEnvironment(cherrypy.process.plugins.SimplePlugin):
 
     def __init__(self):
@@ -18,4 +16,4 @@ class SetupJinjaEnvironment(cherrypy.process.plugins.SimplePlugin):
         app = cherrypy.tree.apps['']
         app.jinjaEnv = Environment(
             loader=FileSystemLoader(
-                searchpath=config['appSettings']['jinja.search_path']))
+                searchpath=app.config['appSettings']['jinja.search_path']))
