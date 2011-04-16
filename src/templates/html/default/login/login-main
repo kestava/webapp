@@ -1,0 +1,28 @@
+{% extends "html/default/base" %}
+
+{% block titleBlock %}
+<title>login - {{ siteData.siteName|lower }}</title>
+{% endblock titleBlock %}
+
+{% block headStylesheetsBlock %}
+<link rel="stylesheet" type="text/css" href="/static/css/{{ siteData.html5ResetFilename }}" />
+<link rel="stylesheet" type="text/css" href="/static/css/{{ sessionData.themeName }}/login.css" />
+{% endblock %}
+
+{% block headScriptsBlock %}
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.5.2.js"></script>
+<script type="text/javascript" src="/dynamic/js/app.js"></script>
+<script type="text/javascript" src="/static/js/app/classes.js"></script>
+<script type="text/javascript" src="/static/js/app/login.js"></script>
+{% endblock %}
+
+{% block contentsBlock %}
+<form id="loginForm" action="/login/redirect" method="get">
+    <h1>Please select one of the following methods to log in:</h1>
+    <ul>
+        <li id="google">Google</li>
+        <li id="yahoo">Yahoo!</li>
+        <li id="twitter">Twitter</li>
+    </ul>
+</form>
+{% endblock %}

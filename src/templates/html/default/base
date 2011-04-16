@@ -3,9 +3,8 @@
 <head>
 <meta charset="UTF-8"/>
 {% block titleBlock %}{% endblock %}
-{# Standard stylesheets #}
+{% include "html/misc/html5-shiv" %}
 {% block headStylesheetsBlock %}{% endblock %}
-{# Standard head scripts #}
 {% block headScriptsBlock %}{% endblock %}
 </head>
 <body>

@@ -1,0 +1,43 @@
+/**
+ * login.css
+ */
+
+body
+{
+    font-family: Arial,Helvetica,"Liberation Sans",FreeSans,sans-serif;
+    background-color: #360404;
+}
+
+#loginForm
+{
+    border: 1px solid gray;
+    background-color: #FFFFFF;
+    width: 600px;
+    margin: 12px auto;
+}
+
+#loginForm h1
+{
+    font-weight: normal;
+    margin: 0.8em;
+}
+
+#loginForm ul
+{
+    list-style-type: none;
+}
+
+#loginForm li
+{
+    width: 80px;
+    margin: 12px auto;
+    padding: 6px;
+    text-align: center;
+    cursor: pointer;
+    
+    border: 1px solid gray;
+    
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}

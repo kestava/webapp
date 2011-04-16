@@ -7,7 +7,7 @@ from pprint import pformat
 
 import cherrypy
 
-def make_netloc(ssl):
+def make_netloc(ssl=False):
     c = cherrypy.request.app.config
     hostname = c['appSettings']['siteHostname']
     if ssl:

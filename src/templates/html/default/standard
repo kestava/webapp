@@ -6,7 +6,6 @@
 {% endblock titleBlock %}
 
 {% block headStylesheetsBlock %}
-{% include "html/misc/html5-shiv" %}
 <link rel="stylesheet" type="text/css" href="/static/css/{{ siteData.html5ResetFilename }}" />
 <link rel="stylesheet" type="text/css" href="/static/css/{{ sessionData.themeName }}/shared.css" />
 <link rel="stylesheet" type="text/css" href="/static/css/{{ sessionData.themeName }}/base.css" />
@@ -14,7 +13,7 @@
 {% endblock %}
 
 {% block headScriptsBlock %}
-<script type="text/javascript" src="/static/js/lib/jquery-1.5.2.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.5.2.js"></script>
 <script type="text/javascript" src="/dynamic/js/app.js"></script>
 <script type="text/javascript" src="/static/js/app/classes.js"></script>
 <script type="text/javascript" src="/static/js/app/utilities.js"></script>
