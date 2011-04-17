@@ -5,7 +5,7 @@ from openid.consumer.consumer import Consumer
 from openid.store.filestore import FileOpenIDStore
 
 from lib.applicationpaths import ApplicationPaths
-from model.database import grab_connection
+from model.openidaccount import OpenIdAccount
 
 class OpenIdHelper(object):
     
@@ -20,7 +20,8 @@ class OpenIdHelper(object):
     
     @classmethod
     def handle_auth_response(cls, query):
-        s = FileOpenIDStore(cherrypy.request.app.config['appSettings']['openid.datastore_directory'])
+        settings = cherrypy.request.app.config['appSettings']
+        s = FileOpenIDStore(settings['openid.datastore_directory'])
         consumer = Consumer(session=cherrypy.session, store=s)
         response = consumer.complete(
             query=query,
@@ -28,7 +29,7 @@ class OpenIdHelper(object):
         
         if 'success' == response.status:
             print('Identity URL: {0}'.format(response.identity_url))
-            cls.__on_successful_login()
+            cls.__on_success(response.identity_url)
             
         elif 'cancel' == response.status:
             raise cherrypy.HTTPRedirect('/error/openid?reason=cancelled')
@@ -38,17 +39,24 @@ class OpenIdHelper(object):
             raise cherrypy.HTTPRedirect('/error/openid')
             
     @classmethod
-    def __on_successful_login(cls):
-        cls.__check_account()
-        postLoginUrl = cherrypy.session.get('post-login-url')
-        if not postLoginUrl is None:
-            raise cherrypy.HTTPRedirect(postLoginUrl)
-        raise cherrypy.HTTPRedirect('/')
+    def __on_success(cls, identity_url):
+        """
+        The user has successfully authenticated via an OpenID provider.  Now we
+        have to determine whether their identity URL is associated with an
+        existing site account.  If so, then we route the request to the post-
+        login URL, if possible, or to the homepage.  If the identity URL is not
+        associated with an existing account, then we route the request to a page
+        where we give the user an opportunity to establish a new site account
+        by providing some very basic information (e.g. first and last name,
+        e-mail).
+        """
         
-    @classmethod
-    def __check_account(cls):
-        #pool = cherrypy.thread_data.db_connection_pool
-        #conn = pool.getconn()
+        userId = OpenIdAccount.get_user_id(identity_url)
+        if not userId is None:
+            postLoginUrl = cherrypy.session.get('post-login-url')
+            if not postLoginUrl is None:
+                raise cherrypy.HTTPRedirect(postLoginUrl)
+            raise cherrypy.HTTPRedirect('/')
+        else:
+            raise cherrypy.HTTPRedirect('/accounts/create')
         
-        with grab_connection() as conn:
-            pass
