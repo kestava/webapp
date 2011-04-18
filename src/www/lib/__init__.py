@@ -1,6 +1,4 @@
 """
-.. automodule:: lib.sessiondata
-.. automodule:: lib.sitedata
 .. automodule:: lib.openidhelper
 .. automodule:: lib.applicationpaths
 """

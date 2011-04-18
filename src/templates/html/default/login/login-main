@@ -1,12 +1,12 @@
 {% extends "html/default/base" %}
 
 {% block titleBlock %}
-<title>login - {{ siteData.siteName|lower }}</title>
+<title>login - {{ model['siteData']['siteName']|lower }}</title>
 {% endblock titleBlock %}
 
 {% block headStylesheetsBlock %}
-<link rel="stylesheet" type="text/css" href="/static/css/{{ siteData.html5ResetFilename }}" />
-<link rel="stylesheet" type="text/css" href="/static/css/{{ sessionData.themeName }}/login.css" />
+<link rel="stylesheet" type="text/css" href="/static/css/{{ model['siteData']['html5ResetFilename'] }}" />
+<link rel="stylesheet" type="text/css" href="/static/css/{{ model['userData']['themeName'] }}/login.css" />
 {% endblock %}
 
 {% block headScriptsBlock %}

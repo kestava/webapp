@@ -6,7 +6,7 @@
     <XRD>
         <Service priority="1">
             <Type>http://specs.openid.net/auth/2.0/return_to</Type>
-            <URI>{{ siteData.xrdsUrl }} </URI>
+            <URI>{{ model['siteData']['xrdsUrl'] }} </URI>
         </Service>
     </XRD>
 </xrds:XRDS>

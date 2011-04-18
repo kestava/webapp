@@ -2,13 +2,13 @@
 
 {# The standard title format: #}
 {% block titleBlock %}
-<title>{{ pageName|lower }} - {{ siteData.siteName|lower }}</title>
+<title>{{ pageName|lower }} - {{ model['siteData']['siteName']|lower }}</title>
 {% endblock titleBlock %}
 
 {% block headStylesheetsBlock %}
-<link rel="stylesheet" type="text/css" href="/static/css/{{ siteData.html5ResetFilename }}" />
-<link rel="stylesheet" type="text/css" href="/static/css/{{ sessionData.themeName }}/shared.css" />
-<link rel="stylesheet" type="text/css" href="/static/css/{{ sessionData.themeName }}/base.css" />
+<link rel="stylesheet" type="text/css" href="/static/css/{{ model['siteData']['html5ResetFilename'] }}" />
+<link rel="stylesheet" type="text/css" href="/static/css/{{ model['userData']['themeName'] }}/shared.css" />
+<link rel="stylesheet" type="text/css" href="/static/css/{{ model['userData']['themeName'] }}/base.css" />
 {% block additionalStylesheetsBlock %}{% endblock %}
 {% endblock %}
 

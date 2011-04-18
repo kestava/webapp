@@ -1,5 +1,6 @@
 
 import cherrypy
+from psycopg2.extras import DictCursor
 
 from plugins.setuppgconnectionpool import SetupPgConnectionPool
 
@@ -21,3 +22,13 @@ class ConnectionManager(object):
     
 def grab_connection(pool_name, auto_commit=True):
     return ConnectionManager(pool_name, auto_commit)
+    
+def get_scalar(connection, statement, variables, column):
+    data = get_row(connection, statement, variables)
+    if not data is None:
+        return data[column]
+        
+def get_row(connection, statement, variables):
+    cur = connection.cursor(cursor_factory=DictCursor)
+    cur.execute(statement, variables)
+    return cur.fetchone()

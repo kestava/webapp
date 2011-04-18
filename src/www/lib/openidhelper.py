@@ -51,8 +51,9 @@ class OpenIdHelper(object):
         e-mail).
         """
         
-        userId = OpenIdAccount.get_user_id(identity_url)
-        if not userId is None:
+        accountId = OpenIdAccount.get_account_id(identity_url)
+        if not accountId is None:
+            cherrypy.session['user-account-id'] = accountId
             postLoginUrl = cherrypy.session.get('post-login-url')
             if not postLoginUrl is None:
                 raise cherrypy.HTTPRedirect(postLoginUrl)

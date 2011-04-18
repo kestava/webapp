@@ -4,13 +4,18 @@ from pprint import pprint, pformat
 import cherrypy
 import psycopg2.pool
 
+# tools
+import tools.buildmodel
+
 from controllers.rootcontroller import RootController
 from plugins.setupjinjaenvironment import SetupJinjaEnvironment
 from plugins.setuppgconnectionpool import SetupPgConnectionPool
 from plugins.setprocesstitle import SetProcessTitle
+from plugins.setlogging import SetLogging
 
 def main(config_file_path):
 
+    SetLogging().subscribe()
     SetProcessTitle().subscribe()
     SetupJinjaEnvironment().subscribe()
     SetupPgConnectionPool(

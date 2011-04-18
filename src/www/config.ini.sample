@@ -6,6 +6,9 @@ html5ResetFilename = 'html5reset-1.6.1.css'
 external_socket_port = 80
 external_socket_port_ssl = 443
 openid.datastore_directory = '/var/kestava-openid-filestore'
+
+;'DEBUG'|'INFO'|'WARNING'|'ERROR'|'CRITICAL'
+logging.error_log.level = 'DEBUG'
         
 ;Database settings
 main_db.name = 'kestava'
@@ -24,3 +27,4 @@ tools.sessions.storage_type = 'file'
 tools.sessions.storage_path = '/var/kestava-session-data/webapp'
 tools.sessions.timeout = 60
 tools.trailing_slash.on = False
+

@@ -1,20 +1,16 @@
 
 from pprint import pformat
 
-from psycopg2.extras import DictCursor
-
-from model.database import grab_connection
+from model.database import grab_connection, get_scalar
 
 class OpenIdAccount(object):
     
     @classmethod
-    def get_user_id(cls, identity_url):
+    def get_account_id(cls, identity_url):
         with grab_connection('main') as conn:
-            cur = conn.cursor(cursor_factory=DictCursor)
-            cur.execute(
-                'select account_id from openid_accounts where openid_identifier = %(i)s',
-                { 'i': identity_url })
+            return get_scalar(
+                conn,
+                'select ref_user_account_id from openid_accounts where openid_identifier = %(i)s',
+                { 'i': identity_url },
+                'ref_user_account_id')
             
-            data = cur.fetchone()
-            if not data is None:
-                return data['account_id']
