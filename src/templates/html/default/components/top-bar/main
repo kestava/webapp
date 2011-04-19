@@ -14,5 +14,7 @@
             <a href="#">follow</a>
         </nav>
         {% include "html/default/components/top-bar/user-area" %}
+        
+        <hr class="clearing"/>
     </div>
 </div>

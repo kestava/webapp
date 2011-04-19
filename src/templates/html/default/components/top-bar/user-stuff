@@ -1,1 +1,4 @@
-<h1>{{ model['userData']['userName'] }}</h1>
+<div id="nameContainer">
+{# Gravatar here someday #}
+<p class="userName">{{ model['userData']['userName'] }}&nbsp;&#x25BE;</p>
+</div>
