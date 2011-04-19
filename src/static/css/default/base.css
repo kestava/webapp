@@ -7,7 +7,11 @@ body
     font-family: Arial,Helvetica,"Liberation Sans",FreeSans,sans-serif;
 }
 
-/*#topBar header,*/
+a
+{
+    text-decoration: none;
+}
+
 #topBar header > h1 > a,
 #topBar nav > a,
 #searchForm
@@ -15,9 +19,10 @@ body
     float: left;
 }
 
-#sessionContainer h1 > a
+#sessionContainer
 {
     float: right;
+    padding: 9px;
 }
 
 #topBar .content
@@ -37,8 +42,12 @@ body
 {
     padding: 9px;
     color: #F5E8E6;
-    text-decoration: none;
-    
+    text-shadow: 1px 1px #888;
+}
+
+#nameContainer .userName
+{
+    color: #F5E8E6;
     text-shadow: 1px 1px #888;
 }
 
