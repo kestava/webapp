@@ -7,5 +7,4 @@ app.classes.homepage = (function() {
 }());
 
 $(function() {
-    var jake = 0;
 });

@@ -2,3 +2,12 @@
 {# Gravatar here someday #}
 <p class="userName">{{ model['userData']['userName'] }}&nbsp;&#x25BE;</p>
 </div>
+
+<div class="dropDown" style="display: none">
+<nav>
+<a href="#">profile</a>
+<a href="#">settings</a>
+<hr />
+<a href="#">logout</a>
+</nav>
+</div>

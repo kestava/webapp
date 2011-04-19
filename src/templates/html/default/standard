@@ -17,6 +17,7 @@
 <script type="text/javascript" src="/dynamic/js/app.js"></script>
 <script type="text/javascript" src="/static/js/app/classes.js"></script>
 <script type="text/javascript" src="/static/js/app/utilities.js"></script>
+<script type="text/javascript" src="/static/js/app/shared.js"></script>
 {% block additionalHeadScriptsBlock %}{% endblock %}
 {% endblock %}
 
