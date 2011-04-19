@@ -1,7 +1,7 @@
 
 from pprint import pformat
 
-from model.database import grab_connection, get_scalar
+from model import grab_connection, get_scalar
 
 class OpenIdAccount(object):
     

@@ -3,7 +3,7 @@ from pprint import pprint, pformat
 
 import psycopg2.extras
 
-from model.database import grab_connection
+from model import grab_connection
 
 def quick_test():
     Animal.delete_all()
