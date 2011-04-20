@@ -57,6 +57,16 @@ def get_row(connection, statement, variables):
     cur.execute(trim_statement(statement), variables)
     return cur.fetchone()
     
+def get_row_nc(pool_name, statement, variables):
+    """
+    Like get_row, but doesn't require a connection to be passed in as an
+    argument.
+    
+    Useful when not wrapping multiple statements in a transaction.
+    """
+    with grab_connection(pool_name) as conn:
+        return get_row(conn, statement, variables)
+    
 def trim_statement(input):
     """
     Produces a neatened SQL statement

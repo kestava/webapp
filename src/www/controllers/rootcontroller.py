@@ -5,7 +5,7 @@ from pprint import pprint, pformat
 import cherrypy
 
 from dynamicfilescontroller import DynamicFilesController
-from logincontroller import LoginController
+from accountscontroller import AccountsController
 from errorcontroller import ErrorController
 from model.userdatatheme import UserDataTheme
 from model.userdata import UserData
@@ -14,7 +14,7 @@ from model.sitedata import SiteData
 class RootController(object):
 
     dynamic = DynamicFilesController()
-    login = LoginController()
+    accounts = AccountsController()
     error = ErrorController()
 
     @cherrypy.tools.build_model(classes=[

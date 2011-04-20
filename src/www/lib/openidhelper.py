@@ -53,8 +53,8 @@ class OpenIdHelper(object):
         
         accountId = OpenIdAccount.get_account_id(identity_url)
         if not accountId is None:
-            cherrypy.session['user-account-id'] = accountId
-            postLoginUrl = cherrypy.session.get('post-login-url')
+            cherrypy.session['user.account_id'] = accountId
+            postLoginUrl = cherrypy.session.get('user.post_login_url')
             if not postLoginUrl is None:
                 raise cherrypy.HTTPRedirect(postLoginUrl)
             raise cherrypy.HTTPRedirect('/')

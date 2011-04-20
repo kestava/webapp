@@ -11,7 +11,7 @@ class UserData(ModelObjectBase):
     def read(self):
         o = {}
         
-        i = cherrypy.session.get('user-account-id')
+        i = cherrypy.session.get('user.account_id')
         if not i is None:
         
             with grab_connection('main') as conn:

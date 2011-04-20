@@ -10,7 +10,7 @@ class UserDataTheme(ModelObjectBase):
     def read(self):
         return {
             'themeName': 'default',
-            'accountId': cherrypy.session.get('user-account-id')
+            'accountId': cherrypy.session.get('user.account_id')
         }
         
     

@@ -11,4 +11,4 @@ class ApplicationPaths(object):
         
     @classmethod
     def get_handle_openid_auth_response_path(cls):
-        return urlparse.urljoin(cls.get_site_root(), 'login/openid/process')
+        return urlparse.urljoin(cls.get_site_root(), 'accounts/login/openid/process')

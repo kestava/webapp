@@ -1,4 +1,3 @@
-# _*_ coding: utf-8 _*_
 
 import cherrypy
 
@@ -33,4 +32,3 @@ class LoginController(object):
     def redirect(self, provider):
         redirectUrl = OpenIdHelper.get_auth_redirect_url(self.openIdProviders[provider]['url'])
         raise cherrypy.HTTPRedirect(redirectUrl)
-        
