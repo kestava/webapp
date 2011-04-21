@@ -25,8 +25,8 @@ hr
 
 #topBar .content
 {
-    position: relative;
-    background-color: #360404;
+    /*position: relative;*/
+    background-color: black;
     
     width: 800px;
     height: 36px;
@@ -59,7 +59,29 @@ hr
 {
     float: left;
     width: 96px;
+}
+
+#sessionContainer
+{
+    float: right;
+    width: 90px;
+}
+
+#mainNav > div,
+#sessionContainer
+{
     margin: 3px;
+}
+
+#mainNav .dropDownContainer > p,
+#nameContainer > p,
+.dropDown
+{
+    padding: 7px;
+    
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
 }
 
 #mainNav .dropDownContainer > p
@@ -67,12 +89,31 @@ hr
     text-align: center;
 }
 
-#sessionContainer
+#nameContainer
 {
-    position: absolute;
-    width: 120px;
-    top: 3px;
-    right: 3px;
+    text-align: right;
+}
+
+#mainNav .dropDownContainer.open > p,
+#sessionContainer.dropDownContainer.open #nameContainer > p
+{
+    background-color: #FFA526;
+    text-shadow: 1px 1px #222;
+}
+
+.dropDownContainer > .dropDown
+{
+    background-color: #2690FF;
+}
+
+.dropDownContainer.open > .dropDown a
+{
+    text-shadow: 1px 1px #555;
+}
+
+#mainNav .dropDown
+{
+    float: left;
 }
 
 #topBar .content header > h1 > a,
@@ -97,29 +138,14 @@ hr
     border-radius: 4px;
 }
 
-#nameContainer .userName
-{
-    text-align: right;
-}
-
 .dropDownContainer
 {
-    padding: 6px;
     cursor: pointer;
-    
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    border-radius: 4px;
-}
-
-.dropDownContainer.open
-{
-    background-color: #745A5A;
 }
 
 #topBar > .content .dropDown
 {
-    margin-top: 15px;
+    margin-top: 13px;
 }
 
 #sessionContainer nav
@@ -130,8 +156,7 @@ hr
 .dropDown a
 {
     display: block;
-    margin: 3px;
-    padding: 3px;
+    padding: 6px;
     font-size: 80%;
     
     -webkit-border-radius: 4px;
@@ -141,7 +166,7 @@ hr
 
 .dropDown a:hover
 {
-    background-color: #360404;
+    background-color: #ACACAC;
 }
 
 #sessionContainer > h1 > a
