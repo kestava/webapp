@@ -8,13 +8,33 @@
                 <input type="text"/>
             </div>
         </form>
-        <nav>
-            <a href="#">post</a>
-            <a href="#">manage</a>
-            <a href="#">follow</a>
+        <nav id="mainNav">
+            <div id="postNavContainer" class="dropDownContainer">
+                <p>post</p>
+                <div class="dropDown" style="display: none">
+                    <a href="#">material</a>
+                    <a href="#">transport</a>
+                </div>
+            </div>
+            <div id="manageNavContainer" class="dropDownContainer">
+                <p>manage</p>
+                <div class="dropDown" style="display: none">
+                    <a href="#">transactions</a>
+                    <a href="#">market data</a>
+                    <a href="#">analysis</a>
+                </div>
+            </div>
+            <div id="followNavContainer" class="dropDownContainer">
+                <p>follow</p>
+                <div class="dropDown" style="display: none">
+                    <a href="#">user conversations</a>
+                    <a href="#">item conversations</a>
+                    <a href="#">saved searches</a>
+                </div>
+            </div>
         </nav>
         {% include "html/default/components/top-bar/user-area" %}
         
-        <hr class="clearing"/>
+        {# <hr class="clearing"/> #}
     </div>
 </div>
