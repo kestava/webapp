@@ -12,24 +12,24 @@
             <div id="postNavContainer" class="dropDownContainer">
                 <p>post</p>
                 <div class="dropDown" style="display: none">
-                    <a href="#">material</a>
-                    <a href="#">transport</a>
+                    <a href="/post/material">material</a>
+                    <a href="/post/transport">transport</a>
                 </div>
             </div>
             <div id="manageNavContainer" class="dropDownContainer">
                 <p>manage</p>
                 <div class="dropDown" style="display: none">
-                    <a href="#">transactions</a>
-                    <a href="#">market&nbsp;data</a>
-                    <a href="#">analysis</a>
+                    <a href="/transactions">transactions</a>
+                    <a href="/market-data">market&nbsp;data</a>
+                    <a href="/analysis">analysis</a>
                 </div>
             </div>
             <div id="followNavContainer" class="dropDownContainer">
                 <p>follow</p>
                 <div class="dropDown" style="display: none">
-                    <a href="#">user&nbsp;conversations</a>
-                    <a href="#">item&nbsp;conversations</a>
-                    <a href="#">saved&nbsp;searches</a>
+                    <a href="/conversations/user">user&nbsp;conversations</a>
+                    <a href="/conversations/item">item&nbsp;conversations</a>
+                    <a href="/account/searches">saved&nbsp;searches</a>
                 </div>
             </div>
         </nav>

@@ -5,7 +5,7 @@ import cherrypy
 from logincontroller import LoginController
 from lib.sessionhelper import SessionHelper
 
-class AccountsController(object):
+class AccountController(object):
 
     login = LoginController()
         

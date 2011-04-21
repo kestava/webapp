@@ -59,5 +59,5 @@ class OpenIdHelper(object):
                 raise cherrypy.HTTPRedirect(postLoginUrl)
             raise cherrypy.HTTPRedirect('/')
         else:
-            raise cherrypy.HTTPRedirect('/accounts/create')
+            raise cherrypy.HTTPRedirect('/account/create')
         

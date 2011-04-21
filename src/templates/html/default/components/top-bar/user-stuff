@@ -5,9 +5,9 @@
 
 <div class="dropDown" style="display: none">
 <nav>
-<a href="/accounts/edit-profile">profile</a>
-<a href="/accounts/settings">settings</a>
+<a href="/account/edit-profile">profile</a>
+<a href="/account/settings">settings</a>
 <hr />
-<a href="/accounts/logout">logout</a>
+<a href="/account/logout">logout</a>
 </nav>
 </div>

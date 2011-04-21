@@ -75,6 +75,7 @@ hr
 
 #mainNav .dropDownContainer > p,
 #nameContainer > p,
+#sessionContainer > h1 > a,
 .dropDown
 {
     padding: 7px;
@@ -167,6 +168,12 @@ hr
 .dropDown a:hover
 {
     background-color: #ACACAC;
+}
+
+#sessionContainer > h1 > a:hover
+{
+    background-color: #FFA526;
+    text-shadow: 1px 1px #222;
 }
 
 #sessionContainer > h1 > a
