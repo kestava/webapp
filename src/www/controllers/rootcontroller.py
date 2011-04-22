@@ -4,18 +4,31 @@ from pprint import pprint, pformat
 
 import cherrypy
 
-from dynamicfilescontroller import DynamicFilesController
 from accountcontroller import AccountController
+from analysiscontroller import AnalysisController
+from conversationscontroller import ConversationsController
+from dynamicfilescontroller import DynamicFilesController
 from errorcontroller import ErrorController
+from marketdatacontroller import MarketDataController
+from postcontroller import PostController
+from searchcontroller import SearchController
+from transactionscontroller import TransactionsController
+
 from model.userdatatheme import UserDataTheme
 from model.userdata import UserData
 from model.sitedata import SiteData
 
 class RootController(object):
 
-    dynamic = DynamicFilesController()
     account = AccountController()
+    analysis = AnalysisController()
+    conversations = ConversationsController()
+    dynamic = DynamicFilesController()
     error = ErrorController()
+    marketdata = MarketDataController()
+    post = PostController()
+    search = SearchController()
+    transactions = TransactionsController()
 
     @cherrypy.tools.build_model(classes=[
         UserData,

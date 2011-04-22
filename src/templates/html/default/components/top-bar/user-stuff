@@ -5,7 +5,7 @@
 
 <div class="dropDown" style="display: none">
 <nav>
-<a href="/account/edit-profile">profile</a>
+<a href="/account/profile">profile</a>
 <a href="/account/settings">settings</a>
 <hr />
 <a href="/account/logout">logout</a>

@@ -20,16 +20,16 @@
                 <p>manage</p>
                 <div class="dropDown" style="display: none">
                     <a href="/transactions">transactions</a>
-                    <a href="/market-data">market&nbsp;data</a>
+                    <a href="/marketdata">market&nbsp;data</a>
                     <a href="/analysis">analysis</a>
                 </div>
             </div>
             <div id="followNavContainer" class="dropDownContainer">
                 <p>follow</p>
                 <div class="dropDown" style="display: none">
-                    <a href="/conversations/user">user&nbsp;conversations</a>
-                    <a href="/conversations/item">item&nbsp;conversations</a>
-                    <a href="/account/searches">saved&nbsp;searches</a>
+                    <a href="/conversations/users">user&nbsp;conversations</a>
+                    <a href="/conversations/items">item&nbsp;conversations</a>
+                    <a href="/search/saved">saved&nbsp;searches</a>
                 </div>
             </div>
         </nav>

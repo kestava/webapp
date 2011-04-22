@@ -21,3 +21,11 @@ class AccountController(object):
         SessionHelper().clear_user_data()
         
         raise cherrypy.HTTPRedirect(returnTo)
+        
+    @cherrypy.expose
+    def profile(self):
+        return 'profile'
+        
+    @cherrypy.expose
+    def settings(self):
+        return 'settings'
