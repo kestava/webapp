@@ -1,0 +1,13 @@
+{% extends "html/default/standard" %}
+
+{% set pageName="Post Material" %}
+
+{#
+{% block additionalStylesheetsBlock %}
+<link rel="stylesheet" type="text/css" href="/static/css/{{ model['userData']['themeName'] }}/homepage.css" />
+{% endblock %}
+
+{% block additionalHeadScriptsBlock %}
+<script type="text/javascript" src="/static/js/app/homepage.js"></script>
+{% endblock %}
+#}

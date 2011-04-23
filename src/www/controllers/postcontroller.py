@@ -1,12 +1,23 @@
 
 import cherrypy
 
+from model.userdatatheme import UserDataTheme
+from model.sitedata import SiteData
+
 class PostController(object):
 
+    @cherrypy.tools.build_model(classes=[SiteData,UserDataTheme])
     @cherrypy.expose
     def material(self):
-        return 'material'
+        r = cherrypy.request
+        env = r.app.jinjaEnv
+        template = env.get_template('html/{0}/post/material'.format(r.model['userData']['themeName']))
+        return template.render(model=r.model)
         
+    @cherrypy.tools.build_model(classes=[SiteData,UserDataTheme])
     @cherrypy.expose
     def transport(self):
-        return 'transport'
+        r = cherrypy.request
+        env = r.app.jinjaEnv
+        template = env.get_template('html/{0}/post/transport'.format(r.model['userData']['themeName']))
+        return template.render(model=r.model)
