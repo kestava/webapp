@@ -79,3 +79,17 @@ app.classes.topbar = (function() {
         }
     };
 }());
+
+if ("onpagehide" in window) {
+    // This event handler plays nice with the back/forward buttons in some
+    // browsers (WebKit ones mainly).
+    window.addEventListener(
+        "pageshow",
+        function(ev) {
+            if (ev.persisted) {
+                $('.dropDown').hide();
+                $('.dropDownContainer').removeClass('open');
+            }
+        },
+        false);
+}
