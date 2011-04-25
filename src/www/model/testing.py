@@ -2,13 +2,14 @@
 from pprint import pprint, pformat
 
 import psycopg2.extras
+import cherrypy
 
 from model import grab_connection
 
 def quick_test():
     Animal.delete_all()
     Animal.insert_several()
-    print('Animals:\n{0}'.format(pformat(Animal.get_all())))
+    cherrypy.log.error('Animals:\n{0}'.format(pformat(Animal.get_all())))
     
 class Animal(object):
     

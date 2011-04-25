@@ -39,11 +39,11 @@ class SetupPgConnectionPool(cherrypy.process.plugins.SimplePlugin):
         cherrypy.log.error('Inside __cleanup_connection_pool', 'SetupPgConnectionPool', logging.DEBUG)
         app = cherrypy.tree.apps['']
         if hasattr(app, self.__pool_name):
-            print('Closing db connections')
+            cherrypy.log.error('Closing db connections')
             pool = getattr(app, self.__pool_name)
             pool.closeall()
         else:
-            print('No db connection pool')
+            cherrypy.log.error('No db connection pool')
             
     @classmethod
     def get_full_pool_name(cls, pool_name):

@@ -21,8 +21,10 @@ class SiteModeRedirector(cherrypy.Tool):
         
         pageSiteMode = req.siteMode if hasattr(req, 'siteMode') else 'web'
         
-        print('User Site Mode: {0}'.format(userSiteMode))
-        print('Page Site Mode: {0}'.format(pageSiteMode))
+        cherrypy.log.error('User Site Mode: {0}'.format(userSiteMode),
+            'SiteModeRedirector')
+        cherrypy.log.error('Page Site Mode: {0}'.format(pageSiteMode),
+            'SiteModeRedirector')
         
         if 'any' != pageSiteMode:
             if 'mobile' == userSiteMode and 'mobile' != pageSiteMode:

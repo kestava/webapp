@@ -1,4 +1,5 @@
 from pprint import pprint, pformat
+import logging
 
 import cherrypy
 
@@ -10,8 +11,14 @@ class ErrorController(object):
 
     @cherrypy.expose
     def default(self, *args, **kwargs):
-        print('ErrorController.default args: {0}'.format(pformat(args)))
-        print('ErrorController.default kwargs: {0}'.format(pformat(kwargs)))
+        cherrypy.log.error(
+            'default args: {0}'.format(pformat(args)),
+            'ErrorController',
+            logging.DEBUG)
+        cherrypy.log.error(
+            'default kwargs: {0}'.format(pformat(kwargs)),
+            'ErrorController',
+            logging.DEBUG)
         return 'error (default)'
     
     @cherrypy.expose

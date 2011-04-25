@@ -54,19 +54,6 @@ def setup_logging(config):
     h.setFormatter(cherrypy._cplogging.logfmt)
     log.access_log.addHandler(h)
     
-def run(config):
-
-    SetProcessTitle().subscribe()
-    SetupJinjaEnvironment().subscribe()
-    SetupPgConnectionPool(
-        pool_name='main',
-        db_name=config['appSettings']['main_db.name'],
-        db_user=config['appSettings']['main_db.role']).subscribe()
-    
-    cherrypy.quickstart(
-        root=RootController(),
-        config=config)
-    
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='The main Kestava web application')
     parser.add_argument('-c', '--config',
@@ -75,4 +62,20 @@ if __name__ == '__main__':
     args = parser.parse_args()
     config = get_config(args.config_file)
     setup_logging(config)
-    run(config)
+    
+    # Set plugin subscriptions
+    SetProcessTitle().subscribe()
+    SetupJinjaEnvironment().subscribe()
+    SetupPgConnectionPool(
+        pool_name='main',
+        db_name=config['appSettings']['main_db.name'],
+        db_user=config['appSettings']['main_db.role']).subscribe()
+    
+    # Reload the application if the configuration file changes
+    # Only applies if no 'environment' settings is specified in the
+    # configuration file
+    cherrypy.engine.autoreload.files.add(args.config_file)
+    
+    cherrypy.quickstart(
+        root=RootController(),
+        config=config)
