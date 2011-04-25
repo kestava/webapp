@@ -2,6 +2,7 @@
 import urllib
 import urllib2
 import json
+import logging
 from pprint import pprint
 
 import cherrypy
@@ -45,7 +46,10 @@ class UserAgentInfo(object):
         if hasattr(app, cls.cacheName):
             temp = getattr(app, cls.cacheName)
             if userAgentString in temp:
-                print('Returning user agent info from cache')
+                app.log.error(
+                    'from_cache returning user agent info from cache',
+                    'UserAgentInfo',
+                    severity=logging.DEBUG)
                 return temp[userAgentString]
                 
     @classmethod

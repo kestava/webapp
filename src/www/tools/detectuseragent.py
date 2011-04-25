@@ -9,7 +9,9 @@ from lib.useragentinfo import UserAgentInfo
 class DetectUserAgent(cherrypy.Tool):
 
     def __init__(self):
-        super(DetectUserAgent, self).__init__('before_handler', self.detect)
+        super(DetectUserAgent, self).__init__(
+            'on_start_resource',
+            self.detect)
         
     def detect(self):
         req = cherrypy.request

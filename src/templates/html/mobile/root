@@ -1,0 +1,25 @@
+{% extends 'html/mobile/base' %}
+
+{% block additionalHeadScriptsBlock %}
+<script type="text/javascript" src="/static/mobile/js/app/root.js"></script>
+{% endblock %}
+
+{% block contentsBlock %}
+
+<div data-role="page">
+    <div data-role="header">
+        <h1>un_silo mobile</h1>
+    </div>
+    <div data-role="content">
+        <p>
+        We're still under construction.  Please visit the standard site using
+        the link below.
+        </p>
+    </div>
+    <div data-role="footer">
+        <a href="/set-site-mode?edition=web" data-ajax="false">Standard</a>
+    </div>
+</div>
+
+
+{% endblock %}

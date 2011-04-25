@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+{% block titleBlock %}
+<title>un_silo mobile</title>
+{% endblock %}
+{% block headStylesheetsBlock %}
+<link rel="stylesheet" href="{{ model['siteData']['jQueryMobileCssUrl'] }}" />
+{% endblock %}
+{% block headScriptsBlock %}
+<script type="text/javascript" src="{{ model['siteData']['jQueryUrl'] }}"></script>
+<script type="text/javascript" src="{{ model['siteData']['jQueryMobileUrl'] }}"></script>
+<script type="text/javascript" src="/mobile/dynamic/js/app.js"></script>
+<script type="text/javascript" src="/static/mobile/js/app/classes.js"></script>
+{% block additionalHeadScriptsBlock %}{% endblock %}
+{% endblock %}
+</head>
+<body>
+{% block contentsBlock %}{% endblock %}
+</body>
+</html>

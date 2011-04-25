@@ -13,6 +13,7 @@ from marketdatacontroller import MarketDataController
 from postcontroller import PostController
 from searchcontroller import SearchController
 from transactionscontroller import TransactionsController
+from mobilecontroller import MobileController
 
 from model.userdatatheme import UserDataTheme
 from model.userdata import UserData
@@ -26,6 +27,7 @@ class RootController(object):
     dynamic = DynamicFilesController()
     error = ErrorController()
     marketdata = MarketDataController()
+    mobile = MobileController()
     post = PostController()
     search = SearchController()
     transactions = TransactionsController()
@@ -51,3 +53,16 @@ class RootController(object):
         cherrypy.response.headers['content-type'] = 'application/xrds+xml'
         template = req.app.jinjaEnv.get_template('html/misc/xrds')
         return template.render(model=req.model)
+        
+    @cherrypy.tools.site_mode(mode='any')
+    @cherrypy.expose(alias='set-site-mode')
+    def set_site_mode(self, edition):
+        a = {
+            'web': '/',
+            'mobile': '/mobile'
+        }
+        b = edition if edition in a else 'web'
+        cherrypy.session['user.site_mode'] = b
+        
+        raise cherrypy.HTTPRedirect(a[b])
+        

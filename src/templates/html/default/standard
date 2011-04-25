@@ -13,7 +13,7 @@
 {% endblock %}
 
 {% block headScriptsBlock %}
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.5.2.js"></script>
+<script type="text/javascript" src="{{ model['siteData']['jQueryUrl'] }}"></script>
 <script type="text/javascript" src="/dynamic/js/app.js"></script>
 <script type="text/javascript" src="/static/js/app/classes.js"></script>
 <script type="text/javascript" src="/static/js/app/utilities.js"></script>
