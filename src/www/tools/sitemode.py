@@ -12,7 +12,7 @@ class SiteMode(cherrypy.Tool):
         
     def set(self, mode):
         req = cherrypy.request
-        req.app.log.error('Inside set', 'SiteMode', severity=logging.DEBUG)
+        cherrypy.log.error('Inside set', 'SiteMode', severity=logging.DEBUG)
         req.siteMode = mode
         
 cherrypy.tools.site_mode = SiteMode()

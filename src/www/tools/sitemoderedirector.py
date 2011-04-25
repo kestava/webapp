@@ -1,4 +1,6 @@
 
+import logging
+
 import cherrypy
 
 class SiteModeRedirector(cherrypy.Tool):
@@ -8,11 +10,7 @@ class SiteModeRedirector(cherrypy.Tool):
         
     def run(self):
         req = cherrypy.request
-        req.app.log.error('Inside run', 'SiteModeRedirector')
-        
-        #userSiteMode = cherrypy.session.get('user.site_mode') \
-        #    if 'user.site_mode' in cherrypy.session \
-        #    else 'web'
+        cherrypy.log.error('Inside run', 'SiteModeRedirector', logging.DEBUG)
         
         userSiteMode = 'web'
         if 'user.site_mode' in cherrypy.session:
@@ -28,7 +26,7 @@ class SiteModeRedirector(cherrypy.Tool):
         
         if 'any' != pageSiteMode:
             if 'mobile' == userSiteMode and 'mobile' != pageSiteMode:
-                req.app.log.error('Redirecting user to the mobile site',
+                cherrypy.log.error('Redirecting user to the mobile site',
                     'SiteModeRedirector')
                 raise cherrypy.HTTPRedirect('/mobile')
         

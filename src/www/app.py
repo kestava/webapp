@@ -1,4 +1,5 @@
 import argparse
+import logging
 from pprint import pprint, pformat
 
 import cherrypy
@@ -14,8 +15,6 @@ from controllers.rootcontroller import RootController
 from plugins.setupjinjaenvironment import SetupJinjaEnvironment
 from plugins.setuppgconnectionpool import SetupPgConnectionPool
 from plugins.setprocesstitle import SetProcessTitle
-from plugins.setlogging import SetLogging
-
 
 def get_config(config_file_path):
 
@@ -37,9 +36,26 @@ def get_config(config_file_path):
     cherrypy.log.error('Configuration:\n{0}'.format(pformat(config)))
     return config
     
-def main(config):
+def setup_logging(config):
+    log = cherrypy.log
+    
+    # Remove the default FileHandlers if present
+    log.error_file = ''
+    log.access_file = ''
+    
+    errorLogLevel = config['appSettings']['logging.error_log.level']
+    log.error_log.setLevel(errorLogLevel)
+    
+    h = logging.FileHandler(config['appSettings']['logging.error_log.path'])
+    h.setFormatter(cherrypy._cplogging.logfmt)
+    log.error_log.addHandler(h)
+    
+    h = logging.FileHandler(config['appSettings']['logging.access_log.path'])
+    h.setFormatter(cherrypy._cplogging.logfmt)
+    log.access_log.addHandler(h)
+    
+def run(config):
 
-    SetLogging().subscribe()
     SetProcessTitle().subscribe()
     SetupJinjaEnvironment().subscribe()
     SetupPgConnectionPool(
@@ -58,4 +74,5 @@ if __name__ == '__main__':
         required=True)
     args = parser.parse_args()
     config = get_config(args.config_file)
-    main(config)
+    setup_logging(config)
+    run(config)

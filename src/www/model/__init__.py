@@ -71,7 +71,7 @@ def trim_statement(input):
     """
     Produces a neatened SQL statement
     """
-    cherrypy.request.app.log.error(
+    cherrypy.log.error(
         'Transforming: {0}'.format(input),
         'trim_statement',
         logging.DEBUG)
@@ -84,7 +84,7 @@ def trim_statement(input):
     
     p = ' '.join(o)
     
-    cherrypy.request.app.log.error(
+    cherrypy.log.error(
         'Returning: {0}'.format(p),
         'trim_statement',
         logging.DEBUG)

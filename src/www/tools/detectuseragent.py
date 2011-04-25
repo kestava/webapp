@@ -18,9 +18,9 @@ class DetectUserAgent(cherrypy.Tool):
         ua = req.headers['user-agent']
         info = UserAgentInfo.from_cache(ua)
         req.userAgentInfo = UserAgentInfo.from_web_service(ua) if info is None else info
-        req.app.log.error('Is tablet: {0}'.format(req.userAgentInfo.isTablet),
+        cherrypy.log.error('Is tablet: {0}'.format(req.userAgentInfo.isTablet),
             'DetectUserAgent.detect', logging.DEBUG)
-        req.app.log.error('Is wireless device: {0}'.format(req.userAgentInfo.isWirelessDevice),
+        cherrypy.log.error('Is wireless device: {0}'.format(req.userAgentInfo.isWirelessDevice),
             'DetectUserAgent.detect', logging.DEBUG)
         
 cherrypy.tools.detect_user_agent = DetectUserAgent()

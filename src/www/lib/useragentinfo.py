@@ -46,10 +46,10 @@ class UserAgentInfo(object):
         if hasattr(app, cls.cacheName):
             temp = getattr(app, cls.cacheName)
             if userAgentString in temp:
-                app.log.error(
+                cherrypy.log.error(
                     'from_cache returning user agent info from cache',
                     'UserAgentInfo',
-                    severity=logging.DEBUG)
+                    logging.DEBUG)
                 return temp[userAgentString]
                 
     @classmethod
@@ -71,7 +71,7 @@ class UserAgentInfo(object):
             cls.cache_info(userAgentString, info)
             return info
         except urllib2.URLError, er:
-            req.app.log.error(str(er))
+            cherrypy.log.error(str(er), 'UserAgentInfo.from_web_service')
             return NullUserAgentInfo()
             
     @classmethod
