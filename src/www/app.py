@@ -34,7 +34,7 @@ def get_config(config_file_path):
     configParser.read(config_file_path)
     config = configParser.as_dict()
     config['/'].update(defaults['/'])
-    pprint(config)
+    cherrypy.log.error('Configuration:\n{0}'.format(pformat(config)))
     return config
     
 def main(config):
@@ -44,8 +44,8 @@ def main(config):
     SetupJinjaEnvironment().subscribe()
     SetupPgConnectionPool(
         pool_name='main',
-        db_name='kestava',
-        db_user='kestava').subscribe()
+        db_name=config['appSettings']['main_db.name'],
+        db_user=config['appSettings']['main_db.role']).subscribe()
     
     cherrypy.quickstart(
         root=RootController(),

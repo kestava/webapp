@@ -14,7 +14,7 @@ logging.error_log.level: 'DEBUG'
         
 ;Database settings
 main_db.name: 'kestava'
-mainDbUser: 'kestava'
+main_db.role: 'kestava'
 
 [global]
 server.socket_port: 48080
