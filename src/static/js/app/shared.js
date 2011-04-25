@@ -22,17 +22,17 @@ $(function() {
     b($('#postNavContainer'),
         $('#postNavContainer .dropDown'),
         'postNavDropDown',
-        $('#postNavContainer > p'));
+        $('#postNavContainer > h1'));
     
     b($('#manageNavContainer'),
         $('#manageNavContainer .dropDown'),
         'manageNavDropDow',
-        $('#manageNavContainer > p'));
+        $('#manageNavContainer > h1'));
     
     b($('#followNavContainer'),
         $('#followNavContainer .dropDown'),
         'followNavDropDown',
-        $('#followNavContainer > p'));
+        $('#followNavContainer > h1'));
     
 });
 

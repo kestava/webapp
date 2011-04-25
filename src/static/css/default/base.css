@@ -25,16 +25,24 @@ hr
 
 #topBar .content
 {
-    /*position: relative;*/
     background-color: black;
-    
-    width: 800px;
-    height: 36px;
-    margin: 6px auto;
     
     -webkit-border-radius: 6px;
     -moz-border-radius: 6px;
     border-radius: 6px;
+}
+
+#topBar .content,
+#mainContentContainer
+{
+    width: 800px;
+    height: 36px;
+    margin: 6px auto;
+}
+
+#mainContentContainer
+{
+    /*border: 1px solid blue;*/
 }
 
 #topBar > .content > header
@@ -53,13 +61,24 @@ hr
 #mainNav
 {
     float: left;
+    position: relative;
 }
 
-#mainNav > div
-{
-    float: left;
-    width: 96px;
-}
+    #mainNav > .dropDownContainer
+    {
+        position: absolute;
+        width: 96px;
+    }
+    
+    #mainNav > .dropDownContainer:nth-child(2)
+    {
+        left: 102px;
+    }
+    
+    #mainNav > .dropDownContainer:nth-child(3)
+    {
+        left: 204px;
+    }
 
 #sessionContainer
 {
@@ -73,11 +92,12 @@ hr
     margin: 3px;
 }
 
-#mainNav .dropDownContainer > p,
+#mainNav .dropDownContainer > h1,
 #nameContainer > p,
 #sessionContainer > h1 > a,
 .dropDown
 {
+    font-size: 10.5pt;
     padding: 8px;
     
     -webkit-border-radius: 4px;
@@ -85,7 +105,7 @@ hr
     border-radius: 4px;
 }
 
-#mainNav .dropDownContainer > p
+#mainNav .dropDownContainer > h1
 {
     text-align: center;
 }
@@ -95,21 +115,15 @@ hr
     text-align: right;
 }
 
-#mainNav .dropDownContainer.open > p,
+#mainNav .dropDownContainer.open > h1,
 #sessionContainer.dropDownContainer.open #nameContainer > p
 {
     background-color: #FFA526;
-    text-shadow: 1px 1px #222;
 }
 
 .dropDownContainer > .dropDown
 {
     background-color: #2690FF;
-}
-
-.dropDownContainer.open > .dropDown a
-{
-    text-shadow: 1px 1px #555;
 }
 
 #mainNav .dropDown
@@ -118,13 +132,12 @@ hr
 }
 
 #topBar .content header > h1 > a,
-#mainNav p,
+#mainNav h1,
 #sessionContainer > h1 > a,
 .dropDown a,
 #nameContainer .userName
 {
     color: #F5E8E6;
-    text-shadow: 1px 1px #888;
 }
 
 #searchForm input
@@ -173,7 +186,6 @@ hr
 #sessionContainer > h1 > a:hover
 {
     background-color: #FFA526;
-    text-shadow: 1px 1px #222;
 }
 
 #sessionContainer > h1 > a

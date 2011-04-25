@@ -24,4 +24,7 @@
 {# Main content area #}
 {% block contentsBlock %}
 {% include "html/default/components/top-bar/main" %}
+<div id="mainContentContainer">
+{% block mainContentBlock %}{% endblock %}
+</div>
 {% endblock %}

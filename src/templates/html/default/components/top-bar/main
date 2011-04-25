@@ -10,14 +10,14 @@
         </form>
         <nav id="mainNav">
             <div id="postNavContainer" class="dropDownContainer">
-                <p>post</p>
+                <h1>post</h1>
                 <div class="dropDown" style="display: none">
                     <a href="/post/material">material</a>
                     <a href="/post/transport">transport</a>
                 </div>
             </div>
             <div id="manageNavContainer" class="dropDownContainer">
-                <p>manage</p>
+                <h1>manage</h1>
                 <div class="dropDown" style="display: none">
                     <a href="/transactions">transactions</a>
                     <a href="/marketdata">market&nbsp;data</a>
@@ -25,7 +25,7 @@
                 </div>
             </div>
             <div id="followNavContainer" class="dropDownContainer">
-                <p>follow</p>
+                <h1>follow</h1>
                 <div class="dropDown" style="display: none">
                     <a href="/conversations/users">user&nbsp;conversations</a>
                     <a href="/conversations/items">item&nbsp;conversations</a>
