@@ -64,21 +64,22 @@ hr
     position: relative;
 }
 
-    #mainNav > .dropDownContainer
-    {
-        position: absolute;
-        width: 96px;
-    }
-    
-    #mainNav > .dropDownContainer:nth-child(2)
-    {
-        left: 102px;
-    }
-    
-    #mainNav > .dropDownContainer:nth-child(3)
-    {
-        left: 204px;
-    }
+#mainNav > .dropDownContainer
+{
+    position: absolute;
+    width: 96px;
+    z-index: 1;
+}
+
+#mainNav > .dropDownContainer:nth-child(2)
+{
+    left: 102px;
+}
+
+#mainNav > .dropDownContainer:nth-child(3)
+{
+    left: 204px;
+}
 
 #sessionContainer
 {
