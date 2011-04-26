@@ -1,0 +1,4 @@
+
+$(function() {
+    $('#optionsContainer button').button();
+});

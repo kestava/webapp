@@ -1,7 +1,7 @@
 {% extends "html/default/base" %}
 
 {% block titleBlock %}
-<title>login - {{ model['siteData']['siteName']|lower }}</title>
+<title>login - {{ model['siteData']['siteName'] }}</title>
 {% endblock titleBlock %}
 
 {% block headStylesheetsBlock %}

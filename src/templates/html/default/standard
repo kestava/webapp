@@ -1,19 +1,16 @@
 {% extends "html/default/base" %}
 
-{# The standard title format: #}
-{% block titleBlock %}
-<title>{{ pageName|lower }} - {{ model['siteData']['siteName']|lower }}</title>
-{% endblock titleBlock %}
-
 {% block headStylesheetsBlock %}
-<link rel="stylesheet" type="text/css" href="/static/css/{{ model['siteData']['html5ResetFilename'] }}" />
-<link rel="stylesheet" type="text/css" href="/static/css/{{ model['userData']['themeName'] }}/shared.css" />
-<link rel="stylesheet" type="text/css" href="/static/css/{{ model['userData']['themeName'] }}/base.css" />
+<link rel="stylesheet" href="{{ model['siteData']['jQueryUiCssUrlTemplate']|format(model['userData']['jQueryUiTheme']) }} "/>
+<link rel="stylesheet" href="/static/css/{{ model['siteData']['html5ResetFilename'] }}"/>
+<link rel="stylesheet" href="/static/css/{{ model['userData']['themeName'] }}/shared.css"/>
+<link rel="stylesheet" href="/static/css/{{ model['userData']['themeName'] }}/base.css"/>
 {% block additionalStylesheetsBlock %}{% endblock %}
 {% endblock %}
 
 {% block headScriptsBlock %}
 <script type="text/javascript" src="{{ model['siteData']['jQueryUrl'] }}"></script>
+<script type="text/javascript" src="{{ model['siteData']['jQueryUiUrl'] }}"></script>
 <script type="text/javascript" src="/dynamic/js/app.js"></script>
 <script type="text/javascript" src="/static/js/app/classes.js"></script>
 <script type="text/javascript" src="/static/js/app/utilities.js"></script>
@@ -26,5 +23,5 @@
 {% include "html/default/components/top-bar/main" %}
 <div id="mainContentContainer">
 {% block mainContentBlock %}{% endblock %}
-</div>
+</div> <!-- mainContentContainer -->
 {% endblock %}

@@ -2,7 +2,9 @@
 <html>
 <head>
 <meta charset="UTF-8"/>
-{% block titleBlock %}{% endblock %}
+{% block titleBlock %}
+<title>{{ pageName }} - {{ model['siteData']['siteName'] }}</title>
+{% endblock %}
 {% include "html/misc/html5-shiv" %}
 {% block headStylesheetsBlock %}{% endblock %}
 {% block headScriptsBlock %}{% endblock %}

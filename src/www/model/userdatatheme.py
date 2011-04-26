@@ -8,9 +8,12 @@ class UserDataTheme(ModelObjectBase):
     key = 'userData'
     
     def read(self):
-        return {
-            'themeName': 'default',
-            'accountId': cherrypy.session.get('user.account_id')
-        }
+        o = {}
+        
+        o['themeName'] = 'default'
+        o['jQueryUiTheme'] = 'ui-lightness'
+        o['accountId'] = cherrypy.session.get('user.account_id')
+        
+        return o
         
     

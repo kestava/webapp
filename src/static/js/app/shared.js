@@ -33,7 +33,6 @@ $(function() {
         $('#followNavContainer .dropDown'),
         'followNavDropDown',
         $('#followNavContainer > h1'));
-    
 });
 
 app.classes.topbar = (function() {

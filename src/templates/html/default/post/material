@@ -2,5 +2,16 @@
 
 {% set pageName="Post Material" %}
 
+{% block additionalHeadScriptsBlock %}
+<script type="text/javascript" src="/static/js/app/post/material.js"></script>
+{% endblock %}
+
 {% block mainContentBlock %}
+
+<div id="optionsContainer">
+    <button>Create New</button>
+    <button>Copy Selected</button>
+    <button>Edit Selected</button>
+</div>
+
 {% endblock %}

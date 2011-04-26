@@ -1,0 +1,22 @@
+{% extends 'html/default/standard' %}
+
+{% set pageName="Credits" %}
+
+{% block mainContentBlock %}
+
+<p>
+This site uses various resources made freely available by their authors. We owe
+them many thanks.
+</p>
+
+<ul>
+
+<!--
+<li>
+<p>Mark James</p>
+<a href="http://www.famfamfam.com/lab/icons/silk/">Silk icon set 1.3</a>
+</li>
+-->
+
+</ul>
+{% endblock %}

@@ -1,7 +1,7 @@
 <div id="topBar">
     <div class="content">
         <header>
-            <h1><a href="/" title="Home">{{ model['siteData']['siteName']|lower }}</a></h1>
+            <h1><a href="/" title="Home">{{ model['siteData']['siteName'] }}</a></h1>
         </header>
         <form id="searchForm">
             <div>
@@ -10,26 +10,27 @@
         </form>
         <nav id="mainNav">
             <div id="postNavContainer" class="dropDownContainer">
-                <h1>post</h1>
+                <h1>Post</h1>
                 <div class="dropDown" style="display: none">
-                    <a href="/post/material">material</a>
-                    <a href="/post/transport">transport</a>
+                    <a href="/post/material">Material</a>
+                    <a href="/post/transport">Transport</a>
                 </div>
             </div>
             <div id="manageNavContainer" class="dropDownContainer">
-                <h1>manage</h1>
+                <h1>Manage</h1>
                 <div class="dropDown" style="display: none">
-                    <a href="/transactions">transactions</a>
-                    <a href="/marketdata">market&nbsp;data</a>
-                    <a href="/analysis">analysis</a>
+                    <a href="/posts">Active Posts</a>
+                    <a href="/transactions">Transactions</a>
+                    <a href="/marketdata">Market&nbsp;Data</a>
+                    <a href="/analysis">Analysis</a>
                 </div>
             </div>
             <div id="followNavContainer" class="dropDownContainer">
-                <h1>follow</h1>
+                <h1>Follow</h1>
                 <div class="dropDown" style="display: none">
-                    <a href="/conversations/users">user&nbsp;conversations</a>
-                    <a href="/conversations/items">item&nbsp;conversations</a>
-                    <a href="/search/saved">saved&nbsp;searches</a>
+                    <a href="/conversations/users">User&nbsp;Conversations</a>
+                    <a href="/conversations/items">Item&nbsp;Conversations</a>
+                    <a href="/search/saved">Saved&nbsp;Searches</a>
                 </div>
             </div>
         </nav>

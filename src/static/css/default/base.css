@@ -17,12 +17,6 @@ hr
     margin: 0.5em 0px;
 }
 
-#topBar p,
-#topBar a
-{
-    font-size: 88%;
-}
-
 #topBar .content
 {
     background-color: black;
@@ -32,11 +26,15 @@ hr
     border-radius: 6px;
 }
 
+#topBar .content
+{
+    height: 40px;
+}
+
 #topBar .content,
 #mainContentContainer
 {
     width: 800px;
-    height: 36px;
     margin: 6px auto;
 }
 
@@ -48,8 +46,10 @@ hr
 #topBar > .content > header
 {
     float: left;
+    /*
     padding: 9px;
     margin: 0px 9px;
+    */
 }
 
 #searchForm
@@ -86,18 +86,20 @@ hr
     width: 90px;
 }
 
+#topBar > .content > header,
 #mainNav > div,
 #sessionContainer
 {
     margin: 3px;
 }
 
+#topBar header h1,
 #mainNav .dropDownContainer > h1,
 #nameContainer > p,
 #sessionContainer > h1 > a,
 .dropDown
 {
-    font-size: 10.5pt;
+    font-size: 1.1em;
     padding: 8px;
     
     -webkit-border-radius: 4px;
@@ -145,7 +147,7 @@ hr
     border: 1px solid black;
     padding: 6px 27px 6px 6px;
     width: 218px;
-    height: 18px;
+    height: 22px;
 
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;

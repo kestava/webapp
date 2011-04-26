@@ -19,8 +19,10 @@ class SiteData(ModelObjectBase):
         
         # TODO: set these based on configuration (use CDN or not, minified or
         # non-minified, etc.)
-        o['jQueryMobileCssUrl'] = 'http://code.jquery.com/mobile/1.0a4.1/jquery.mobile-1.0a4.1.css'
-        o['jQueryMobileUrl'] = 'http://code.jquery.com/mobile/1.0a4.1/jquery.mobile-1.0a4.1.js'
-        o['jQueryUrl'] = 'http://code.jquery.com/jquery-1.5.2.js'
+        o['jQueryMobileCssUrl'] = '//code.jquery.com/mobile/1.0a4.1/jquery.mobile-1.0a4.1.css'
+        o['jQueryMobileUrl'] = '//code.jquery.com/mobile/1.0a4.1/jquery.mobile-1.0a4.1.js'
+        o['jQueryUrl'] = '//ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.js'
+        o['jQueryUiUrl'] = '//ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.js'
+        o['jQueryUiCssUrlTemplate'] = '//ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/themes/%s/jquery-ui.css'
         
         return o
