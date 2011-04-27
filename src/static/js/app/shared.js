@@ -5,48 +5,56 @@
 var app;
 
 $(function() {
-    var a = app.classes.topbar,
-        b = function(a, b, c, d) {
-            var tb = app.classes.topbar;
+    var b = function(a, b, c, d) {
+            var tb = app.classes.header;
             a.hover(
                 tb.mouseEnterDropDown(b, a, c),
                 tb.mouseLeaveDropDown(b, a, c));
             d.click(tb.dropDownHeaderClicked(b, a, c));
         };
     
-    b($('#sessionContainer'),
-        $('#sessionContainer .dropDown'),
-        'sessionArea',
-        $('#nameContainer'));
+    $('#homeLinkContainer').mouseenter(function(ev) {
+        app.classes.header.hideDropDowns();
+    });
     
     b($('#postNavContainer'),
-        $('#postNavContainer .dropDown'),
-        'postNavDropDown',
+        $('#postNavContainer nav'),
+        'post',
         $('#postNavContainer > h1'));
     
     b($('#manageNavContainer'),
-        $('#manageNavContainer .dropDown'),
-        'manageNavDropDow',
+        $('#manageNavContainer nav'),
+        'manage',
         $('#manageNavContainer > h1'));
     
     b($('#followNavContainer'),
-        $('#followNavContainer .dropDown'),
-        'followNavDropDown',
+        $('#followNavContainer nav'),
+        'follow',
         $('#followNavContainer > h1'));
+    
+    if (1 == $('#sessionContainer nav').length) {
+        b($('#sessionContainer'),
+            $('#sessionContainer nav'),
+            'session',
+            $('#nameContainer'));
+    }
 });
 
-app.classes.topbar = (function() {
+app.classes.header = (function() {
     return {
         stickyOpenDropDown: null,
+        hideDropDowns: function() {
+            $('.headingContainer nav').hide();
+            $('.headingContainer').removeClass('open');
+        },
         mouseEnterDropDown: function(a, b, c) {
             return function(ev) {
-                var tb = app.classes.topbar;
+                var tb = app.classes.header;
                 
                 if (tb.stickyOpenDropDown !== c) {
                     tb.stickyOpenDropDown = null;
                 }
-                $('.dropDownContainer.open .dropDown').hide();
-                $('.dropDownContainer').removeClass('open');
+                tb.hideDropDowns();
                 
                 a.show();
                 b.addClass('open');
@@ -54,7 +62,7 @@ app.classes.topbar = (function() {
         },
         mouseLeaveDropDown: function(a, b, c) {
             return function(ev) {
-                var tb = app.classes.topbar;
+                var tb = app.classes.header;
                 if (tb.stickyOpenDropDown !== c) {
                     a.hide();
                     b.removeClass('open');
@@ -63,7 +71,7 @@ app.classes.topbar = (function() {
         },
         dropDownHeaderClicked: function(a, b, c) {
             return function(ev) {
-                var tb = app.classes.topbar;
+                var tb = app.classes.header;
                 if (tb.stickyOpenDropDown === c) {
                     tb.stickyOpenDropDown = null;
                     a.hide();
@@ -86,8 +94,8 @@ if ("onpagehide" in window) {
         "pageshow",
         function(ev) {
             if (ev.persisted) {
-                $('.dropDown').hide();
-                $('.dropDownContainer').removeClass('open');
+                $('.headingContainer nav').hide();
+                $('.headingContainer').removeClass('open');
             }
         },
         false);

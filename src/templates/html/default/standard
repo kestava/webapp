@@ -23,5 +23,6 @@
 {% include "html/default/components/top-bar/main" %}
 <div id="mainContentContainer">
 {% block mainContentBlock %}{% endblock %}
+{% include "html/default/components/footer/main" %}
 </div> <!-- mainContentContainer -->
 {% endblock %}

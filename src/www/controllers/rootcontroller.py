@@ -68,6 +68,7 @@ class RootController(object):
         
     @cherrypy.tools.build_model(classes=[
         SiteData,
+        UserData,
         UserDataTheme])
     @cherrypy.expose
     def credits(self):

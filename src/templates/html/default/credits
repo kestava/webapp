@@ -5,8 +5,8 @@
 {% block mainContentBlock %}
 
 <p>
-This site uses various resources made freely available by their authors. We owe
-them many thanks.
+This site uses various resources made freely available by their authors, to
+whom we owe many thanks.
 </p>
 
 <ul>
