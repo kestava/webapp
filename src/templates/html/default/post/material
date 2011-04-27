@@ -8,7 +8,7 @@
 
 {% block mainContentBlock %}
 
-<div id="optionsContainer">
+<div class="buttonsContainer">
     <button>Create New</button>
     <button>Copy Selected</button>
     <button>Edit Selected</button>

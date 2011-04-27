@@ -1,4 +1,4 @@
 
 $(function() {
-    $('#optionsContainer button').button();
+    $('.buttonsContainer button').button();
 });

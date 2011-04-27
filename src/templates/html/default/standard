@@ -20,9 +20,9 @@
 
 {# Main content area #}
 {% block contentsBlock %}
-{% include "html/default/components/top-bar/main" %}
-<div id="mainContentContainer">
-{% block mainContentBlock %}{% endblock %}
-{% include "html/default/components/footer/main" %}
-</div> <!-- mainContentContainer -->
+    {% include "html/default/components/top-bar/main" %}
+    <section id="mainContentContainer">
+        {% block mainContentBlock %}{% endblock %}
+    </section>
+    {% include "html/default/components/footer/main" %}
 {% endblock %}
