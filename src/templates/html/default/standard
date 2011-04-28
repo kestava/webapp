@@ -21,8 +21,6 @@
 {# Main content area #}
 {% block contentsBlock %}
     {% include "html/default/components/top-bar/main" %}
-    <section id="mainContentContainer">
-        {% block mainContentBlock %}{% endblock %}
-    </section>
+    {% block contentSectionsBlock %}{% endblock %}
     {% include "html/default/components/footer/main" %}
 {% endblock %}

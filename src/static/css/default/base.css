@@ -19,13 +19,20 @@ body
 header
 {
     position: relative;
+    margin: 0.5em;
     background-color: #BBB;
 }
 
-section#mainContentContainer,
+section
+{
+    font-size: 77%;
+    margin: 0.5em;
+}
+
 footer
 {
-    font-size: 90%;
+    font-size: 88%;
+    margin: 0.5em;
 }
 
 header > h1,
@@ -147,9 +154,4 @@ hr
     color: #AAA;
     border-style: solid;
     border-width: 1px;
-}
-
-.buttonsContainer
-{
-    font-size: 75%;
 }

@@ -2,16 +2,54 @@
 
 {% set pageName="Post Material" %}
 
+{% block additionalStylesheetsBlock %}
+<link rel="stylesheet" href="/static/css/{{ model['userData']['themeName'] }}/material.css"/>
+{% endblock %}
+
 {% block additionalHeadScriptsBlock %}
+<script type="text/javascript" src="/static/js/lib/jquery/jquery.dataTables.js"></script>
 <script type="text/javascript" src="/static/js/app/post/material.js"></script>
 {% endblock %}
 
-{% block mainContentBlock %}
+{% block contentSectionsBlock %}
 
-<div class="buttonsContainer">
-    <button>Create New</button>
-    <button>Copy Selected</button>
-    <button>Edit Selected</button>
-</div>
+<section>
+    <table id="itemsTable">
+        <thead>
+            <tr>
+                <th>Item Id</th>
+                <th>Description</th>
+                <th>Category</th>
+                <th>Posted On</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Painted siding</td>
+                <td>Aluminum</td>
+                <td>2011-02-01</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Post-consumer aluminum can scrap</td>
+                <td>Aluminum</td>
+                <td>2011-02-04</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>new zinc die cast scrap</td>
+                <td>Zinc</td>
+                <td>2011-03-20</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <div class="buttonsContainer">
+        <button>Create New</button>
+        <button>Copy Selected</button>
+        <button>Edit Selected</button>
+    </div>
+</section>
 
-{% endblock %}
+{% endblock contentSectionsBlock %}

@@ -1,0 +1,17 @@
+/*!
+ * static/css/default/material.css
+ */
+
+section
+{
+    position: relative;
+}
+
+#itemsTable_wrapper
+{
+}
+ 
+.buttonsContainer
+{
+    margin-top: 2px;
+}
