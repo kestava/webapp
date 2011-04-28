@@ -1,0 +1,5 @@
+{% if model['userData']['accountId'] is none %}
+{% include "html/fixed/components/top-bar/no-user-stuff.html" %}
+{% else %}
+{% include "html/fixed/components/top-bar/user-stuff.html" %}
+{% endif %}

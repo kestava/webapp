@@ -1,4 +1,4 @@
-{% extends "html/default/base.html" %}
+{% extends "html/fixed/base.html" %}
 
 {% block headStylesheetsBlock %}
 <link rel="stylesheet" href="{{ model['siteData']['jQueryUiCssUrlTemplate']|format(model['userSettings']['jQueryUiTheme']) }} "/>
@@ -20,7 +20,7 @@
 
 {# Main content area #}
 {% block contentsBlock %}
-    {% include "html/default/components/top-bar/main.html" %}
+    {% include "html/fixed/components/top-bar/main.html" %}
     {% block contentSectionsBlock %}{% endblock %}
-    {% include "html/default/components/footer/main.html" %}
+    {% include "html/fixed/components/footer/main.html" %}
 {% endblock %}
