@@ -15,7 +15,7 @@ class ConversationsController(object):
     def users(self):
         r = cherrypy.request
         env = r.app.jinjaEnv
-        template = env.get_template('html/{0}/conversations/users.html'.format(r.model['userSettings']['themeName']))
+        template = env.get_template('html/{0}/conversations/users.html'.format(r.model['userSettings']['layout']))
         return template.render(model=r.model)
     
     @cherrypy.tools.build_model(classes=[
@@ -26,6 +26,6 @@ class ConversationsController(object):
     def items(self):
         r = cherrypy.request
         env = r.app.jinjaEnv
-        template = env.get_template('html/{0}/conversations/items.html'.format(r.model['userSettings']['themeName']))
+        template = env.get_template('html/{0}/conversations/items.html'.format(r.model['userSettings']['layout']))
         return template.render(model=r.model)
         

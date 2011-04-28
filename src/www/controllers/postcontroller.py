@@ -15,7 +15,7 @@ class PostController(object):
     def material(self):
         r = cherrypy.request
         env = r.app.jinjaEnv
-        template = env.get_template('html/{0}/post/material.html'.format(r.model['userSettings']['themeName']))
+        template = env.get_template('html/{0}/post/material.html'.format(r.model['userSettings']['layout']))
         return template.render(model=r.model)
         
     @cherrypy.tools.build_model(classes=[
@@ -26,6 +26,6 @@ class PostController(object):
     def transport(self):
         r = cherrypy.request
         env = r.app.jinjaEnv
-        template = env.get_template('html/{0}/post/transport.html'.format(r.model['userSettings']['themeName']))
+        template = env.get_template('html/{0}/post/transport.html'.format(r.model['userSettings']['layout']))
         return template.render(model=r.model)
         

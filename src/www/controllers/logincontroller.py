@@ -25,7 +25,7 @@ class LoginController(object):
     @cherrypy.expose
     def index(self):
         req = cherrypy.request
-        template = req.app.jinjaEnv.get_template('html/{0}/login/login-main.html'.format(req.model['userSettings']['themeName']))
+        template = req.app.jinjaEnv.get_template('html/{0}/login/login-main.html'.format(req.model['userSettings']['layout']))
         return template.render(model=req.model)
         
     @cherrypy.expose

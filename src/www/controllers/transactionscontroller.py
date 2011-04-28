@@ -15,6 +15,6 @@ class TransactionsController(object):
     def index(self):
         r = cherrypy.request
         env = r.app.jinjaEnv
-        template = env.get_template('html/{0}/manage/transactions.html'.format(r.model['userSettings']['themeName']))
+        template = env.get_template('html/{0}/manage/transactions.html'.format(r.model['userSettings']['layout']))
         return template.render(model=r.model)
         

@@ -3,8 +3,8 @@
 {% block headStylesheetsBlock %}
 <link rel="stylesheet" href="{{ model['siteData']['jQueryUiCssUrlTemplate']|format(model['userSettings']['jQueryUiTheme']) }} "/>
 <link rel="stylesheet" href="/static/css/{{ model['siteData']['html5ResetFilename'] }}"/>
-<link rel="stylesheet" href="/static/css/{{ model['userSettings']['themeName'] }}/shared.css"/>
-<link rel="stylesheet" href="/static/css/{{ model['userSettings']['themeName'] }}/base.css"/>
+<link rel="stylesheet" href="/static/css/{{ model['userSettings']['layout'] }}/shared.css"/>
+<link rel="stylesheet" href="/static/css/{{ model['userSettings']['layout'] }}/base.css"/>
 {% block additionalStylesheetsBlock %}{% endblock %}
 {% endblock %}
 

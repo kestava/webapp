@@ -40,7 +40,7 @@ class RootController(object):
     def index(self):
         r = cherrypy.request
         env = r.app.jinjaEnv
-        template = env.get_template('html/{0}/homepage.html'.format(r.model['userSettings']['themeName']))
+        template = env.get_template('html/{0}/homepage.html'.format(r.model['userSettings']['layout']))
         return template.render(model=r.model)
     
     @cherrypy.tools.build_model(classes=[SiteData])
@@ -51,7 +51,7 @@ class RootController(object):
         # cherrypy.response.headers['X-XRDS-Location']
         req = cherrypy.request
         cherrypy.response.headers['content-type'] = 'application/xrds+xml'
-        template = req.app.jinjaEnv.get_template('html/misc/xrds')
+        template = req.app.jinjaEnv.get_template('html/misc/xrds.xml')
         return template.render(model=req.model)
         
     @cherrypy.tools.site_mode(mode='any')
@@ -74,6 +74,6 @@ class RootController(object):
     def credits(self):
         r = cherrypy.request
         env = r.app.jinjaEnv
-        template = env.get_template('html/{0}/credits.html'.format(r.model['userSettings']['themeName']))
+        template = env.get_template('html/{0}/credits.html'.format(r.model['userSettings']['layout']))
         return template.render(model=r.model)
         

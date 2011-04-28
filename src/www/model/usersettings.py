@@ -10,7 +10,7 @@ class UserSettings(ModelObjectBase):
     def read(self):
         o = {}
         
-        o['themeName'] = 'default'
+        o['layout'] = 'default'
         o['jQueryUiTheme'] = 'ui-lightness'
         
         return o
