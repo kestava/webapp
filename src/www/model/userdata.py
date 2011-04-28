@@ -11,9 +11,9 @@ class UserData(ModelObjectBase):
     def read(self):
         o = {}
         
-        i = cherrypy.session.get('user.account_id')
-        if not i is None:
-        
+        o['accountId'] = cherrypy.session.get('user.account_id')
+        if not o['accountId'] is None:
+            
             with grab_connection('main') as conn:
                 data = get_row(
                     conn,
@@ -21,8 +21,8 @@ class UserData(ModelObjectBase):
                     select user_name, first_name, last_name, email
                     from user_accounts where user_account_id = %(i)s
                     """,
-                    { 'i': i })
-                
+                    { 'i': o['accountId'] })
+            
             o['userName'] = data['user_name']
             o['firstName'] = data['first_name']
             o['lastName'] = data['last_name']
@@ -30,5 +30,3 @@ class UserData(ModelObjectBase):
                 
         return o
         
-        
-    

@@ -1,10 +1,10 @@
-{% extends "html/default/base" %}
+{% extends "html/default/base.html" %}
 
 {% block headStylesheetsBlock %}
-<link rel="stylesheet" href="{{ model['siteData']['jQueryUiCssUrlTemplate']|format(model['userData']['jQueryUiTheme']) }} "/>
+<link rel="stylesheet" href="{{ model['siteData']['jQueryUiCssUrlTemplate']|format(model['userSettings']['jQueryUiTheme']) }} "/>
 <link rel="stylesheet" href="/static/css/{{ model['siteData']['html5ResetFilename'] }}"/>
-<link rel="stylesheet" href="/static/css/{{ model['userData']['themeName'] }}/shared.css"/>
-<link rel="stylesheet" href="/static/css/{{ model['userData']['themeName'] }}/base.css"/>
+<link rel="stylesheet" href="/static/css/{{ model['userSettings']['themeName'] }}/shared.css"/>
+<link rel="stylesheet" href="/static/css/{{ model['userSettings']['themeName'] }}/base.css"/>
 {% block additionalStylesheetsBlock %}{% endblock %}
 {% endblock %}
 
@@ -20,7 +20,7 @@
 
 {# Main content area #}
 {% block contentsBlock %}
-    {% include "html/default/components/top-bar/main" %}
+    {% include "html/default/components/top-bar/main.html" %}
     {% block contentSectionsBlock %}{% endblock %}
-    {% include "html/default/components/footer/main" %}
+    {% include "html/default/components/footer/main.html" %}
 {% endblock %}

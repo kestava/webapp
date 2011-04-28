@@ -2,7 +2,7 @@
 import cherrypy
 
 from openidcontroller import OpenIDController
-from model.userdatatheme import UserDataTheme
+from model.usersettings import UserSettings
 from model.sitedata import SiteData
 from lib.openidhelper import OpenIdHelper
 
@@ -21,11 +21,11 @@ class LoginController(object):
 
     @cherrypy.tools.build_model(classes=[
         SiteData,
-        UserDataTheme])
+        UserSettings])
     @cherrypy.expose
     def index(self):
         req = cherrypy.request
-        template = req.app.jinjaEnv.get_template('html/{0}/login/login-main'.format(req.model['userData']['themeName']))
+        template = req.app.jinjaEnv.get_template('html/{0}/login/login-main.html'.format(req.model['userSettings']['themeName']))
         return template.render(model=req.model)
         
     @cherrypy.expose

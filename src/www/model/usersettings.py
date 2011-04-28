@@ -3,16 +3,15 @@ import cherrypy
 
 from modelobjectbase import ModelObjectBase
 
-class UserDataTheme(ModelObjectBase):
+class UserSettings(ModelObjectBase):
     
-    key = 'userData'
+    key = 'userSettings'
     
     def read(self):
         o = {}
         
         o['themeName'] = 'default'
         o['jQueryUiTheme'] = 'ui-lightness'
-        o['accountId'] = cherrypy.session.get('user.account_id')
         
         return o
         

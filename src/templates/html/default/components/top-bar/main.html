@@ -36,37 +36,8 @@
         </nav>
     </div>
     
-    {#
-    <nav id="mainNav">
-        <div id="postNavContainer" class="dropDownContainer">
-            <h1>Post</h1>
-            <div class="dropDown" style="display: none">
-                <a href="/post/material">Material</a>
-                <a href="/post/transport">Transport</a>
-            </div>
-        </div>
-        <div id="manageNavContainer" class="dropDownContainer">
-            <h1>Manage</h1>
-            <div class="dropDown" style="display: none">
-                <a href="/posts">Active Posts</a>
-                <a href="/transactions">Transactions</a>
-                <a href="/marketdata">Market&nbsp;Data</a>
-                <a href="/analysis">Analysis</a>
-            </div>
-        </div>
-        <div id="followNavContainer" class="dropDownContainer">
-            <h1>Follow</h1>
-            <div class="dropDown" style="display: none">
-                <a href="/conversations/users">User&nbsp;Conversations</a>
-                <a href="/conversations/items">Item&nbsp;Conversations</a>
-                <a href="/search/saved">Saved&nbsp;Searches</a>
-            </div>
-        </div>
-    </nav>
-    #}
-    
     <div id="sessionContainer" class="headingContainer">
-        {% include "html/default/components/top-bar/user-area" %}
+        {% include "html/default/components/top-bar/user-area.html" %}
     </div>
     
 </header>

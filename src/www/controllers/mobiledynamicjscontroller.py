@@ -11,5 +11,5 @@ class MobileDynamicJsController(object):
     def app(self):
         req = cherrypy.request
         cherrypy.response.headers['content-type'] = 'application/javascript'
-        template = req.app.jinjaEnv.get_template('js/app')
+        template = req.app.jinjaEnv.get_template('js/app.js')
         return template.render(model=req.model)

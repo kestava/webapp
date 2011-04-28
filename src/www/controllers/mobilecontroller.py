@@ -3,7 +3,7 @@ import cherrypy
 
 from mobiledynamiccontroller import MobileDynamicController
 
-from model.userdatatheme import UserDataTheme
+from model.usersettings import UserSettings
 from model.userdata import UserData
 from model.sitedata import SiteData
 
@@ -14,7 +14,7 @@ class MobileController(object):
     @cherrypy.tools.site_mode(mode='mobile')
     @cherrypy.tools.build_model(classes=[
         UserData,
-        UserDataTheme,
+        UserSettings,
         SiteData])
     @cherrypy.expose
     def index(self):

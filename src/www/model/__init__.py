@@ -5,7 +5,7 @@
 .. automodule:: model.sitedata
 .. automodule:: model.testing
 .. automodule:: model.userdata
-.. automodule:: model.userdatatheme
+.. automodule:: model.usersettings
 """
 
 from pprint import pprint, pformat

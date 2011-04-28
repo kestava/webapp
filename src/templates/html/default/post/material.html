@@ -1,9 +1,9 @@
-{% extends "html/default/standard" %}
+{% extends "html/default/standard.html" %}
 
 {% set pageName="Post Material" %}
 
 {% block additionalStylesheetsBlock %}
-<link rel="stylesheet" href="/static/css/{{ model['userData']['themeName'] }}/material.css"/>
+<link rel="stylesheet" href="/static/css/{{ model['userSettings']['themeName'] }}/material.css"/>
 {% endblock %}
 
 {% block additionalHeadScriptsBlock %}
