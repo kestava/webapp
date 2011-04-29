@@ -1,7 +1,8 @@
 
 $(function() {
     $('#itemsTable').dataTable({
-        'bJQueryUI': true
+        'bJQueryUI': true,
+        'sPaginationType': 'full_numbers'
     });
     $('.buttonsContainer button').button();
 });
