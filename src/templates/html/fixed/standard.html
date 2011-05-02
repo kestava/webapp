@@ -1,12 +1,18 @@
 {% extends "html/fixed/base.html" %}
 
 {% block headStylesheetsBlock %}
-<link rel="stylesheet" href="{{ model['siteData']['jQueryUiCssUrlTemplate']|format(model['userSettings']['jQueryUiTheme']) }} "/>
-<link rel="stylesheet" href="/static/css/{{ model['siteData']['html5ResetFilename'] }}"/>
-<link rel="stylesheet" href="/static/css/{{ model['userSettings']['layout'] }}/shared.css"/>
-<link rel="stylesheet" href="/static/css/{{ model['userSettings']['layout'] }}/base.css"/>
-{% block additionalStylesheetsBlock %}{% endblock %}
-{% endblock %}
+<!-- standard reset for HTML5 -->
+<link rel="stylesheet" href="/static/css/misc/{{ model['siteData']['html5ResetFilename'] }}"/>
+{%- if includeJQueryUI %}
+<link rel="stylesheet" href="{{ "/static/css/theme/jquery-ui/%s/jquery-ui-1.8.12.custom.css"|format(model['userSettings']['jQueryUiTheme']) }}"/>
+{% endif %}
+{%- if includeDataTables %}
+<link rel="stylesheet" href="/static/css/layout/{{ model['userSettings']['layout'] }}/datatables-jui.css"/>
+<link rel="stylesheet" href="{{ "/static/css/theme/%s/datatables.css"|format(model['userSettings']['jQueryUiTheme']) }}"/>
+{% endif %}
+<link rel="stylesheet" href="/static/css/layout/{{ model['userSettings']['layout'] }}/base.css"/>
+{%- block additionalStylesheetsBlock %}{% endblock %}
+{% endblock headStylesheetsBlock %}
 
 {% block headScriptsBlock %}
 <script type="text/javascript" src="{{ model['siteData']['jQueryUrl'] }}"></script>
@@ -16,7 +22,7 @@
 <script type="text/javascript" src="/static/js/app/utilities.js"></script>
 <script type="text/javascript" src="/static/js/app/shared.js"></script>
 {% block additionalHeadScriptsBlock %}{% endblock %}
-{% endblock %}
+{% endblock headScriptsBlock %}
 
 {# Main content area #}
 {% block contentsBlock %}

@@ -8,6 +8,7 @@ external_socket_port_ssl: 443
 openid.datastore_directory: '/var/kestava-openid-filestore'
 wurfl_service.host: '127.0.0.1'
 wurfl_service.port: 48090
+cache.user_agents: True
 
 ;'DEBUG'|'INFO'|'WARNING'|'ERROR'|'CRITICAL'
 logging.error_log.level: 'DEBUG'

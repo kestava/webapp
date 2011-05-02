@@ -2,6 +2,7 @@
 .. automodule:: lib.openidhelper
 .. automodule:: lib.applicationpaths
 .. automodule:: lib.sessionhelper
+.. automodule:: lib.settingshelper
 """
 
 from pprint import pformat

@@ -4,7 +4,7 @@
 
 body
 {
-    font-family: Trebuchet MS,Tahoma,Verdana,Arial,sans-serif;
+    font-family: Verdana,Arial,sans-serif;
     font-size: 12pt;
     line-height: 1.5em;
 }
@@ -41,6 +41,11 @@ header > h1,
 {
     display: inline-block;
     margin-left: 0.5em;
+}
+
+#searchForm
+{
+    vertical-align: middle;
 }
 
 .headingContainer
@@ -145,7 +150,8 @@ header > h1,
 .headingContainer > h1,
 #nameContainer
 {
-    padding: 3px 3px 6px 3px;
+    min-height: 2.2em;
+    line-height: 2.2em;
 }
 
 hr

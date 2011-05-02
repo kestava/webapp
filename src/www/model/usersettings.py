@@ -13,7 +13,7 @@ class UserSettings(ModelObjectBase):
         
         # reasonable defaults
         o['layout'] = 'fixed'
-        o['jQueryUiTheme'] = 'ui-lightness'
+        o['jQueryUiTheme'] = 'smoothness'
         
         i = cherrypy.session.get('user.account_id')
         if not i is None:
@@ -28,7 +28,7 @@ class UserSettings(ModelObjectBase):
                 if not data is None:
                     o['layout'] = data['ui_layout']
                     o['jQueryUiTheme'] = data['ui_theme']
-                    
+        
         return o
         
     

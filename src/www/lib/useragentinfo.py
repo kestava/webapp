@@ -7,11 +7,16 @@ from pprint import pprint
 
 import cherrypy
 
+from lib.settingshelper import SettingsHelper
+
 class UserAgentInfo(object):
 
     cacheName = 'userAgentInfoCache'
 
     def __init__(self, deviceInfo):
+        
+        self.__id = deviceInfo['device_id']
+        self.__userAgent = deviceInfo['device_ua']
     
         # Add support for new device caps by adding to this array
         a = [('product_info', 'is_tablet', '_UserAgentInfo__isTablet'),
@@ -31,7 +36,15 @@ class UserAgentInfo(object):
                 deviceInfo[group][property] \
                     if group in deviceInfo and property in deviceInfo[group] \
                     else None)
+    
+    @property
+    def id(self):
+        return self.__id
         
+    @property
+    def userAgent(self):
+        return self.__userAgent
+    
     @property
     def isTablet(self):
         return self.__isTablet
@@ -68,7 +81,8 @@ class UserAgentInfo(object):
             wsRequest = urllib2.urlopen(url)
             response = wsRequest.read()
             info = UserAgentInfo(json.loads(response))
-            cls.cache_info(userAgentString, info)
+            if SettingsHelper().cacheUserAgents():
+                cls.cache_info(userAgentString, info)
             return info
         except urllib2.URLError, er:
             cherrypy.log.error(str(er), 'UserAgentInfo.from_web_service')

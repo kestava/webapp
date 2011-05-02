@@ -18,6 +18,7 @@ from mobilecontroller import MobileController
 from model.usersettings import UserSettings
 from model.userdata import UserData
 from model.sitedata import SiteData
+from model.credits import Credits
 
 class RootController(object):
 
@@ -69,7 +70,8 @@ class RootController(object):
     @cherrypy.tools.build_model(classes=[
         SiteData,
         UserData,
-        UserSettings])
+        UserSettings,
+        Credits])
     @cherrypy.expose
     def credits(self):
         r = cherrypy.request

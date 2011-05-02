@@ -20,6 +20,6 @@ class MobileController(object):
     def index(self):
         r = cherrypy.request
         env = r.app.jinjaEnv
-        template = env.get_template('html/mobile/root')
+        template = env.get_template('html/mobile/root.html')
         return template.render(model=r.model)
         

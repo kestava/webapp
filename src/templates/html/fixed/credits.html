@@ -12,14 +12,25 @@
     included in full.
     </p>
     
-    <!--
-    <ul>
-    <li>
-    <p>Mark James</p>
-    <a href="http://www.famfamfam.com/lab/icons/silk/">Silk icon set 1.3</a>
-    </li>
+    <ul id="#creditsList">
+        {% for i in model['credits'] %}
+        <li>
+            {% if i['productUrl'] %}
+            <p><a href="{{ i['productUrl'] }}">{{ i['product'] }}</a></p>
+            {% else %}
+            <p>{{ i['product'] }}</p>
+            {% endif %}
+        
+            {% if i['authorUrl'] %}
+            <p><a href="{{ i['authorUrl'] }}">{{ i['author'] }}</a></p>
+            {% else %}
+            <p>{{ i['author'] }}</p>
+            {% endif %}
+        
+            {{ i['additionalMarkup'] }}
+        </li>
+        {% endfor %}
     </ul>
-    -->
 
 </section>
 {% endblock contentSectionsBlock %}

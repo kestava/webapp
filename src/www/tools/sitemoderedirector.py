@@ -16,7 +16,8 @@ class SiteModeRedirector(cherrypy.Tool):
         if 'user.site_mode' in cherrypy.session:
             userSiteMode = cherrypy.session.get('user.site_mode')
         else:
-            if req.userAgentInfo.isWirelessDevice:
+            if req.userAgentInfo.isWirelessDevice and \
+                not req.userAgentInfo.isTablet:
                 userSiteMode = 'mobile'
         
         pageSiteMode = req.siteMode if hasattr(req, 'siteMode') else 'web'
