@@ -27,15 +27,19 @@ $(function() {
     
     $('#itemsTable > tbody > tr').click(
         function() {
-            var a = $(this);
-            a.siblings('.row_selected').removeClass('row_selected');
-            if (a.hasClass('row_selected')) {
-                a.removeClass('row_selected');
+            var a = $(this),
+                b = $('.dataTables_empty', a);
+            
+            if (0 === b.length) {
+                a.siblings('.row_selected').removeClass('row_selected');
+                if (a.hasClass('row_selected')) {
+                    a.removeClass('row_selected');
+                }
+                else {
+                    a.addClass('row_selected');
+                }
+                app.classes.material_post.updateOptButtons();
             }
-            else {
-                a.addClass('row_selected');
-            }
-            app.classes.material_post.updateOptButtons();
         });
 });
 
