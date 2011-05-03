@@ -12,10 +12,10 @@ class MobileController(object):
     dynamic = MobileDynamicController()
 
     @cherrypy.tools.site_mode(mode='mobile')
-    @cherrypy.tools.build_model(classes=[
-        UserData,
-        UserSettings,
-        SiteData])
+    @cherrypy.tools.build_model(includes=[
+        UserData(),
+        UserSettings(),
+        SiteData()])
     @cherrypy.expose
     def index(self):
         r = cherrypy.request

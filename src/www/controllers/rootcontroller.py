@@ -33,10 +33,10 @@ class RootController(object):
     search = SearchController()
     transactions = TransactionsController()
 
-    @cherrypy.tools.build_model(classes=[
-        UserData,
-        UserSettings,
-        SiteData])
+    @cherrypy.tools.build_model(includes=[
+        UserData(),
+        UserSettings(),
+        SiteData()])
     @cherrypy.expose
     def index(self):
         r = cherrypy.request
@@ -44,7 +44,7 @@ class RootController(object):
         template = env.get_template('html/{0}/homepage.html'.format(r.model['userSettings']['layout']))
         return template.render(model=r.model)
     
-    @cherrypy.tools.build_model(classes=[SiteData])
+    @cherrypy.tools.build_model(includes=[SiteData()])
     @cherrypy.expose(alias='xrds.xml')
     def handle_xrds(self):
         # TODO: Create a tool to add the following response header pointing to
@@ -67,11 +67,11 @@ class RootController(object):
         
         raise cherrypy.HTTPRedirect(a[b])
         
-    @cherrypy.tools.build_model(classes=[
-        SiteData,
-        UserData,
-        UserSettings,
-        Credits])
+    @cherrypy.tools.build_model(includes=[
+        SiteData(),
+        UserData(),
+        UserSettings(),
+        Credits()])
     @cherrypy.expose
     def credits(self):
         r = cherrypy.request

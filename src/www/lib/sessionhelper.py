@@ -10,3 +10,7 @@ class SessionHelper(object):
         for i in a:
             if i.startswith('user.'):
                 del cherrypy.session[i]
+                
+    @property
+    def userAccountId(self):
+        return cherrypy.session.get('user.account_id')

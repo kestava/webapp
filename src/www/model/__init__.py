@@ -16,15 +16,14 @@ from psycopg2.extras import DictCursor
 
 from plugins.setuppgconnectionpool import SetupPgConnectionPool
 
-def load_model(classes):
+def load_model(includes):
     o = {}
         
-    for i in classes:
-        a = i()
-        if a.key in o:
-            o[a.key].update(a.read())
+    for i in includes:
+        if i.key in o:
+            o[i.key].update(i.read())
         else:
-            o[a.key] = a.read()
+            o[i.key] = i.read()
             
     return o
     
@@ -66,6 +65,15 @@ def get_row_nc(pool_name, statement, variables):
     """
     with grab_connection(pool_name) as conn:
         return get_row(conn, statement, variables)
+
+def get_all_rows_nc(pool_name, statement, variables):
+    with grab_connection(pool_name) as conn:
+        return get_all_rows(conn, statement, variables)
+        
+def get_all_rows(connection, statement, variables):
+    cur = connection.cursor(cursor_factory=DictCursor)
+    cur.execute(trim_statement(statement), variables)
+    return cur.fetchall()
     
 def trim_statement(input):
     """

@@ -19,9 +19,9 @@ class LoginController(object):
         }
     }
 
-    @cherrypy.tools.build_model(classes=[
-        SiteData,
-        UserSettings])
+    @cherrypy.tools.build_model(includes=[
+        SiteData(),
+        UserSettings()])
     @cherrypy.expose
     def index(self):
         req = cherrypy.request

@@ -7,10 +7,10 @@ from model.sitedata import SiteData
 
 class ConversationsController(object):
 
-    @cherrypy.tools.build_model(classes=[
-        UserData,
-        UserSettings,
-        SiteData])
+    @cherrypy.tools.build_model(includes=[
+        UserData(),
+        UserSettings(),
+        SiteData()])
     @cherrypy.expose
     def users(self):
         r = cherrypy.request
@@ -18,10 +18,10 @@ class ConversationsController(object):
         template = env.get_template('html/{0}/conversations/users.html'.format(r.model['userSettings']['layout']))
         return template.render(model=r.model)
     
-    @cherrypy.tools.build_model(classes=[
-        UserData,
-        UserSettings,
-        SiteData])
+    @cherrypy.tools.build_model(includes=[
+        UserData(),
+        UserSettings(),
+        SiteData()])
     @cherrypy.expose
     def items(self):
         r = cherrypy.request

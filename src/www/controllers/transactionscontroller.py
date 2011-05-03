@@ -7,10 +7,10 @@ from model.sitedata import SiteData
 
 class TransactionsController(object):
 
-    @cherrypy.tools.build_model(classes=[
-        UserData,
-        UserSettings,
-        SiteData])
+    @cherrypy.tools.build_model(includes=[
+        UserData(),
+        UserSettings(),
+        SiteData()])
     @cherrypy.expose
     def index(self):
         r = cherrypy.request

@@ -99,5 +99,9 @@ class UserAgentInfo(object):
 class NullUserAgentInfo(UserAgentInfo):
     
     def __init__(self):
-        super(NullUserAgentInfo, self).__init__({})
+        super(NullUserAgentInfo, self).__init__(
+            {
+                'device_id': None,
+                'device_ua': None
+            })
         

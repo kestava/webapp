@@ -5,7 +5,7 @@ from model.sitedata import SiteData
 
 class JsController(object):
 
-    @cherrypy.tools.build_model(classes=[SiteData])
+    @cherrypy.tools.build_model(includes=[SiteData()])
     @cherrypy.expose(alias='app.js')
     def app(self):
         req = cherrypy.request

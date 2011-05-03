@@ -6,7 +6,7 @@ from model.sitedata import SiteData
 class MobileDynamicJsController(object):
 
     @cherrypy.tools.site_mode(mode='mobile')
-    @cherrypy.tools.build_model(classes=[SiteData])
+    @cherrypy.tools.build_model(includes=[SiteData()])
     @cherrypy.expose(alias='app.js')
     def app(self):
         req = cherrypy.request
