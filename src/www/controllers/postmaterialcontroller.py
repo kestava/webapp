@@ -8,20 +8,21 @@ from model.usersettings import UserSettings
 from model.sitedata import SiteData
 from model.itemdata import ItemData
 
-from postmaterialcontroller import PostMaterialController
+class PostMaterialController(object):
 
-class PostController(object):
-    
-    material = PostMaterialController()
-    
     @cherrypy.tools.build_model(includes=[
         SiteData(),
         UserData(),
-        UserSettings()])
+        UserSettings(),
+        ItemData('userItemsAll')])
     @cherrypy.expose
-    def transport(self):
+    def index(self):
         r = cherrypy.request
         env = r.app.jinjaEnv
-        template = env.get_template('html/{0}/post/transport.html'.format(r.model['userSettings']['layout']))
+        template = env.get_template('html/{0}/post/material.html'.format(r.model['userSettings']['layout']))
+        pprint(r.model)
         return template.render(model=r.model)
         
+    @cherrypy.expose
+    def create(self):
+        return 'create'

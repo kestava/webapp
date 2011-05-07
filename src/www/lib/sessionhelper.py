@@ -14,3 +14,4 @@ class SessionHelper(object):
     @property
     def userAccountId(self):
         return cherrypy.session.get('user.account_id')
+    
