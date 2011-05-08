@@ -1,0 +1,17 @@
+/*!
+ * layout/fixed/error.css
+ */
+ 
+#container > section
+{
+    width: 920px;
+    margin: 12px auto;
+    padding: 12px;
+    
+    border: 1px solid #AAA;
+    background-color: #F3F3F3;
+    
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+}

@@ -10,6 +10,7 @@ from model.itemdata import ItemData
 
 class PostMaterialController(object):
 
+    @cherrypy.tools.require_login(returnTo='/post/material')
     @cherrypy.tools.build_model(includes=[
         SiteData(),
         UserData(),
@@ -20,7 +21,6 @@ class PostMaterialController(object):
         r = cherrypy.request
         env = r.app.jinjaEnv
         template = env.get_template('html/{0}/post/material.html'.format(r.model['userSettings']['layout']))
-        pprint(r.model)
         return template.render(model=r.model)
         
     @cherrypy.tools.initialize_draft_post()

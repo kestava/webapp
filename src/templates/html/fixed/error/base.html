@@ -1,0 +1,16 @@
+{% extends "html/fixed/standard.html" %}
+
+{% set pageName=[errorTitle,'Error']|join(' - ') %}
+
+{% block additionalStylesheetsBlock %}
+<link rel="stylesheet" type="text/css" href="/static/css/layout/{{ model['userSettings']['layout'] }}/error.css" />
+{% endblock %}
+
+{% block contentSectionsBlock %}
+<section>
+    <h1>{{ errorTitle }}</h1>
+    <div>
+    {% block errorDescription %}{% endblock %}
+    </div>
+</section>
+{% endblock %}

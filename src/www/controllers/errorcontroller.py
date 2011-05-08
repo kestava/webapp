@@ -3,6 +3,10 @@ import logging
 
 import cherrypy
 
+from model.sitedata import SiteData
+from model.usersettings import UserSettings
+from model.userdata import UserData
+
 class ErrorController(object):
 
     @cherrypy.expose
@@ -24,3 +28,14 @@ class ErrorController(object):
     @cherrypy.expose
     def openid(self):
         return 'error (openid)'
+        
+    @cherrypy.tools.build_model(includes=[
+        SiteData(),
+        UserData(),
+        UserSettings()])
+    @cherrypy.expose(alias='login-required')
+    def login_required(self):
+        r = cherrypy.request
+        env = r.app.jinjaEnv
+        template = env.get_template('html/{0}/error/loginrequired.html'.format(r.model['userSettings']['layout']))
+        return template.render(model=r.model)

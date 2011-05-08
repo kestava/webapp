@@ -12,6 +12,7 @@ import tools.sitemoderedirector
 import tools.sitemode
 import tools.requiremethod
 import tools.initializedraftpost
+import tools.requirelogin
     
 from controllers.rootcontroller import RootController
 from plugins.setupjinjaenvironment import SetupJinjaEnvironment

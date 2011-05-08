@@ -14,4 +14,19 @@ class SessionHelper(object):
     @property
     def userAccountId(self):
         return cherrypy.session.get('user.account_id')
+        
+    @userAccountId.setter
+    def userAccountId(self, value):
+        cherrypy.session['user.account_id'] = value
     
+    @property
+    def postLoginReturnToPath(self):
+        return cherrypy.session.get('user.post_login_return_to')
+        
+    @postLoginReturnToPath.setter
+    def postLoginReturnToPath(self, value):
+        cherrypy.session['user.post_login_return_to'] = value
+        
+    @postLoginReturnToPath.deleter
+    def postLoginReturnToPath(self):
+        del cherrypy.session['user.post_login_return_to']

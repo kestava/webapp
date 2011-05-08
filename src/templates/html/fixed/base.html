@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 {% block titleBlock %}
-<title>{{ pageName }} - {{ model['siteData']['siteName'] }}</title>
+<title>{{ [pageName,model['siteData']['siteName']]|join(' - ') }}</title>
 {% endblock %}
 {% include "html/misc/html5-shiv.html" %}
 {% block headStylesheetsBlock %}{% endblock %}

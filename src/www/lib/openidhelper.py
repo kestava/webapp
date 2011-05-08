@@ -5,6 +5,7 @@ from openid.consumer.consumer import Consumer
 from openid.store.filestore import FileOpenIDStore
 
 from lib.applicationpaths import ApplicationPaths
+from lib.sessionhelper import SessionHelper
 from model.openidaccount import OpenIdAccount
 
 class OpenIdHelper(object):
@@ -53,11 +54,10 @@ class OpenIdHelper(object):
         
         accountId = OpenIdAccount.get_account_id(identity_url)
         if not accountId is None:
-            cherrypy.session['user.account_id'] = accountId
-            postLoginUrl = cherrypy.session.get('user.post_login_url')
-            if not postLoginUrl is None:
-                raise cherrypy.HTTPRedirect(postLoginUrl)
-            raise cherrypy.HTTPRedirect('/')
+            s = SessionHelper()
+            s.userAccountId = accountId
+            raise cherrypy.HTTPRedirect('/' if s.postLoginReturnToPath is None \
+                else s.postLoginReturnToPath)
         else:
             raise cherrypy.HTTPRedirect('/account/create')
         
