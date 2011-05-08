@@ -51,6 +51,10 @@ def get_scalar(connection, statement, variables, column):
     if not data is None:
         return data[column]
         
+def get_scalar_nc(pool_name, statement, variables, column):
+    with grab_connection(pool_name) as conn:
+        return get_scalar(conn, statement, variables, column)
+        
 def get_row(connection, statement, variables):
     cur = connection.cursor(cursor_factory=DictCursor)
     cur.execute(trim_statement(statement), variables)
@@ -74,6 +78,16 @@ def get_all_rows(connection, statement, variables):
     cur = connection.cursor(cursor_factory=DictCursor)
     cur.execute(trim_statement(statement), variables)
     return cur.fetchall()
+    
+def execute_action_nc(pool_name, statement, variables, return_row=False):
+    with grab_connection(pool_name) as conn:
+        return execute_action(conn, statement, variables, return_row)
+        
+def execute_action(connection, statement, variables, return_row=False):
+    cur = connection.cursor(cursor_factory=DictCursor)
+    cur.execute(trim_statement(statement), variables)
+    if return_row:
+        return cur.fetchone()
     
 def trim_statement(input):
     """

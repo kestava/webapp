@@ -23,6 +23,7 @@ class PostMaterialController(object):
         pprint(r.model)
         return template.render(model=r.model)
         
+    @cherrypy.tools.initialize_draft_post()
     @cherrypy.expose
     def create(self):
         return 'create'
