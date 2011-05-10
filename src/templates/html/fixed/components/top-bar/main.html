@@ -1,43 +1,49 @@
 <header>
 
-    <h1>{{ model['siteData']['siteName'] }}</h1>
+    <div id="topBarBg"></div>
     
-    <form id="searchForm">
-        <div>
-            <input type="text"/>
+    <div id="topBar">
+        <div class="inside">
+            <h1 id="siteName">{{ model['siteData']['siteName'] }}</h1>
+            
+            <form id="searchForm">
+                <div>
+                    <input type="text"/>
+                </div>
+            </form>
+            
+            <div id="homeLinkContainer" class="headingContainer mainMenuHeader">
+                <h1><a href="/">Home</a></h1>
+            </div>
+            <div id="postNavContainer" class="headingContainer mainMenuHeader">
+                <h1>Post</h1>
+                <nav style="display: none">
+                    <a href="/post/material">Material</a>
+                    <a href="/post/transport">Transport</a>
+                </nav>
+            </div>
+            <div id="manageNavContainer" class="headingContainer mainMenuHeader">
+                <h1>Manage</h1>
+                <nav style="display: none">
+                    <a href="/posts">Active Posts</a>
+                    <a href="/transactions">Transactions</a>
+                    <a href="/marketdata">Market&nbsp;Data</a>
+                    <a href="/analysis">Analysis</a>
+                </nav>
+            </div>
+            <div id="followNavContainer" class="headingContainer mainMenuHeader">
+                <h1>Follow</h1>
+                <nav style="display: none">
+                    <a href="/conversations/users">User&nbsp;Conversations</a>
+                    <a href="/conversations/items">Item&nbsp;Conversations</a>
+                    <a href="/search/saved">Saved&nbsp;Searches</a>
+                </nav>
+            </div>
         </div>
-    </form>
-    
-    <div id="homeLinkContainer" class="headingContainer">
-        <h1><a href="/">Home</a></h1>
-    </div>
-    <div id="postNavContainer" class="headingContainer">
-        <h1>Post</h1>
-        <nav style="display: none">
-            <a href="/post/material">Material</a>
-            <a href="/post/transport">Transport</a>
-        </nav>
-    </div>
-    <div id="manageNavContainer" class="headingContainer">
-        <h1>Manage</h1>
-        <nav style="display: none">
-            <a href="/posts">Active Posts</a>
-            <a href="/transactions">Transactions</a>
-            <a href="/marketdata">Market&nbsp;Data</a>
-            <a href="/analysis">Analysis</a>
-        </nav>
-    </div>
-    <div id="followNavContainer" class="headingContainer">
-        <h1>Follow</h1>
-        <nav style="display: none">
-            <a href="/conversations/users">User&nbsp;Conversations</a>
-            <a href="/conversations/items">Item&nbsp;Conversations</a>
-            <a href="/search/saved">Saved&nbsp;Searches</a>
-        </nav>
-    </div>
-    
-    <div id="sessionContainer" class="headingContainer">
-        {% include "html/fixed/components/top-bar/user-area.html" %}
+        
+        <div id="sessionContainer" class="headingContainer">
+            {% include "html/fixed/components/top-bar/user-area.html" %}
+        </div>
     </div>
     
 </header>
