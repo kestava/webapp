@@ -5,16 +5,9 @@
 section .inside
 {
     position: relative;
-    padding: 6px;
-}
-
-.sectionBg
-{
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 100%;
+    width: 70%;
+    margin: 0px auto;
+    padding: 12px;
     border-width: 1px;
     border-style: solid;
     
@@ -22,3 +15,4 @@ section .inside
     -moz-border-radius: 6px;
     border-radius: 6px;
 }
+
