@@ -4,13 +4,17 @@
 
 {% block additionalStylesheetsBlock %}
 <link rel="stylesheet" type="text/css" href="/static/css/layout/{{ model['userSettings']['layout'] }}/error.css" />
+<link rel="stylesheet" href="{{ "/static/css/theme/%s/error.css"|format(model['userSettings']['jQueryUiTheme']) }}"/>
 {% endblock %}
 
 {% block contentSectionsBlock %}
 <section>
-    <h1>{{ errorTitle }}</h1>
-    <div>
-    {% block errorDescription %}{% endblock %}
+    <div class="sectionBg"></div>
+    <div class="inside">
+        <h1>{{ errorTitle }}</h1>
+        <div id="errorDesc">
+        {% block errorDescription %}{% endblock %}
+        </div>
     </div>
 </section>
 {% endblock %}
