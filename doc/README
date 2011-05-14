@@ -1,0 +1,8 @@
+
+Install the Sphinx document generator in a Python virtual environment on your
+system.
+
+Export the KESTAVA_WEBAPP_SPHINX_BUILD environment variable, pointing to the
+sphinx-build executable, in your .bashrc script.
+
+Execute build.sh
