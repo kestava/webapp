@@ -36,7 +36,7 @@ class ItemData(ModelObjectBase):
         return get_scalar_nc(
             'main',
             """
-            select exists (select 0 from kestava.draft_items
+            select exists (select 0 from unsilo.draft_items
             where ref_user_account_id = %(i)s) as a
             """,
             { 'i': s.userAccountId },
@@ -51,7 +51,7 @@ class ItemData(ModelObjectBase):
         execute_action_nc(
             'main',
             """
-            insert into kestava.draft_items (ref_user_account_id) values (%(i)s)
+            insert into unsilo.draft_items (ref_user_account_id) values (%(i)s)
             """,
             { 'i': s.userAccountId })
         

@@ -1,3 +1,8 @@
+"""
+.. autoclass:: ErrorController
+    :members: default, openid, login_required
+"""
+
 from pprint import pprint, pformat
 import logging
 
@@ -35,6 +40,9 @@ class ErrorController(object):
         UserSettings()])
     @cherrypy.expose(alias='login-required')
     def login_required(self):
+        """
+        Some description
+        """
         r = cherrypy.request
         env = r.app.jinjaEnv
         template = env.get_template('html/{0}/error/loginrequired.html'.format(r.model['userSettings']['layout']))

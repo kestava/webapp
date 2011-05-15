@@ -1,0 +1,32 @@
+[appSettings]
+siteName: 'un_silo'
+siteHostname: 'unsilo.jakewan.com'
+jinja.search_path: '/home/jacob/repos/unsilo/webapp/src/templates'
+html5ResetFilename: 'html5reset-1.6.1.css'
+external_socket_port: 80
+external_socket_port_ssl: 443
+openid.datastore_directory: '/var/unsilo-openid-filestore'
+wurfl_service.host: '127.0.0.1'
+wurfl_service.port: 48085
+cache.user_agents: True
+
+; Logging
+logging.access_log.path: '/var/log/unsilo/webapp/access.log'
+logging.error_log.path: '/var/log/unsilo/webapp/error.log'
+;'DEBUG'|'INFO'|'WARNING'|'ERROR'|'CRITICAL'
+logging.error_log.level: 'DEBUG'
+        
+;Database settings
+main_db.name: 'unsilo'
+main_db.role: 'unsilo'
+
+[global]
+server.socket_port: 48080
+
+[/]
+tools.sessions.storage_path: '/var/unsilo-session-data/webapp'
+tools.staticdir.root: '/home/jacob/repos/unsilo/webapp/src'
+
+[/static]
+tools.staticdir.on: True
+tools.staticdir.dir: 'static'

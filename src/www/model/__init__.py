@@ -1,7 +1,8 @@
 """
+.. automodule:: model.credits
+.. automodule:: model.itemdata
 .. automodule:: model.modelobjectbase
 .. automodule:: model.openidaccount
-.. automodule:: model.modelobjectbase
 .. automodule:: model.sitedata
 .. automodule:: model.testing
 .. automodule:: model.userdata

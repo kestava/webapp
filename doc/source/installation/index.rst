@@ -10,10 +10,8 @@
 Installation
 ============
 
-Setup Cloud Server
-==================
-
-1. Follow the Rackspace guide to setting up an Ubuntu server (http://cloudservers.rackspacecloud.com/index.php/Ubuntu\_-_Setup).
+Create an RSA public/private key pair
+=====================================
 
 #. If you don't already have one on your local workstation, create a RSA
    public/private key pair for use with the new server.
@@ -23,28 +21,30 @@ Setup Cloud Server
     mkdir ~/.ssh
     chmod 700 ~/.ssh
     ssh-keygen -t rsa
+    
+Make note of the passphrase you assigned to the private key.
+    
+Setup Cloud Server
+==================
 
-#. Copy public key to the new server::
+1. Follow the Rackspace guide to setting up an Ubuntu server (http://cloudservers.rackspacecloud.com/index.php/Ubuntu\_-_Setup).
+
+#. Copy your public key to the new server::
 
     ssh-copy-id <username>@<host>
 
-Setup User Accounts and Groups
-==============================
+Create System Account
+=====================
 
-Create a *kestava-users* group for use in assigning privileges to parts of the
-filesystem (e.g. the log file directory)::
+Create a system user to run Unsilo applications::
 
-    sudo addgroup kestava-users
-
-Create a system user to run Kestava applications.
-
-::
-
-    sudo adduser --system kestava
-    sudo usermod --append --groups kestava-users kestava
+    sudo adduser --system unsilo
 
 Install Required Packages
 =========================
+
+.. note:: Check on these.  Some of them may no longer be necessary
+          (e.g libxml2-dev, libxslt-dev, libpq-dev).
 
 ::
 
@@ -55,6 +55,11 @@ Install Required Packages
     sudo apt-get install python-software-properties
     sudo apt-get install python-setuptools
 
+.. note::
+
+    libpq-dev contains the header files for the PostgreSQL C client library.  It
+    is a dependency of psycopg2.
+
 Other useful packages::
 
     sudo apt-get install bash-completion
@@ -62,30 +67,57 @@ Other useful packages::
 Install PostgreSQL
 ==================
 
-Install the latest version of PostgreSQL::
+Install the latest version of PostgreSQL.
+
+::
 
     sudo apt-get install postresql
+    
+Change the *postgres* user's PostgreSQL password.
 
-Create a superuser account to use for administrative purposes::
+::
+
+    sudo -u postgres psql postgres
+    \password postgres
+
+Create a superuser account to use for administrative purposes.  Here,
+*<admin username>* should be the same as an existing system user account.
+
+::
 
     sudo -u postgres createuser --superuser <admin username>
-    sudo -u postgres psql
 
-Assign the administrative account a password::
+.. note::
 
-    postgres=# \password <admin username>
+    From now on, we'll use the PostgreSQL user account created above to issue
+    commands.  No password should be required as long as you're logged into the
+    system as that OS user.
+    
+Create a database for the user.  Issuing the *createdb* command with no
+arguments creates a database with the same name as the current user.
 
-Create a regular user account to access Kestava database(s)::
+::
 
-    createuser kestava
+    createdb
+
+Create a regular user account to access Unsilo database(s)::
+
+    createuser unsilo
     Shall the new role be a superuser? (y/n) n
     Shall the new role be allowed to create databases? (y/n) n
     Shall the new role be allowed to create more new roles? (y/n) n
 
 .. note::
 
-    No database is created at this time.  First we need to obtain the Kestava
-    source, which contains the database setup scripts.
+    No database is created at this time.  First we need to obtain the
+    application source, which contains the database setup scripts.
+    
+.. note::
+
+    When using pgAdmin, it is possible to connect to the PostgreSQL database
+    using a local UNIX socket by leaving the "host" field black, when setting
+    up the connection.  This is advantageous because this type of connection
+    is set to use Ident authorization by default.
 
 .. rubric:: Resources:
 
@@ -97,6 +129,8 @@ Create a regular user account to access Kestava database(s)::
 
 Install PostGIS
 ===============
+
+.. note:: Need to determine if we really need to install from the PPA
 
 Add UbuntuGIS "stable" PPA to the system's software sources list.  This let's us
 install a newer version of PostGIS than the one normally found in Ubuntu's
@@ -140,24 +174,9 @@ Install git
     sudo apt-get update
     sudo apt-get install git-core
 
-Create a RSA public/private key pair
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-There may already be a ~/.ssh directory present.  If not then create it with the
-following commands::
-
-    mkdir ~/.ssh
-    chmod 700 ~/.ssh
-
-Create the key pair.
+Copy and paste your public key to Github.
 
 ::
-
-    ssh-keygen -t rsa
-
-Make note of the passphrase you assigned to the private key.
-
-Copy and paste the public key to Github::
 
     cat ~/.ssh/id_rsa.pub
 
@@ -165,25 +184,26 @@ Copy and paste this in the Account Settings page at Github, naming the key
 something indicating the remote server and username on that server
 (e.g jacob on washoe).
 
-Download the Web Application Source
-===================================
+.. note:: For additional initial setup information, view the Github Help pages.
+
+Download the Source
+===================
 
 Clone the git repository for the web application with the following commands::
 
-    mkdir -p ~/documents/git-repos/kestava
-    cd ~/documents/git-repos/kestava
+    mkdir -p ~/repos/unsilo
+    cd ~/repos/unsilo
+    git clone git@github.com:kestava/wurfl-service.git
     git clone git@github.com:kestava/webapp.git
+    git clone git@github.com:kestava/main-db.git
 
 Run Database Setup Script
 =========================
 
 ::
 
-    /usr/bin/python ~/documents/git-repos/kestava/webapp/src/database/scripts/complete.py \
-    -n kestava \
-    -m ~/documents/git-repos/kestava/webapp/src/database/scripts/complete.manifest \
-    -s ~/documents/git-repos/kestava/webapp/src/database/scripts
-    
+    cd ~/repos/unsilo/main-db/scripts
+    psql -f complete.sql
 
 Setup Python Virtual Environment
 ================================
@@ -203,12 +223,22 @@ Create the virtual environment::
 
     sudo mkdir /usr/local/pythonenv
     cd /usr/local/pythonenv
-    sudo virtualenv --no-site-packages --python=python2.7 KESTAVA-WEBAPP
+    sudo virtualenv --no-site-packages --python=python2.7 UNSILO-WEBAPP
     
-.. note:: We're using Python 2.7 here.  Make sure both Python 2.7 and the Python
-   2.7 with development headers are installed on your system::
+.. note::
+
+    We're using Python 2.7 here.  Make sure both Python 2.7 and the Python 2.7
+    with development headers are installed on your system.
+    
+    ::
 
         sudo apt-get install python2.7 python2.7-dev
+        
+.. note::
+    
+    As of Ubuntu 11.04, Python 2.7 is installed by default.  However, on version
+    10.10, it is still necessary to install python2.7 and python2.7-dev
+    separately.
 
 These requirements should be installed in a Python virtual environment:
 
@@ -216,37 +246,41 @@ These requirements should be installed in a Python virtual environment:
 
    ::
    
-        sudo KESTAVA-WEBAPP/bin/pip install cherrypy
+        sudo UNSILO-WEBAPP/bin/pip install cherrypy
 
 #. psycopg2
 
    ::
 
-        sudo KESTAVA-WEBAPP/bin/pip install psycopg2
+        sudo UNSILO-WEBAPP/bin/pip install psycopg2
         
    .. note::    psycopg2's latest published version is often a beta version.  In
                 that case, it's probably better to explicitly install the latest
                 production version.  For example::
                 
-                    sudo KESTAVA-WEBAPP/bin/pip install psycopg2==2.4
+                    sudo UNSILO-WEBAPP/bin/pip install psycopg2==2.4
 
 #. python-openid
 
    ::
    
-        sudo KESTAVA-WEBAPP/bin/pip install python-openid
+        sudo UNSILO-WEBAPP/bin/pip install python-openid
         
 #. setproctitle
 
    ::
    
-        sudo KESTAVA-WEBAPP/bin/pip install setproctitle
+        sudo UNSILO-WEBAPP/bin/pip install setproctitle
+        
+#. jinja2
+
+    ::
+    
+        sudo UNSILO-WEBAPP/bin/pip install jinja2
 
 #. geopy (check this!)
 
 #. mox (only on development box)
-
-#. sphinx (only on development box)
 
 Setup nginx
 ===========
@@ -262,7 +296,7 @@ Configure nginx
 ::
 
     cd /etc/nginx/sites-available
-    sudo nano kestava
+    sudo nano unsilo
 
 There is a sample nginx configuration file in the root of the webapp project
 called nginx.conf.  You can use its contents to populate the new configuration
@@ -272,8 +306,7 @@ Create a symbolic link to the file in the nginx/sites-enabled directory.
 
 ::
 
-    cd /etc/nginx/sites-enabled
-    sudo ln -s ../sites-available/kestava
+    sudo ln -s /etc/nginx/sites-available/unsilo /etc/nginx/sites-enabled/unsilo
 
 Start (or restart) nginx.
 
@@ -295,52 +328,33 @@ Setup the Web Application
 
 Create the log file directory::
 
-    sudo mkdir /var/log/kestava
-    sudo chown root:kestava-users /var/log/kestava/
-    sudo chmod 775 /var/log/kestava/
+    sudo mkdir -p /var/log/unsilo/webapp
+    sudo chown unsilo /var/log/unsilo/webapp
 
 Create the session data directory::
 
-    sudo mkdir /var/kestava-session-data
-    sudo chown root:kestava-users /var/kestava-session-data/
-    sudo chmod 775 /var/kestava-session-data/
+    sudo mkdir /var/unsilo-session-data
+    sudo chown unsilo /var/unsilo-session-data/
 
 Create the OpenID filestore directory::
 
-    sudo mkdir /var/kestava-openid-filestore
-    sudo chown root:kestava-users /var/kestava-openid-filestore/
-    sudo chmod 775 /var/kestava-openid-filestore/
+    sudo mkdir /var/unsilo-openid-filestore
+    sudo chown unsilo /var/unsilo-openid-filestore/
 
-Create settings.py for the web application::
+Create config file for the web application.  Copy src/www/config.ini.sample and
+edit as needed.  Specify this to the --config option when running the web
+application.
 
-    cd ~/documents/git-repos/kestava/webapp/src/www/
-    cp settings.py.sample settings.py
-    nano settings.py
+Start the Web Application (Development mode)
+============================================
 
-.. rubric:: Settings:
-    
-* Set socket_host to 127.0.0.1, since we'll be using nginx to proxy requests.
+It's good to create a script to manually start the application.  See src/www/README
+for information on running the application from the command line.
 
-* Set socket_port to 21850.
+Create Upstart Script (Production)
+==================================
 
-* Set access_log_when and error_log_when to 'midnight'.
-
-* Set appSettings/siteName as appropriate.
-
-* Set appSettings/siteHostname as appropriate.
-
-Start the Web Application
-=========================
-
-::
-
-    cd ~/git-repos/kestava/webapp/src/www
-    sudo -u kestava /usr/local/pythonenv/KESTAVA-WEBAPP/bin/python app.py
-
-Create Upstart Script
-=====================
-
-The Kestava webapp project contains a file called kestava-webapp.conf, which is
+The project contains a file called share/webapp.conf, which is
 a sample Upstart script for managing the application process as a service.
 Copy this file to /etc/init and modify it with the correct path(s) for your
 system (e.g. where the application's app.py file resides).

@@ -3,12 +3,17 @@
 .. automodule:: controllers.analysiscontroller
 .. automodule:: controllers.conversationscontroller
 .. automodule:: controllers.dynamicfilescontroller
-.. automodule:: conntollers.errorcontroller
-.. automodule:: controllers.followcontroller
+.. automodule:: controllers.errorcontroller
 .. automodule:: controllers.jscontroller
 .. automodule:: controllers.logincontroller
-.. automodeul:: controllers.marketdatacontroller
+.. automodule:: controllers.marketdatacontroller
+.. automodule:: controllers.mobilecontroller
+.. automodule:: controllers.mobiledynamiccontroller
+.. automodule:: controllers.mobiledynamicjscontroller
 .. automodule:: controllers.openidcontroller
 .. automodule:: controllers.postcontroller
+.. automodule:: controllers.postmaterialcontroller
 .. automodule:: controllers.rootcontroller
+.. automodule:: controllers.searchcontroller
+.. automodule:: controllers.transactionscontroller
 """

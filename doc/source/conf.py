@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Kestava Web Application documentation build configuration file, created by
+# Unsilo Web Application documentation build configuration file, created by
 # sphinx-quickstart on Sun Mar 13 15:15:05 2011.
 #
 # This file is execfile()d with the current directory set to its containing dir.
@@ -13,22 +13,18 @@
 
 import sys
 import os
-import site
 from os.path import dirname, relpath, realpath
 from pprint import pprint
 
 # Modify sys.path so Sphinx can locate our source code
-addDirs = ['../../src/www']
-
-for i in addDirs:
-    docDir = dirname(os.path.realpath(__file__))
-    codeDir = realpath(relpath(i, docDir))
-    #print('codeDir: {0}'.format(codeDir))
-    assert os.path.exists(codeDir)
-    site.addsitedir(codeDir)
-    assert codeDir in sys.path
-
+www_dir = realpath(relpath('../../src/www', dirname(realpath(__file__))))
+sys.path.append(www_dir)
 #pprint(sys.path)
+
+import tools.buildmodel
+import tools.initializedraftpost
+import tools.requirelogin
+import tools.sitemode
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
@@ -57,7 +53,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'Kestava Web Application'
+project = u'Unsilo Web Application'
 copyright = u'2011, Jacob Wan'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -138,7 +134,7 @@ html_theme = 'nature'
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = ['_static']
+#html_static_path = ['_static']
 
 # If not '', a 'Last updated on:' timestamp is inserted at every page bottom,
 # using the given strftime format.
@@ -182,7 +178,7 @@ html_static_path = ['_static']
 #html_file_suffix = None
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'KestavaWebApplicationdoc'
+htmlhelp_basename = 'UnsiloWebApplicationdoc'
 
 
 # -- Options for LaTeX output --------------------------------------------------
@@ -196,7 +192,7 @@ htmlhelp_basename = 'KestavaWebApplicationdoc'
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('index', 'KestavaWebApplication.tex', u'Kestava Web Application Documentation',
+  ('index', 'UnsiloWebApplication.tex', u'Unsilo Web Application Documentation',
    u'Jacob Wan', 'manual'),
 ]
 
@@ -229,13 +225,14 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'kestavawebapplication', u'Kestava Web Application Documentation',
+    ('index', 'unsilowebapplication', u'Unsilo Web Application Documentation',
      [u'Jacob Wan'], 1)
 ]
 
 # -- Options for sphinx.ext.autodoc --------------------------------------------
-autodoc_default_flags = [
-    'members',
-    'undoc-members',
-    'inherited-members',
-    'show-inheritance']
+#autodoc_default_flags = [
+#    'members',
+#    'undoc-members',
+#    'inherited-members',
+#    'show-inheritance']
+#autodoc_default_flags = [ 'members' ]

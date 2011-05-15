@@ -12,4 +12,4 @@ class SetProcessTitle(cherrypy.process.plugins.SimplePlugin):
     def start(self):
         app = cherrypy.tree.apps['']
         port = app.config['global']['server.socket_port']
-        setproctitle('kestava-webapp-{0}'.format(port))
+        setproctitle('unsilo-webapp-{0}'.format(port))

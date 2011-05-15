@@ -1,4 +1,8 @@
 # _*_ coding: utf-8 _*_
+"""
+.. autoclass:: RootController
+    :members: index, set_site_mode, credits
+"""
 
 from pprint import pprint, pformat
 
@@ -58,6 +62,9 @@ class RootController(object):
     @cherrypy.tools.site_mode(mode='any')
     @cherrypy.expose(alias='set-site-mode')
     def set_site_mode(self, edition):
+        """
+        Some description
+        """
         a = {
             'web': '/',
             'mobile': '/mobile'

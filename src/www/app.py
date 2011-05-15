@@ -58,7 +58,7 @@ def setup_logging(config):
     log.access_log.addHandler(h)
     
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='The main Kestava web application')
+    parser = argparse.ArgumentParser(description='The main Unsilo web application')
     parser.add_argument('-c', '--config',
         dest='config_file', help='The full path to the configuration file for this instance.',
         required=True)

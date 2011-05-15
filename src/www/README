@@ -1,4 +1,5 @@
 The web application is started with a command like:
 
-sudo -u kestava /usr/local/pythonenv/KESTAVA-WEBAPP/bin/python <path to app.py>
-
+sudo -u unsilo /usr/local/pythonenv/UNSILO-WEBAPP/bin/python \
+    <path to app.py> \
+    --config <path to config file>

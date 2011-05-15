@@ -1,8 +1,9 @@
 """
-.. automodule:: lib.openidhelper
 .. automodule:: lib.applicationpaths
+.. automodule:: lib.openidhelper
 .. automodule:: lib.sessionhelper
 .. automodule:: lib.settingshelper
+.. automodule:: lib.useragentinfo
 """
 
 from pprint import pformat

@@ -21,4 +21,4 @@ fi
 
 # sphinx-build is the application that generates output based on the file
 # files contained in $sourcedir.
-$KESTAVA_WEBAPP_SPHINX_BUILD -b html $sourcedir $builddir
+$UNSILO_WEBAPP_SPHINX_BUILD -b html $sourcedir $builddir
