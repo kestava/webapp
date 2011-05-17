@@ -1,14 +1,15 @@
-# _*_ coding: utf-8 _*_
 
 import cherrypy
 
-from logincontroller import LoginController
+from login.logincontroller import LoginController
+from createcontroller import CreateController
 from lib.sessionhelper import SessionHelper
 
 class AccountController(object):
-
+    
     login = LoginController()
-        
+    create = CreateController()
+    
     @cherrypy.expose
     def logout(self):
         """

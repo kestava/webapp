@@ -6,7 +6,13 @@
 <title>{{ [pageName,model['siteData']['siteName']]|join(' - ') }}</title>
 {% endblock %}
 {% include "html/misc/html5-shiv.html" %}
+
+<link rel="stylesheet" href="/static/css/misc/{{ model['siteData']['html5ResetFilename'] }}"/>
+<link rel="stylesheet" href="/static/css/layout/{{ model['userSettings']['layout'] }}/base.css"/>
+<link rel="stylesheet" href="{{ "/static/css/theme/%s/base.css"|format(model['userSettings']['jQueryUiTheme']) }}"/>
+
 {% block headStylesheetsBlock %}{% endblock %}
+    
 {% block headScriptsBlock %}{% endblock %}
 </head>
 <body>

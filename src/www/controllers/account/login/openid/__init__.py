@@ -1,6 +1,4 @@
 
-from pprint import pprint
-
 import cherrypy
 
 from lib.openidhelper import OpenIdHelper

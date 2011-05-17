@@ -7,6 +7,12 @@ class SetupJinjaEnvironment(cherrypy.process.plugins.SimplePlugin):
     def __init__(self):
         super(SetupJinjaEnvironment, self).__init__(
             bus=cherrypy.engine)
+        
+    def guess_autoescape(self, template_name):
+        if template_name is None or '.' not in template_name:
+            return False
+        ext = template_name.rsplit('.', 1)[1]
+        return ext in ('html', 'xml')
 
     def start(self):
         """
@@ -16,4 +22,7 @@ class SetupJinjaEnvironment(cherrypy.process.plugins.SimplePlugin):
         app = cherrypy.tree.apps['']
         app.jinjaEnv = Environment(
             loader=FileSystemLoader(
-                searchpath=app.config['appSettings']['jinja.search_path']))
+                searchpath=app.config['appSettings']['jinja.search_path']),
+            autoescape=self.guess_autoescape,
+            extensions=['jinja2.ext.autoescape'])
+        

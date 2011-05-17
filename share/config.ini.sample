@@ -1,6 +1,7 @@
 [appSettings]
 siteName: 'un_silo'
 siteHostname: 'unsilo.jakewan.com'
+#siteHostname: 'localhost'
 jinja.search_path: '/home/jacob/repos/unsilo/webapp/src/templates'
 html5ResetFilename: 'html5reset-1.6.1.css'
 external_socket_port: 80

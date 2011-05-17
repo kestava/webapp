@@ -28,6 +28,12 @@ class OpenIdHelper(object):
             query=query,
             current_url=ApplicationPaths.get_handle_openid_auth_response_path())
         
+        pprint(dir(response))
+        print('oid status: {0}'.format(response.status))
+        print('oid display identifier: {0}'.format(response.getDisplayIdentifier()))
+        print('oid identity_url: {0}'.format(response.identity_url))
+        #print('oid message:\n{0}'.format(response.message))
+        
         if 'success' == response.status:
             cherrypy.log.error('Identity URL: {0}'.format(response.identity_url))
             cls.__on_success(response.identity_url)
@@ -48,16 +54,17 @@ class OpenIdHelper(object):
         login URL, if possible, or to the homepage.  If the identity URL is not
         associated with an existing account, then we route the request to a page
         where we give the user an opportunity to establish a new site account
-        by providing some very basic information (e.g. first and last name,
-        e-mail).
+        by providing some very basic information (e.g. e-mail address).
         """
-        
+        s = SessionHelper()
         accountId = OpenIdAccount.get_account_id(identity_url)
-        if not accountId is None:
-            s = SessionHelper()
+        if accountId is None:
+            # Publish the OpenID identity url to be used for account creation.
+            # The account creation controller will pop it from the session data
+            s.push('account_create.openid_identity_url', identity_url)
+            raise cherrypy.HTTPRedirect('/account/create')
+        else:
             s.userAccountId = accountId
             raise cherrypy.HTTPRedirect('/' if s.postLoginReturnToPath is None \
                 else s.postLoginReturnToPath)
-        else:
-            raise cherrypy.HTTPRedirect('/account/create')
-        
+            

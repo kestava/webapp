@@ -8,7 +8,7 @@ from pprint import pprint, pformat
 
 import cherrypy
 
-from accountcontroller import AccountController
+from account.accountcontroller import AccountController
 from analysiscontroller import AnalysisController
 from conversationscontroller import ConversationsController
 from dynamicfilescontroller import DynamicFilesController

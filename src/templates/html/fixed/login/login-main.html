@@ -1,11 +1,8 @@
 {% extends "html/fixed/base.html" %}
 
-{% block titleBlock %}
-<title>login - {{ model['siteData']['siteName'] }}</title>
-{% endblock titleBlock %}
+{% set pageName="Login" %}
 
 {% block headStylesheetsBlock %}
-<link rel="stylesheet" type="text/css" href="/static/css/misc/{{ model['siteData']['html5ResetFilename'] }}" />
 <link rel="stylesheet" type="text/css" href="/static/css/layout/{{ model['userSettings']['layout'] }}/login.css" />
 {% endblock %}
 

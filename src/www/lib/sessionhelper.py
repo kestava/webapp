@@ -11,6 +11,17 @@ class SessionHelper(object):
             if i.startswith('user.'):
                 del cherrypy.session[i]
                 
+    def push(self, name, value):
+        cherrypy.session[name] = value
+        
+    def pop(self, name):
+        val = cherrypy.session.get(name)
+        del cherrypy.session[name]
+        return val
+    
+    def has_key(self, name):
+        return name in cherrypy.session.keys()
+        
     @property
     def userAccountId(self):
         return cherrypy.session.get('user.account_id')

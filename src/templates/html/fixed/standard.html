@@ -1,18 +1,18 @@
 {% extends "html/fixed/base.html" %}
 
 {% block headStylesheetsBlock %}
-<!-- standard reset for HTML5 -->
-<link rel="stylesheet" href="/static/css/misc/{{ model['siteData']['html5ResetFilename'] }}"/>
+
 {%- if includeJQueryUI %}
 <link rel="stylesheet" href="{{ "/static/css/theme/jquery-ui/%s/jquery-ui-1.8.12.custom.css"|format(model['userSettings']['jQueryUiTheme']) }}"/>
 {% endif %}
+
 {%- if includeDataTables %}
 <link rel="stylesheet" href="/static/css/layout/{{ model['userSettings']['layout'] }}/datatables-jui.css"/>
 <link rel="stylesheet" href="{{ "/static/css/theme/%s/datatables.css"|format(model['userSettings']['jQueryUiTheme']) }}"/>
 {% endif %}
-<link rel="stylesheet" href="/static/css/layout/{{ model['userSettings']['layout'] }}/base.css"/>
-<link rel="stylesheet" href="{{ "/static/css/theme/%s/base.css"|format(model['userSettings']['jQueryUiTheme']) }}"/>
+
 {%- block additionalStylesheetsBlock %}{% endblock %}
+    
 {% endblock headStylesheetsBlock %}
 
 {% block headScriptsBlock %}
@@ -22,12 +22,13 @@
 <script type="text/javascript" src="/static/js/app/classes.js"></script>
 <script type="text/javascript" src="/static/js/app/utilities.js"></script>
 <script type="text/javascript" src="/static/js/app/shared.js"></script>
+
 {% block additionalHeadScriptsBlock %}{% endblock %}
 {% endblock headScriptsBlock %}
 
 {# Main content area #}
 {% block contentsBlock %}
-    {% include "html/fixed/components/top-bar/main.html" %}
-    {% block contentSectionsBlock %}{% endblock %}
-    {% include "html/fixed/components/footer/main.html" %}
+{% include "html/fixed/components/top-bar/main.html" %}
+{% block contentSectionsBlock %}{% endblock %}
+{% include "html/fixed/components/footer/main.html" %}
 {% endblock %}

@@ -329,7 +329,7 @@ Setup the Web Application
 Create the log file directory::
 
     sudo mkdir -p /var/log/unsilo/webapp
-    sudo chown unsilo /var/log/unsilo/webapp
+    sudo chown unsilo /var/log/unsilo/webapp/
 
 Create the session data directory::
 
