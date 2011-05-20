@@ -3,6 +3,7 @@
 .. automodule:: model.itemdata
 .. automodule:: model.modelobjectbase
 .. automodule:: model.openidaccount
+.. automodule:: model.pagedata
 .. automodule:: model.sitedata
 .. automodule:: model.testing
 .. automodule:: model.userdata

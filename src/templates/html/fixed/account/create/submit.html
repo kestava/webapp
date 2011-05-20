@@ -1,0 +1,15 @@
+{% extends "html/fixed/standard.html" %}
+
+{% set pageName="Account Request Submitted" %}
+
+{% block contentSectionsBlock %}
+<section class="mainMessageSection">
+    <div class="inside">
+        <p>
+            An e-mail has been sent to {{ model['pageData']['userEmail'] }}
+            containing a link to use for validation.  To continue, please check for
+            that e-mail and follow the instructions it contains.
+        </p>
+    </div>
+</section>
+{% endblock %}
