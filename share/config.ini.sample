@@ -10,6 +10,7 @@ openid.datastore_directory: '/var/unsilo-openid-filestore'
 wurfl_service.host: '127.0.0.1'
 wurfl_service.port: 48085
 cache.user_agents: True
+email.smtp_server: "shawmail.gv.shawcable.net"
 
 ; Logging
 logging.access_log.path: '/var/log/unsilo/webapp/access.log'

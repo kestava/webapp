@@ -17,8 +17,7 @@ class InitializeDraftPost(cherrypy.Tool):
         If there is no posted item in draft status for the current user,
         create one
         """
-        s = SessionHelper()
-        if not ItemData.user_has_draft_item(s.userAccountId):
-            ItemData.create_user_draft_item(s.userAccountId)
+        id = SessionHelper().peek('user.account_id')
+        if not ItemData.user_has_draft_item(id): ItemData.create_user_draft_item(id)
         
 cherrypy.tools.initialize_draft_post = InitializeDraftPost()

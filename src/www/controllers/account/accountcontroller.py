@@ -3,12 +3,14 @@ import cherrypy
 
 from login.logincontroller import LoginController
 from createcontroller import CreateController
+from addcontroller import AddController
 from lib.sessionhelper import SessionHelper
 
 class AccountController(object):
     
     login = LoginController()
     create = CreateController()
+    add = AddController()
     
     @cherrypy.expose
     def logout(self):

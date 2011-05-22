@@ -57,14 +57,14 @@ class OpenIdHelper(object):
         by providing some very basic information (e.g. e-mail address).
         """
         s = SessionHelper()
-        accountId = OpenIdAccount.get_account_id(identity_url)
+        accountId = OpenIdAccount().get_account_id(identity_url)
         if accountId is None:
             # Publish the OpenID identity url to be used for account creation.
             # The account creation controller will pop it from the session data
             s.push('account_create.openid_identity_url', identity_url)
             raise cherrypy.HTTPRedirect('/account/create')
         else:
-            s.userAccountId = accountId
-            raise cherrypy.HTTPRedirect('/' if s.postLoginReturnToPath is None \
-                else s.postLoginReturnToPath)
+            s.push(user.account_id, accountId)
+            raise cherrypy.HTTPRedirect('/' if s.has_key('user.post_login_return_to') is None \
+                else s.peek('user.post_login_return_to'))
             

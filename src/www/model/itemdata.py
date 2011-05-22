@@ -27,7 +27,7 @@ class ItemData(ModelObjectBase):
             'userItemsAll': get_all_rows_nc(
                 'main',
                 'select item_id, title from items where ref_user_account_id = %(i)s',
-                { 'i': s.userAccountId })
+                { 'i': s.peek('user.account_id') })
         }
         
     @classmethod
@@ -36,10 +36,10 @@ class ItemData(ModelObjectBase):
         return get_scalar_nc(
             'main',
             """
-            select exists (select 0 from unsilo.draft_items
+            select exists (select 0 from draft_items
             where ref_user_account_id = %(i)s) as a
             """,
-            { 'i': s.userAccountId },
+            { 'i': s.peek('user.account_id') },
             'a')
         
     @classmethod
@@ -51,7 +51,7 @@ class ItemData(ModelObjectBase):
         execute_action_nc(
             'main',
             """
-            insert into unsilo.draft_items (ref_user_account_id) values (%(i)s)
+            insert into draft_items (ref_user_account_id) values (%(i)s)
             """,
-            { 'i': s.userAccountId })
+            { 'i': s.peek('user.account_id') })
         

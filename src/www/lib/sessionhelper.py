@@ -5,6 +5,11 @@ import cherrypy
 
 class SessionHelper(object):
 
+    __all = ['account_create.openid_identity_url',
+             'add_openid.existing_account',
+             'user.account_id',
+             'user.post_login_return_to']
+
     def clear_user_data(self):
         a = cherrypy.session.keys()
         for i in a:
@@ -12,32 +17,23 @@ class SessionHelper(object):
                 del cherrypy.session[i]
                 
     def push(self, name, value):
+        self.__validate_name(name)
         cherrypy.session[name] = value
         
     def pop(self, name):
+        self.__validate_name(name)
         val = cherrypy.session.get(name)
         del cherrypy.session[name]
         return val
     
-    def has_key(self, name):
-        return name in cherrypy.session.keys()
-        
-    @property
-    def userAccountId(self):
-        return cherrypy.session.get('user.account_id')
-        
-    @userAccountId.setter
-    def userAccountId(self, value):
-        cherrypy.session['user.account_id'] = value
+    def peek(self, name):
+        self.__validate_name(name)
+        return cherrypy.session.get(name)
     
-    @property
-    def postLoginReturnToPath(self):
-        return cherrypy.session.get('user.post_login_return_to')
-        
-    @postLoginReturnToPath.setter
-    def postLoginReturnToPath(self, value):
-        cherrypy.session['user.post_login_return_to'] = value
-        
-    @postLoginReturnToPath.deleter
-    def postLoginReturnToPath(self):
-        del cherrypy.session['user.post_login_return_to']
+    def has_key(self, name):
+        self.__validate_name(name)
+        return name in cherrypy.session.keys()
+
+    def __validate_name(self, name):
+        if not name in self.__all:
+            raise cherrypy.HTTPError(500, 'Invalid session variable: {0}'.format(name))

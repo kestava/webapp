@@ -6,6 +6,7 @@
 .. automodule:: model.pagedata
 .. automodule:: model.sitedata
 .. automodule:: model.testing
+.. automodule:: model.useraccount
 .. automodule:: model.userdata
 .. automodule:: model.usersettings
 """

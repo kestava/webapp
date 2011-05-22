@@ -11,8 +11,8 @@ class RequireLogin(cherrypy.Tool):
     def check(self, returnTo):
         cherrypy.log.error('inside check', 'RequireLogin')
         s = SessionHelper()
-        if s.userAccountId is None:
-            s.postLoginReturnToPath = returnTo
+        if s.peek('user.account_id') is None:
+            s.push('user.post_login_return_to', returnTo)
             raise cherrypy.HTTPRedirect('/error/login-required');
         
 cherrypy.tools.require_login = RequireLogin()

@@ -10,6 +10,8 @@ from pprint import pformat
 
 import cherrypy
 
+from model.uniquerequest import UniqueRequest
+
 def make_netloc(ssl=False):
     c = cherrypy.request.app.config
     hostname = c['appSettings']['siteHostname']
@@ -21,4 +23,3 @@ def make_netloc(ssl=False):
         portString = '' if port == 80 else ':{0}'.format(port)
         
     return '{0}{1}'.format(hostname, portString)
-    
