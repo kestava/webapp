@@ -10,17 +10,31 @@ class AuthenticationProviders(ModelObjectBase):
             {
                 'type': 'openid',
                 'id': 'google',
-                'text': 'Google'
+                'text': 'Google',
+                'url': 'https://www.google.com/accounts/o8/id'
             },
             {
                 'type': 'openid',
                 'id': 'yahoo',
-                'text': 'Yahoo!'
+                'text': 'Yahoo!',
+                'url': ''
             },
             {
-                'type': 'oath',
+                'type': 'oauth',
                 'id': 'twitter',
                 'text': 'Twitter'
+            },
+            {
+                'type': 'openid',
+                'id': 'myopenid',
+                'text': 'myOpenID',
+                'url': ''
+            },
+            {
+                'type': 'blah',
+                'id': 'blah',
+                'text': 'Blah$$$',
+                'url': ''
             }
         ]
         

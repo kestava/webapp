@@ -15,11 +15,22 @@
 
 {% block contentsBlock %}
 <form id="loginForm" action="/account/login/redirect" method="get">
-    <h1>Please select one of the following methods to log in:</h1>
-    <ul>
-        {% for i in model['authenticationProviders'] %}
-        <li id="{{ i['id'] }}">{{ i['text'] }}</li>
-        {% endfor %}
-    </ul>
+    <div>
+        <h1>Please select one of the following methods to log in:</h1>
+        <ul>
+            {% for i in model['authenticationProviders'] %}
+            <li id="{{ i['id'] }}">
+                {{ i['text'] }}
+                
+                {% if i['type'] == 'openid' %}
+                <input type="hidden" value="openid" class="authType"/>
+                <input type="hidden" value="{{ i['url'] }}" class="authUrl"/>
+                {% elif i['type'] == 'oauth' %}
+                <input type="hidden" value="oauth" class="authType"/>
+                {% endif %}
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
 </form>
 {% endblock %}

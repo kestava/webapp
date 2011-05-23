@@ -1,7 +1,7 @@
 
 import cherrypy
 
-from controllers.account.login.openid import OpenIDController
+from controllers.account.login.openid.openidcontroller import OpenIDController
 from model.viewdata.usersettings import UserSettings
 from model.viewdata.sitedata import SiteData
 from model.viewdata.authenticationproviders import AuthenticationProviders
@@ -10,15 +10,6 @@ from lib.openidhelper import OpenIdHelper
 class LoginController(object):
 
     openid = OpenIDController()
-
-    openIdProviders = {
-        'google': {
-            'url': 'https://www.google.com/accounts/o8/id'
-        },
-        'yahoo': {
-            'url': 'yahoo.com'
-        }
-    }
 
     @cherrypy.tools.build_model(includes=[
         SiteData(),
@@ -31,6 +22,10 @@ class LoginController(object):
         return template.render(model=req.model)
         
     @cherrypy.expose
-    def redirect(self, provider):
-        redirectUrl = OpenIdHelper.get_auth_redirect_url(self.openIdProviders[provider]['url'])
+    def redirect(self, provider, authType, authUrl):
+        if authType == 'openid':
+            redirectUrl = OpenIdHelper.get_auth_redirect_url(authUrl)
+        else:
+            raise NotImplementedError()
+            
         raise cherrypy.HTTPRedirect(redirectUrl)
