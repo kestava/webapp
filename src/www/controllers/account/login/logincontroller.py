@@ -4,6 +4,7 @@ import cherrypy
 from controllers.account.login.openid import OpenIDController
 from model.viewdata.usersettings import UserSettings
 from model.viewdata.sitedata import SiteData
+from model.viewdata.authenticationproviders import AuthenticationProviders
 from lib.openidhelper import OpenIdHelper
 
 class LoginController(object):
@@ -21,7 +22,8 @@ class LoginController(object):
 
     @cherrypy.tools.build_model(includes=[
         SiteData(),
-        UserSettings()])
+        UserSettings(),
+        AuthenticationProviders()])
     @cherrypy.expose
     def index(self):
         req = cherrypy.request
