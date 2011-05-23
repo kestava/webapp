@@ -64,7 +64,7 @@ class OpenIdHelper(object):
             s.push('account_create.openid_identity_url', identity_url)
             raise cherrypy.HTTPRedirect('/account/create')
         else:
-            s.push(user.account_id, accountId)
+            s.push('user.account_id', accountId)
             raise cherrypy.HTTPRedirect('/' if s.has_key('user.post_login_return_to') is None \
                 else s.peek('user.post_login_return_to'))
             
