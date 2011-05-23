@@ -13,8 +13,8 @@ following link:
 If you have trouble following the link directly from this e-mail, you can copy
 and paste it into the address bar of your browser.
 
-Thanks, and we how you enjoy using {{ siteName }}.
+Thanks, and we hope you enjoy using {{ siteName }}.
 
-Sincerley,
+Sincerely,
 
 The {{ siteName }} Team
