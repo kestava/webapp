@@ -17,7 +17,7 @@ class AuthenticationProviders(ModelObjectBase):
                 'type': 'openid',
                 'id': 'yahoo',
                 'text': 'Yahoo!',
-                'url': ''
+                'url': 'http://www.yahoo.com/'
             },
             {
                 'type': 'oauth',
@@ -28,13 +28,7 @@ class AuthenticationProviders(ModelObjectBase):
                 'type': 'openid',
                 'id': 'myopenid',
                 'text': 'myOpenID',
-                'url': ''
-            },
-            {
-                'type': 'blah',
-                'id': 'blah',
-                'text': 'Blah$$$',
-                'url': ''
+                'url': 'https://www.myopenid.com/'
             }
         ]
         
