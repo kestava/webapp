@@ -19,10 +19,10 @@ from searchcontroller import SearchController
 from transactionscontroller import TransactionsController
 from mobilecontroller import MobileController
 
-from model.usersettings import UserSettings
-from model.userdata import UserData
-from model.sitedata import SiteData
-from model.credits import Credits
+from model.viewdata.usersettings import UserSettings
+from model.viewdata.userdata import UserData
+from model.viewdata.sitedata import SiteData
+from model.viewdata.credits import Credits
 
 class RootController(object):
 

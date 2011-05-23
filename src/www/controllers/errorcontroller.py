@@ -8,9 +8,9 @@ import logging
 
 import cherrypy
 
-from model.sitedata import SiteData
-from model.usersettings import UserSettings
-from model.userdata import UserData
+from model.viewdata.sitedata import SiteData
+from model.viewdata.usersettings import UserSettings
+from model.viewdata.userdata import UserData
 
 class ErrorController(object):
 

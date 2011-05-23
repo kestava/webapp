@@ -1,7 +1,7 @@
 
 import cherrypy
 
-from model.sitedata import SiteData
+from model.viewdata.sitedata import SiteData
 
 class MobileDynamicJsController(object):
 

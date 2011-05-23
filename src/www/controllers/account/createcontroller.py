@@ -7,10 +7,12 @@ from pprint import pformat, pprint
 import cherrypy
 
 from model import get_scalar_nc
-from model.userdata import UserData
-from model.usersettings import UserSettings
-from model.sitedata import SiteData
-from model.pagedata import PageData
+
+from model.viewdata.userdata import UserData
+from model.viewdata.usersettings import UserSettings
+from model.viewdata.sitedata import SiteData
+from model.viewdata.pagedata import PageData
+
 from model.uniquerequest import UniqueRequest
 from model.useraccount import UserAccount
 

@@ -2,8 +2,8 @@
 import cherrypy
 
 from controllers.account.login.openid import OpenIDController
-from model.usersettings import UserSettings
-from model.sitedata import SiteData
+from model.viewdata.usersettings import UserSettings
+from model.viewdata.sitedata import SiteData
 from lib.openidhelper import OpenIdHelper
 
 class LoginController(object):

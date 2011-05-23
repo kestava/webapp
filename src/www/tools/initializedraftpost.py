@@ -1,7 +1,7 @@
 
 import cherrypy
 
-from model.itemdata import ItemData
+from model.viewdata.itemdata import ItemData
 from lib.sessionhelper import SessionHelper
 
 class InitializeDraftPost(cherrypy.Tool):

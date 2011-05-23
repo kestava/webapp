@@ -3,9 +3,9 @@ import cherrypy
 
 from mobiledynamiccontroller import MobileDynamicController
 
-from model.usersettings import UserSettings
-from model.userdata import UserData
-from model.sitedata import SiteData
+from model.viewdata.usersettings import UserSettings
+from model.viewdata.userdata import UserData
+from model.viewdata.sitedata import SiteData
 
 class MobileController(object):
 

@@ -3,10 +3,10 @@ from pprint import pprint
 
 import cherrypy
 
-from model.userdata import UserData
-from model.usersettings import UserSettings
-from model.sitedata import SiteData
-from model.itemdata import ItemData
+from model.viewdata.userdata import UserData
+from model.viewdata.usersettings import UserSettings
+from model.viewdata.sitedata import SiteData
+from model.viewdata.itemdata import ItemData
 
 from postmaterialcontroller import PostMaterialController
 
