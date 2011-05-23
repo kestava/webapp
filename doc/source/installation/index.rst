@@ -29,6 +29,8 @@ Setup Cloud Server
 
 1. Follow the Rackspace guide to setting up an Ubuntu server (http://cloudservers.rackspacecloud.com/index.php/Ubuntu\_-_Setup).
 
+   Install Ubuntu 10.04 LTS Lucid Lynx.
+
 #. Copy your public key to the new server::
 
     ssh-copy-id <username>@<host>
@@ -43,13 +45,10 @@ Create a system user to run Unsilo applications::
 Install Required Packages
 =========================
 
-.. note:: Check on these.  Some of them may no longer be necessary
-          (e.g libxml2-dev, libxslt-dev, libpq-dev).
-
 ::
 
     sudo apt-get install build-essential
-    sudo apt-get install python-dev
+    sudo apt-get install python-dev (python2.7-dev on Lucid)
     sudo apt-get install libxml2-dev libxslt-dev
     sudo apt-get install libpq-dev
     sudo apt-get install python-software-properties
@@ -278,9 +277,9 @@ These requirements should be installed in a Python virtual environment:
     
         sudo UNSILO-WEBAPP/bin/pip install jinja2
 
-#. geopy (check this!)
+#. sphinx (on development box)
 
-#. mox (only on development box)
+#. geopy (check this!)
 
 Setup nginx
 ===========

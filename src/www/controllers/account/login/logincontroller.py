@@ -1,7 +1,7 @@
 
 import cherrypy
 
-from controllers.openidcontroller import OpenIDController
+from controllers.account.login.openid import OpenIDController
 from model.usersettings import UserSettings
 from model.sitedata import SiteData
 from lib.openidhelper import OpenIdHelper
