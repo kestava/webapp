@@ -1,6 +1,5 @@
 
 import smtplib
-from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from pprint import pformat, pprint
 
@@ -80,9 +79,9 @@ class CreateController(object):
             { 'e': email },
             'a')
         
-        message = self._email_exists_message(email, oidIdentifier) \
+        message = self._create_email_exists_message(email, oidIdentifier) \
             if exists \
-            else self._new_account_message(email, oidIdentifier)
+            else self._create_new_account_message(email, oidIdentifier)
         
         self._send_email(
             message=message,
@@ -97,8 +96,7 @@ class CreateController(object):
                 r.model['userSettings']['layout']))
         return template.render(model=r.model)
         
-    def _email_exists_message(self, email, oidIdentifier):
-        print('Inside _email_exists_message')
+    def _create_email_exists_message(self, email, oidIdentifier):
         c = cherrypy.request.app.config
         env = cherrypy.request.app.jinjaEnv
         s = SessionHelper()
@@ -121,25 +119,44 @@ class CreateController(object):
             email=email,
             identityURL=oidIdentifier,
             linkAddress=linkAddress)
-        html = env.get_template('email/account/create/existing/verify.html').render(
+        
+        msg = MIMEText(text)
+        msg['Subject'] = '{0} - Confirm Add E-mail Address'.format(c['appSettings']['siteName'])
+        msg['From'] = self._get_from_address()
+        msg['To'] = email
+        
+        return msg
+    
+    def _create_new_account_message(self, email, oidIdentifier):
+        c = cherrypy.request.app.config
+        env = cherrypy.request.app.jinjaEnv
+        s = SessionHelper()
+        u = UniqueRequest()
+        
+        value = u.create(
+            sessionKey=cherrypy.session.id,
+            requestKey='add_openid.new_account',
+            data='|'.join([email, oidIdentifier]))
+        s.push('add_openid.new_account', value)
+            
+        # need to pass the session id in case they visit the link using a different browser
+        linkAddress = 'http://{0}/account/add/new?sessionKey={1}&request={2}'.format(
+            make_netloc(),
+            cherrypy.session.id,
+            s.peek('add_openid.new_account'))
+        
+        text = env.get_template('email/account/create/new/verify.txt').render(
             siteName=c['appSettings']['siteName'],
             email=email,
             identityURL=oidIdentifier,
             linkAddress=linkAddress)
         
-        msg = MIMEMultipart('alternative')
-        msg['Subject'] = 'Confirm Add E-mail Address'
+        msg = MIMEText(text)
+        msg['Subject'] = '{0} - Confirm New Account'.format(c['appSettings']['siteName'])
         msg['From'] = self._get_from_address()
         msg['To'] = email
         
-        msg.attach(MIMEText(text, 'plain'))
-        msg.attach(MIMEText(html, 'html'))
-        
         return msg
-    
-    def _new_account_message(self, email, oidIdentifier):
-        print('Inside _new_account_message')
-        raise NotImplementedError()
         
     def _send_email(self, message, smtpServer, email):
         s = smtplib.SMTP(host=smtpServer)

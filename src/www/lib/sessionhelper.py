@@ -7,6 +7,7 @@ class SessionHelper(object):
 
     __all = ['account_create.openid_identity_url',
              'add_openid.existing_account',
+             'add_openid.new_account',
              'user.account_id',
              'user.post_login_return_to']
 

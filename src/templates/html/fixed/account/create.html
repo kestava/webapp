@@ -1,24 +1,25 @@
-{% extends "html/fixed/base.html" %}
+{% extends "html/fixed/standard.html" %}
 
-{% set pageName="Create Account" %}
+{% set pageName="New OpenID Identifier" %}
 
-{% block contentsBlock %}
-<p>Creating a new account for OpenID identifier: {{ oidIdentifier }}</p>
-
-<form method="post" action="/account/create/submit">
-<p>
-This appears to be the first time you've logged in using this identity
-provider.  Please enter the e-mail address you wish to use with
-{{ model['siteData']['siteName'] }}.
-</p>
-
-<div>
-    <label for="email">E-mail:</label>
-    <input id="email" name="email" type="text"/>
-    <input name="oidIdentifier" type="hidden" value="{{ oidIdentifier }}"/>
-    <button>Submit</button>
-    <button>Cancel</button>
-</div>
-</form>
-
-{% endblock contentsBlock %}
+{% block contentSectionsBlock %}
+<section class="mainMessageSection">
+    <div class="inside">
+        <form method="post" action="/account/create/submit">
+            <p>
+            This appears to be the first time you've logged in using this identity
+            provider.  Please enter the e-mail address you wish to use with
+            {{ model['siteData']['siteName'] }}.
+            </p>
+            <div>
+                <label for="email">E-mail:</label>
+                <input id="email" name="email" type="text"/>
+                <input name="oidIdentifier" type="hidden" value="{{ oidIdentifier }}"/>
+                <button>Submit</button>
+                <button>Cancel</button>
+            </div>
+        </form>
+        <p class="alt">Creating a new account for OpenID identifier: {{ oidIdentifier }}</p>
+    </div>
+</section>
+{% endblock contentSectionsBlock %}

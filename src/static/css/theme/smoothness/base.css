@@ -42,3 +42,14 @@ header
 {
     border-color: #333;
 }
+
+.alt
+{
+    font-style: italic;
+    color: #777;
+}
+
+.mainMessageSection .inside
+{
+    border-color: #AAA;
+}

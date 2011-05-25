@@ -1,0 +1,60 @@
+{% extends "html/fixed/standard.html" %}
+
+{% set pageName="Create New Account" %}
+
+{% set includeJQueryUI=True %}
+
+{% block additionalStylesheetsBlock %}
+<link rel="stylesheet" type="text/css" href="/static/css/layout/{{ model['userSettings']['layout'] }}/account/add/newaccount.css" />
+{% endblock %}
+
+{% block additionalHeadScriptsBlock %}
+<script type="text/javascript" src="/static/js/app/plugins/formField.js"></script>
+<script type="text/javascript" src="/static/js/app/account/add/newaccount.js"></script>
+{% endblock %}
+
+{% block contentSectionsBlock %}
+<section class="mainMessageSection">
+    <div class="inside">
+        <form>
+            <div>
+                <p>
+                    To create a new {{ model['siteData']['siteName'] }} account,
+                    please supply the following information:
+                </p>
+                
+                <div>
+                    <label for="firstName">First Name:</label>
+                    <input id="firstName" name="firstName" type="text" maxlength="100"/>
+                </div>
+                
+                <div>
+                    <label for="lastName">Last Name:</label>
+                    <input id="lastName" name="lastName" type="text" maxlength="100"/>
+                    <span class="alt">(Optional)</span>
+                </div>
+                
+                <div>
+                    <label for="userName">Username:</label>
+                    <input id="userName" name="userName" type="text" maxlength="40"/>
+                </div>
+                
+                <div>
+                    <label for="email">E-mail:</label>
+                    <input id="email" name="email" type="text" disabled="disabled" value="{{ model['pageData']['email'] }}"/>
+                </div>
+                
+                <div>
+                    <label for="oid">OpenID:</label>
+                    <input id="oid" name="oid" type="text" disabled="disabled" value="{{ model['pageData']['oidIdentifier'] }}"/>
+                </div>
+                
+                <div class="buttonsContainer">
+                    <button type="submit" class="submitButton">Create</button>
+                    <button type="button" class="cancelButton">Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock %}

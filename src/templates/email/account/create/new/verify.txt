@@ -1,8 +1,14 @@
 Greetings from {{ siteName }},
 
-We received a request to associate the e-mail address {{ email }} with the
-OpenID URL {{ identityURL }} at {{ siteName }}.  If you did not make this
-request, please accept our apologies and ignore this message.
+We received a request to create a new account.
+
+The following data will be associated:
+
+Email: {{ email }}
+OpenID URL: {{ identityURL }}
+
+If you did not make this request, please accept our apologies and ignore this
+message.
 
 If you did make this request, please confirm that you control this e-mail
 address and would like to register it to your OpenID login by clicking on the
