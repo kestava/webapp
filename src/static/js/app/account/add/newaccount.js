@@ -2,23 +2,18 @@
  * app/account/add/newaccount.js
  */
 
+var $, console;
+
 $(function() {
-    var createButton = $('.buttonsContainer .submitButton');
+    $('#firstName, #lastName, #userName')
+        .val('')
+        .formField();
     
-    $('#firstName, #lastName, #userName').val('');
-    
-    $('#firstName').formField({
-        'required': true,
-        'submitButton': createButton
-    });
-    $('#lastName').formField({
-        'required': false
-    });
-    $('#userName').formField({
-        'required': true,
-        'submitButton': createButton
-    });
-    
-    createButton.button({ disabled: true });
+    $('.buttonsContainer .submitButton').button({ disabled: true });
     $('.buttonsContainer .cancelButton').button();
+    $('#checkAvail')
+        .button()
+        .click(function() {
+            console.log('Checking availability...');
+        });
 });

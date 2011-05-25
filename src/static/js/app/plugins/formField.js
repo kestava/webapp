@@ -13,10 +13,16 @@ var jQuery;
                 $.extend(settings, options);
             }
             
-            this.bind('keyup.formField', (function(ev) {
-                var $this = $(this);
-                console.log('keyup: ' + $this.val());
-            }()));
+            this.each(function(a) {
+                return function() {
+                    var $t = $(this),
+                        data = $t.data('formField');
+                        
+                    if (!data) {
+                        $t.data('formField', a);
+                    }
+                }
+            }(settings));
         }
     };
     
