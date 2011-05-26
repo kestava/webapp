@@ -3,6 +3,7 @@ import cherrypy
 
 from modelobjectbase import ModelObjectBase
 from model import grab_connection, get_row
+from lib.sessionhelper import SessionHelper
 
 class UserSettings(ModelObjectBase):
     
@@ -15,7 +16,7 @@ class UserSettings(ModelObjectBase):
         o['layout'] = 'fixed'
         o['jQueryUiTheme'] = 'smoothness'
         
-        i = cherrypy.session.get('user.account_id')
+        i = SessionHelper().peek('user.account_id')
         if not i is None:
             with grab_connection('main') as conn:
                 data = get_row(conn,

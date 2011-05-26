@@ -18,6 +18,8 @@ from postcontroller import PostController
 from searchcontroller import SearchController
 from transactionscontroller import TransactionsController
 from mobilecontroller import MobileController
+from services.servicescontroller import ServicesController
+from testing.testingcontroller import TestingController
 
 from model.viewdata.usersettings import UserSettings
 from model.viewdata.userdata import UserData
@@ -35,6 +37,8 @@ class RootController(object):
     mobile = MobileController()
     post = PostController()
     search = SearchController()
+    services = ServicesController()
+    testing = TestingController()
     transactions = TransactionsController()
 
     @cherrypy.tools.build_model(includes=[

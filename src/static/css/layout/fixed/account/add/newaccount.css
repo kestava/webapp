@@ -1,3 +1,28 @@
 /*!
  * layout/fixed/account/add/newaccount.css
  */
+
+.row
+{
+    margin: 12px 0px;
+}
+
+.row label
+{
+    width: 80px;
+}
+
+.row label,
+.row input,
+.row button,
+.row img,
+.row span
+{
+    display: inline-block;
+    margin: 0px 6px;
+}
+
+#oid
+{
+    width: 70%;
+}

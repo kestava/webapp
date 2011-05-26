@@ -250,3 +250,8 @@ hr.clearing
     -moz-border-radius: 6px;
     border-radius: 6px;
 }
+
+button.smallButton
+{
+    font-size: 90%;
+}

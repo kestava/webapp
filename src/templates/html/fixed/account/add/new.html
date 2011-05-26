@@ -16,42 +16,49 @@
 {% block contentSectionsBlock %}
 <section class="mainMessageSection">
     <div class="inside">
-        <form>
+        <form method="post" action="/account/add/new/confirm">
             <div>
                 <p>
                     To create a new {{ model['siteData']['siteName'] }} account,
                     please supply the following information:
                 </p>
                 
-                <div>
+                <div class="row">
                     <label for="firstName">First Name:</label>
                     <input id="firstName" name="firstName" type="text" maxlength="100"/>
                 </div>
                 
-                <div>
+                <div class="row">
                     <label for="lastName">Last Name:</label>
                     <input id="lastName" name="lastName" type="text" maxlength="100"/>
                 </div>
                 
-                <div>
+                <div class="row">
                     <label for="userName">Username:</label>
                     <input id="userName" name="userName" type="text" maxlength="40"/>
-                    <button id="checkAvail" type="button">Check Availability</button>
+                    <button id="checkAvail" type="button" class="smallButton">Check Availability</button>
                 </div>
                 
-                <div>
-                    <label for="email">E-mail:</label>
-                    <input id="email" name="email" type="text" disabled="disabled" value="{{ model['pageData']['email'] }}"/>
+                <div class="row">
+                    <label>E-mail:</label>
+                    <input type="text" disabled="disabled" value="{{ model['pageData']['email'] }}"/>
                 </div>
                 
-                <div>
-                    <label for="oid">OpenID:</label>
-                    <input id="oid" name="oid" type="text" disabled="disabled" value="{{ model['pageData']['oidIdentifier'] }}"/>
+                <div class="row">
+                    <label>OpenID:</label>
+                    <input type="text" disabled="disabled" value="{{ model['pageData']['oidIdentifier'] }}"/>
                 </div>
                 
                 <div class="buttonsContainer">
                     <button type="submit" class="submitButton">Create</button>
                     <button type="button" class="cancelButton">Cancel</button>
+                </div>
+                
+                <div>
+                    <input name="sessionKey" type="hidden" value="{{ model['pageData']['sessionKey'] }}"/>
+                    <input name="request" type="hidden" value="{{ model['pageData']['request'] }}"/>
+                    <input name="email" type="hidden" value="{{ model['pageData']['email'] }}"/>
+                    <input name="oidIdentifier" type="hidden" value="{{ model['pageData']['oidIdentifier'] }}"/>
                 </div>
             </div>
         </form>
