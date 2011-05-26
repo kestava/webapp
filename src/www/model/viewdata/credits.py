@@ -12,14 +12,12 @@ class Credits(ModelObjectBase):
             'productUrl': 'http://html5doctor.com/html-5-reset-stylesheet/',
             'author': 'Richard Clark',
             'authorUrl': 'http://richclarkdesign.com',
-            'additionalMarkup': '<p>This is further based on Eric Meyer\'s \
-<a href="http://meyerweb.com/eric/tools/css/reset/">Reset CSS</a>.</p>'
         },
-        # Not using this yet, but hope to
-        #{
-        #    'name': 'Mark James',
-        #    'description': '<p><a href="http://www.famfamfam.com/lab/icons/silk/">Silk icon set 1.3</a></p>'
-        #}
+        {
+            'product': 'Silk icon set',
+            'productUrl': 'http://www.famfamfam.com/lab/icons/silk/',
+            'author': 'Mark James'
+        },
         {
             'product': 'jQuery DataTables plugin',
             'productUrl': 'http://www.datatables.net/',
