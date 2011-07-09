@@ -25,7 +25,7 @@ class CreateController(object):
         UserSettings(),
         SiteData()])
     @cherrypy.expose
-    def index(self):
+    def index(self, openid):
         """
         .. note:: An OpenID Identifier must be present in the user's session data.
         """
